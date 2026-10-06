@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WayG VPN — Приватное соединение нового поколения</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #04050a;
+    --bg-soft: #080a12;
+    --text: #f0f2f8;
+    --muted: #7d869c;
+    --muted-2: #5a6379;
+    --accent: #6b9dff;
+    --accent-2: #a855f7;
+    --green: #22c55e;
+    --yellow: #eab308;
+    --orange: #f97316;
+    --card: rgba(255,255,255,0.025);
+    --card-hover: rgba(255,255,255,0.05);
+    --border: rgba(255,255,255,0.07);
+    --border-strong: rgba(255,255,255,0.12);
+    --shadow: 0 12px 40px -20px rgba(0,0,0,0.8);
+    --noise-opacity: 0.035;
+    --grid-opacity: 0.018;
+    --orb-opacity: 0.35;
+    --nav-scrolled-bg: rgba(4,5,10,0.75);
+  }
+
+  [data-theme="light"] {
+    --bg: #f5f7fc;
+    --bg-soft: #eef1f8;
+    --text: #0f121a;
+    --muted: #5a6379;
+    --muted-2: #8b93a7;
+    --accent: #4a7dff;
+    --accent-2: #9333ea;
+    --green: #16a34a;
+    --yellow: #ca8a04;
+    --orange: #ea580c;
+    --card: rgba(0,0,0,0.02);
+    --card-hover: rgba(0,0,0,0.04);
+    --border: rgba(0,0,0,0.06);
+    --border-strong: rgba(0,0,0,0.1);
+    --shadow: 0 12px 40px -20px rgba(0,0,0,0.1);
+    --noise-opacity: 0.015;
+    --grid-opacity: 0.04;
+    --orb-opacity: 0.2;
+    --nav-scrolled-bg: rgba(245,247,252,0.8);
+  }
+
+  html { scroll-behavior: smooth; }
+  html[dir="rtl"] { direction: rtl; }
+  html[dir="rtl"] .nav-inner { flex-direction: row-reverse; }
+  html[dir="rtl"] .nav-links { flex-direction: row-reverse; }
+  html[dir="rtl"] .nav-controls { flex-direction: row-reverse; }
+  html[dir="rtl"] .hero-buttons { flex-direction: row-reverse; }
+  html[dir="rtl"] .protocol-items { flex-direction: row-reverse; }
+  html[dir="rtl"] .footer-inner { flex-direction: row-reverse; }
+  html[dir="rtl"] .footer-cols { flex-direction: row-reverse; }
+  html[dir="rtl"] .footer-bottom { flex-direction: row-reverse; }
+  html[dir="rtl"] .price-features li { flex-direction: row-reverse; text-align: right; }
+  html[dir="rtl"] .faq-q { flex-direction: row-reverse; }
+  html[dir="rtl"] .server-meta-row { flex-direction: row-reverse; }
+  html[dir="rtl"] .server-head { flex-direction: row-reverse; }
+  html[dir="rtl"] .logo { flex-direction: row-reverse; }
+  html[dir="rtl"] .lang-dropdown { right: auto; left: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  ::selection { background: rgba(107,157,255,0.3); color: #fff; }
+
+  .bg-layer {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(140px);
+    animation: float 24s ease-in-out infinite;
+    opacity: var(--orb-opacity);
+    transition: opacity 0.4s ease;
+  }
+  .orb-1 { width: 600px; height: 600px; background: rgba(107,157,255,0.35); top: -200px; left: -150px; }
+  .orb-2 { width: 500px; height: 500px; background: rgba(168,85,247,0.28); top: 45%; right: -200px; animation-delay: -8s; }
+  .orb-3 { width: 450px; height: 450px; background: rgba(34,211,238,0.2); bottom: -150px; left: 25%; animation-delay: -16s; }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(70px,-50px) scale(1.12); }
+    66% { transform: translate(-60px,60px) scale(0.92); }
+  }
+
+  .noise {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    opacity: var(--noise-opacity);
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .grid-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: 
+      linear-gradient(rgba(128,128,128,var(--grid-opacity)) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(128,128,128,var(--grid-opacity)) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 90%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 90%);
+    pointer-events: none;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 20px 0;
+    transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  nav.scrolled {
+    padding: 12px 0;
+    background: var(--nav-scrolled-bg);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  /* LOGO - just text */
+  .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    color: var(--text);
+    flex-shrink: 0;
+    transition: opacity 0.2s;
+    display: inline-flex;
+    align-items: center;
+  }
+  .logo:hover { opacity: 0.85; }
+  .logo .g {
+    font-weight: 700;
+    background: linear-gradient(135deg, #6b9dff, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .icon-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--card);
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-family: inherit;
+  }
+  .icon-btn:hover {
+    background: var(--card-hover);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .icon-btn svg { width: 18px; height: 18px; }
+
+  .lang-switcher { position: relative; }
+  .lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 12px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--card);
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.25s ease;
+  }
+  .lang-btn:hover {
+    background: var(--card-hover);
+    border-color: var(--accent);
+  }
+  .lang-btn svg { width: 14px; height: 14px; opacity: 0.7; }
+  .lang-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: var(--bg-soft);
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    padding: 6px;
+    min-width: 170px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.4);
+    z-index: 110;
+  }
+  .lang-switcher.open .lang-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .lang-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 9px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+  .lang-dropdown a:hover { background: var(--card-hover); }
+  .lang-dropdown a.active { background: rgba(107,157,255,0.1); color: var(--accent); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 11px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+    font-family: inherit;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #6b9dff, #a855f7);
+    color: #fff;
+    box-shadow: 0 8px 24px -4px rgba(107,157,255,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 32px -4px rgba(107,157,255,0.55), inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+  .btn-ghost {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+    backdrop-filter: blur(10px);
+  }
+  .btn-ghost:hover {
+    background: var(--card-hover);
+    border-color: rgba(128,128,128,0.3);
+  }
+  .btn-lg { padding: 15px 28px; font-size: 15px; border-radius: 13px; }
+
+  /* HERO */
+  .hero {
+    padding: 180px 28px 100px;
+    max-width: 1240px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 18px 8px 12px;
+    border-radius: 100px;
+    background: var(--card);
+    border: 1px solid var(--border-strong);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 32px;
+    backdrop-filter: blur(20px);
+  }
+  .badge-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 12px var(--green);
+    animation: pulse 2s ease-in-out infinite;
+    margin-left: 4px;
+    flex-shrink: 0;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(40px, 6.5vw, 84px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    margin-bottom: 24px;
+    color: var(--text);
+  }
+  h1 .gradient-text {
+    background: linear-gradient(120deg, #6b9dff 0%, #a855f7 50%, #22d3ee 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p.lead {
+    font-size: clamp(16px, 1.8vw, 19px);
+    color: var(--muted);
+    max-width: 660px;
+    margin: 0 auto 40px;
+    line-height: 1.65;
+  }
+  .hero-buttons {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+  .hero-note {
+    font-size: 13px;
+    color: var(--muted-2);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hero-note svg { color: var(--green); flex-shrink: 0; }
+  .hero-note .dot { color: var(--muted-2); opacity: 0.5; }
+
+  .protocol-strip {
+    margin-top: 72px;
+    padding: 22px 32px;
+    border-radius: 18px;
+    background: var(--card);
+    border: 1px solid var(--border-strong);
+    backdrop-filter: blur(24px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    position: relative;
+    box-shadow: var(--shadow);
+  }
+  .protocol-strip::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 15%; right: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(107,157,255,0.6), transparent);
+  }
+  .protocol-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+  }
+  .protocol-items {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .protocol-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .protocol-item .pip {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6b9dff, #a855f7);
+    box-shadow: 0 0 8px rgba(107,157,255,0.6);
+  }
+  .protocol-divider {
+    width: 1px;
+    height: 24px;
+    background: var(--border-strong);
+  }
+
+  /* SECTIONS */
+  section { padding: 110px 28px; position: relative; }
+  .container { max-width: 1240px; margin: 0 auto; }
+  .section-head { text-align: center; margin-bottom: 64px; }
+  .section-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+    padding: 6px 14px;
+    border-radius: 100px;
+    background: rgba(107,157,255,0.08);
+    border: 1px solid rgba(107,157,255,0.2);
+  }
+  .section-tag::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+  }
+  h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+  .section-head p {
+    color: var(--muted);
+    font-size: 17px;
+    max-width: 640px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  /* SERVERS */
+  .servers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 22px;
+  }
+  .server-card {
+    padding: 32px;
+    border-radius: 22px;
+    background: var(--card);
+    border: 1px solid var(--border-strong);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow);
+  }
+  .server-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(107,157,255,0.35);
+  }
+  .server-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--status-color, var(--green));
+    opacity: 0.9;
+  }
+  .server-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+    gap: 12px;
+  }
+  .server-flag {
+    font-size: 42px;
+    line-height: 1;
+  }
+  .server-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 13px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    background: rgba(34,197,94,0.1);
+    color: var(--green);
+    border: 1px solid rgba(34,197,94,0.25);
+    white-space: nowrap;
+  }
+  .server-status.testing { background: rgba(234,179,8,0.1); color: var(--yellow); border-color: rgba(234,179,8,0.25); }
+  .server-status.considering { background: rgba(249,115,22,0.1); color: var(--orange); border-color: rgba(249,115,22,0.25); }
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    box-shadow: 0 0 10px currentColor;
+    flex-shrink: 0;
+  }
+  .server-status.testing .status-dot,
+  .server-status.considering .status-dot { animation: pulse 1.6s ease-in-out infinite; }
+
+  .server-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 23px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    letter-spacing: -0.02em;
+  }
+  .server-city {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .server-city::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--muted-2);
+    flex-shrink: 0;
+  }
+  .server-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .server-meta-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13.5px;
+    align-items: center;
+    gap: 12px;
+  }
+  .server-meta-row span:first-child { color: var(--muted); }
+  .server-meta-row span:last-child {
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    text-align: right;
+  }
+
+  /* TECHNOLOGY */
+  .proto-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .proto-hero h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+  .proto-hero p { color: var(--muted); font-size: 16px; line-height: 1.7; margin-bottom: 16px; }
+  .proto-hero p:last-child { margin-bottom: 0; }
+  .proto-hero strong { color: var(--text); }
+  .proto-code {
+    padding: 28px;
+    border-radius: 18px;
+    background: var(--bg-soft);
+    border: 1px solid var(--border-strong);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.9;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  .proto-code::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 20%; right: 20%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(107,157,255,0.6), transparent);
+  }
+  .proto-code-head {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .proto-code-head span {
+    width: 11px; height: 11px;
+    border-radius: 50%;
+  }
+  .proto-code-head span:nth-child(1) { background: #ff5f57; }
+  .proto-code-head span:nth-child(2) { background: #febc2e; }
+  .proto-code-head span:nth-child(3) { background: #28c840; }
+  .code-line { display: flex; gap: 14px; }
+  .code-line .ln { color: var(--muted-2); user-select: none; min-width: 18px; }
+  .code-key { color: var(--accent); }
+  .code-str { color: #16a34a; }
+  [data-theme="dark"] .code-str { color: #a5d6a7; }
+  .code-val { color: var(--accent-2); }
+  .code-comment { color: var(--muted-2); font-style: italic; }
+
+  /* FEATURES */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 20px;
+  }
+  .feature {
+    padding: 32px 28px;
+    border-radius: 20px;
+    background: var(--card);
+    border: 1px solid var(--border-strong);
+    transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  .feature:hover {
+    background: var(--card-hover);
+    transform: translateY(-4px);
+    border-color: rgba(107,157,255,0.28);
+  }
+  .feature-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(107,157,255,0.15), rgba(168,85,247,0.1));
+    border: 1px solid rgba(107,157,255,0.25);
+    display: grid;
+    place-items: center;
+    margin-bottom: 20px;
+    color: var(--accent);
+    transition: all 0.35s;
+  }
+  .feature:hover .feature-icon {
+    transform: scale(1.06) rotate(-3deg);
+  }
+  .feature-icon svg { width: 24px; height: 24px; }
+  .feature h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: -0.015em;
+  }
+  .feature p { color: var(--muted); font-size: 14.5px; line-height: 1.6; }
+
+  /* PRICING */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+    max-width: 1040px;
+    margin: 0 auto;
+    align-items: stretch;
+  }
+  .price-card {
+    padding: 40px 32px;
+    border-radius: 24px;
+    background: var(--card);
+    border: 1px solid var(--border-strong);
+    position: relative;
+    transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+    display: flex;
+    flex-direction: column;
+  }
+  .price-card:hover {
+    border-color: rgba(128,128,128,0.2);
+    transform: translateY(-4px);
+  }
+  .price-card.featured {
+    background: linear-gradient(180deg, rgba(107,157,255,0.09), rgba(168,85,247,0.04) 50%, var(--card));
+    border-color: rgba(107,157,255,0.4);
+    box-shadow: 0 30px 80px -30px rgba(107,157,255,0.5), var(--shadow);
+  }
+  .price-card.featured::before {
+    content: 'ПОПУЛЯРНЫЙ';
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 16px;
+    border-radius: 100px;
+    background: linear-gradient(135deg, #6b9dff, #a855f7);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #fff;
+    box-shadow: 0 10px 24px -4px rgba(107,157,255,0.6);
+    white-space: nowrap;
+  }
+  .price-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 14px;
+    letter-spacing: 0.02em;
+  }
+  .price-amount {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 52px;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .price-amount small { font-size: 24px; opacity: 0.6; margin-left: 4px; }
+  .price-period { color: var(--muted); font-size: 13.5px; margin-bottom: 30px; }
+  .price-features {
+    list-style: none;
+    margin-bottom: 30px;
+    flex: 1;
+  }
+  .price-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 9px 0;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .check {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(34,197,94,0.15);
+    border: 1px solid rgba(34,197,94,0.3);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .check svg { width: 10px; height: 10px; color: var(--green); }
+  .price-card .btn { width: 100%; justify-content: center; }
+
+  /* FAQ */
+  .faq-list {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .faq-item {
+    padding: 22px 26px;
+    border-radius: 18px;
+    background: var(--card);
+    border: 1px solid var(--border-strong);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  .faq-item:hover {
+    background: var(--card-hover);
+    border-color: rgba(128,128,128,0.2);
+  }
+  .faq-item.open {
+    background: var(--card-hover);
+    border-color: rgba(107,157,255,0.3);
+  }
+  .faq-q {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 15.5px;
+    gap: 20px;
+    letter-spacing: -0.01em;
+  }
+  .faq-icon {
+    width: 26px; height: 26px;
+    display: grid;
+    place-items: center;
+    color: var(--accent);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: rgba(107,157,255,0.1);
+    border: 1px solid rgba(107,157,255,0.2);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+  }
+  .faq-item.open .faq-icon { transform: rotate(135deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+    color: var(--muted);
+    font-size: 14.5px;
+    line-height: 1.7;
+  }
+  .faq-a a { color: var(--accent); text-decoration: none; }
+  .faq-a a:hover { text-decoration: underline; }
+  .faq-a strong { color: var(--text); }
+  .faq-item.open .faq-a { max-height: 800px; margin-top: 14px; }
+
+  /* CTA */
+  .cta {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 72px 44px;
+    border-radius: 32px;
+    background: linear-gradient(135deg, rgba(107,157,255,0.1), rgba(168,85,247,0.08));
+    border: 1px solid rgba(107,157,255,0.28);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta::before {
+    content: '';
+    position: absolute;
+    top: -60%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(107,157,255,0.3), transparent 65%);
+    filter: blur(60px);
+    pointer-events: none;
+  }
+  .cta h2 { position: relative; margin-bottom: 14px; }
+  .cta p { color: var(--muted); font-size: 17px; margin-bottom: 32px; position: relative; }
+  .cta .btn { position: relative; }
+
+  /* FOOTER */
+  footer {
+    padding: 72px 28px 40px;
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+  }
+  .footer-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 60px;
+  }
+  .footer-brand { max-width: 340px; }
+  .footer-brand .logo { font-size: 20px; }
+  .footer-brand p { color: var(--muted); font-size: 14px; margin-top: 18px; line-height: 1.7; }
+  .footer-cols { display: flex; gap: 70px; flex-wrap: wrap; }
+  .footer-col h4 {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--muted-2);
+    margin-bottom: 18px;
+  }
+  .footer-col a {
+    display: block;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 6px 0;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-legal {
+    max-width: 1240px;
+    margin: 40px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 12.5px;
+    color: var(--muted-2);
+    line-height: 1.7;
+  }
+  .footer-legal a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
+  .footer-legal a:hover { color: var(--accent); }
+  .footer-bottom {
+    max-width: 1240px;
+    margin: 24px auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    color: var(--muted-2);
+    font-size: 13px;
+  }
+  .footer-bottom a { color: var(--muted); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--accent); }
+
+  /* REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 1024px) {
+    .nav-links { display: none; }
+    .proto-hero { grid-template-columns: 1fr; gap: 40px; }
+  }
+  @media (max-width: 768px) {
+    section { padding: 80px 22px; }
+    .hero { padding: 140px 22px 70px; }
+    .price-card.featured { transform: none; }
+    .footer-cols { gap: 40px; }
+    .cta { padding: 56px 26px; }
+    .protocol-label { display: none; }
+    .protocol-divider { display: none; }
+    .protocol-items { gap: 18px; }
+    .protocol-strip { padding: 20px 22px; gap: 18px; }
+    .nav-controls .btn-primary { display: none; }
+    .lang-btn .lang-label { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-layer">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+<div class="noise"></div>
+<div class="grid-overlay"></div>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo">Way<span class="g">G</span> VPN</a>
+
+    <ul class="nav-links">
+      <li><a href="#servers" data-i18n="nav_servers">Серверы</a></li>
+      <li><a href="#technology" data-i18n="nav_technology">Технология</a></li>
+      <li><a href="#features" data-i18n="nav_features">Возможности</a></li>
+      <li><a href="#pricing" data-i18n="nav_pricing">Тарифы</a></li>
+      <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
+    </ul>
+
+    <div class="nav-controls">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme" type="button">
+        <svg id="iconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+
+      <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-btn" id="langBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+          <span class="lang-label" id="langLabel">RU</span>
+        </button>
+        <div class="lang-dropdown">
+          <a data-lang="ru">🇷🇺 Русский</a>
+          <a data-lang="uk">🇺🇦 Українська</a>
+          <a data-lang="en">🇬🇧 English</a>
+          <a data-lang="fa">🇮🇷 فارسی</a>
+          <a data-lang="fr">🇫🇷 Français</a>
+        </div>
+      </div>
+
+      <a href="https://t.me/WayGVPN" target="_blank" rel="noopener" class="btn btn-primary" data-i18n="nav_connect">Подключиться</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">
+    <span class="badge-dot"></span>
+    <span data-i18n="hero_badge">Разрабатываю и поддерживаю сервис лично</span>
+  </div>
+  <h1 data-i18n-html="hero_title">Приватное соединение<br>на <span class="gradient-text">новом уровне</span></h1>
+  <p class="lead" data-i18n="hero_desc">WayG VPN — быстрое и надёжное соединение на базе VLESS + XHTTP + REALITY. Одна подписка на все ваши устройства, честная цена и поддержка от создателя сервиса.</p>
+  <div class="hero-buttons">
+    <a href="#pricing" class="btn btn-primary btn-lg" data-i18n="hero_btn_primary">Выбрать тариф</a>
+    <a href="#technology" class="btn btn-ghost btn-lg" data-i18n="hero_btn_secondary">Как это работает</a>
+  </div>
+  <div class="hero-note">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+    <span data-i18n="hero_note_1">От 99 ₽ в месяц</span>
+    <span class="dot">·</span>
+    <span data-i18n="hero_note_2">До 10 устройств</span>
+    <span class="dot">·</span>
+    <span data-i18n="hero_note_3">Windows, iOS, Android</span>
+  </div>
+
+  <div class="protocol-strip reveal">
+    <span class="protocol-label" data-i18n="protocol_label">Стек технологий</span>
+    <div class="protocol-items">
+      <span class="protocol-item"><span class="pip"></span>VLESS</span>
+      <span class="protocol-divider"></span>
+      <span class="protocol-item"><span class="pip"></span>XHTTP</span>
+      <span class="protocol-divider"></span>
+      <span class="protocol-item"><span class="pip"></span>REALITY</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVERS -->
+<section id="servers">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag" data-i18n="servers_tag">Инфраструктура</div>
+      <h2 data-i18n="servers_title">Наши серверы</h2>
+      <p data-i18n="servers_desc">Мы постепенно расширяем географию присутствия. Новые локации появляются регулярно — подписчики узнают о запуске первыми.</p>
+    </div>
+
+    <div class="servers">
+      <div class="server-card reveal" style="--status-color: #22c55e;">
+        <div class="server-head">
+          <div class="server-flag">🇪🇸</div>
+          <div class="server-status">
+            <span class="status-dot"></span> <span data-i18n="server_active">Активен</span>
+          </div>
+        </div>
+        <h3 data-i18n="server_spain">Испания</h3>
+        <div class="server-city" data-i18n="server_spain_city">Мадрид · основной сервер</div>
+        <div class="server-meta">
+          <div class="server-meta-row"><span data-i18n="server_load">Загрузка</span><span style="color: var(--green)" data-i18n="server_load_low">Низкая</span></div>
+          <div class="server-meta-row"><span data-i18n="server_protocol">Протокол</span><span>VLESS · XHTTP · REALITY</span></div>
+          <div class="server-meta-row"><span data-i18n="server_speed">Скорость</span><span data-i18n="server_speed_val">до 300 Мбит/с</span></div>
+        </div>
+      </div>
+
+      <div class="server-card reveal" style="--status-color: #eab308;">
+        <div class="server-head">
+          <div class="server-flag">🇩🇪</div>
+          <div class="server-status testing">
+            <span class="status-dot"></span> <span data-i18n="server_testing">Тестирование</span>
+          </div>
+        </div>
+        <h3 data-i18n="server_germany">Германия</h3>
+        <div class="server-city" data-i18n="server_germany_city">Франкфурт · идёт настройка</div>
+        <div class="server-meta">
+          <div class="server-meta-row"><span data-i18n="server_stage">Этап</span><span style="color: var(--yellow)" data-i18n="server_stage_val">Нагрузочные тесты</span></div>
+          <div class="server-meta-row"><span data-i18n="server_protocol">Протокол</span><span>VLESS · XHTTP · REALITY</span></div>
+          <div class="server-meta-row"><span data-i18n="server_launch">Ожидаемый запуск</span><span data-i18n="server_launch_val">≈ 2 недели</span></div>
+        </div>
+      </div>
+
+      <div class="server-card reveal" style="--status-color: #f97316;">
+        <div class="server-head">
+          <div class="server-flag">🇹🇷</div>
+          <div class="server-status considering">
+            <span class="status-dot"></span> <span data-i18n="server_considering">На рассмотрении</span>
+          </div>
+        </div>
+        <h3 data-i18n="server_turkey">Турция</h3>
+        <div class="server-city" data-i18n="server_turkey_city">Стамбул · планируется</div>
+        <div class="server-meta">
+          <div class="server-meta-row"><span data-i18n="server_status_label">Статус</span><span style="color: var(--orange)" data-i18n="server_status_val">Анализ локации</span></div>
+          <div class="server-meta-row"><span data-i18n="server_protocol">Протокол</span><span>VLESS · XHTTP · REALITY</span></div>
+          <div class="server-meta-row"><span data-i18n="server_priority">Приоритет</span><span data-i18n="server_priority_val">Средний</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGY -->
+<section id="technology">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag" data-i18n="tech_tag">Технология</div>
+      <h2 data-i18n="tech_title">Современный стек шифрования</h2>
+      <p data-i18n="tech_desc">Мы используем передовое сочетание протоколов, чтобы обеспечить высокую скорость и надёжную защиту соединения.</p>
+    </div>
+
+    <div class="proto-hero">
+      <div class="reveal">
+        <h3 data-i18n="tech_subtitle">VLESS + XHTTP + REALITY</h3>
+        <p data-i18n-html="tech_p1"><strong>VLESS</strong> — лёгкий протокол передачи данных с минимальными накладными расходами. Обеспечивает высокую скорость без потери качества шифрования.</p>
+        <p data-i18n-html="tech_p2"><strong>XHTTP</strong> — современный транспорт, работающий поверх HTTP/2. Обеспечивает стабильное соединение и эффективную передачу данных в любых сетевых условиях.</p>
+        <p data-i18n-html="tech_p3"><strong>REALITY</strong> — технология, при которой соединение защищено по стандартам TLS 1.3, а сервер предъявляет сертификат легитимного сайта.</p>
+      </div>
+
+      <div class="proto-code reveal">
+        <div class="proto-code-head"><span></span><span></span><span></span></div>
+        <div class="code-line"><span class="ln">1</span><span><span class="code-comment">// Конфигурация клиента</span></span></div>
+        <div class="code-line"><span class="ln">2</span><span>{</span></div>
+        <div class="code-line"><span class="ln">3</span><span>  <span class="code-key">"protocol"</span>: <span class="code-str">"vless"</span>,</span></div>
+        <div class="code-line"><span class="ln">4</span><span>  <span class="code-key">"transport"</span>: <span class="code-str">"xhttp"</span>,</span></div>
+        <div class="code-line"><span class="ln">5</span><span>  <span class="code-key">"security"</span>: <span class="code-str">"reality"</span>,</span></div>
+        <div class="code-line"><span class="ln">6</span><span>  <span class="code-key">"fingerprint"</span>: <span class="code-val">"chrome"</span>,</span></div>
+        <div class="code-line"><span class="ln">7</span><span>  <span class="code-key">"flow"</span>: <span class="code-val">"xtls-rprx-vision"</span></span></div>
+        <div class="code-line"><span class="ln">8</span><span>}</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag" data-i18n="features_tag">Преимущества</div>
+      <h2 data-i18n="features_title">Всё для комфортного соединения</h2>
+      <p data-i18n="features_desc">Продуманные детали, которые делают использование сервиса простым и предсказуемым.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature reveal">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3 data-i18n="feature_1_title">Современное шифрование</h3>
+        <p data-i18n="feature_1_desc">Соединение защищено по стандарту TLS 1.3. Данные передаются в зашифрованном виде на всём пути следования.</p>
+      </div>
+
+      <div class="feature reveal">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3 data-i18n="feature_2_title">Высокая скорость</h3>
+        <p data-i18n="feature_2_desc">Скорость до 300 Мбит/с. Стриминг, загрузки и видеозвонки — без задержек и просадок.</p>
+      </div>
+
+      <div class="feature reveal">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v6H4z"/><path d="M4 14h16v6H4z"/><path d="M8 7h.01M8 17h.01"/></svg>
+        </div>
+        <h3 data-i18n="feature_3_title">Надёжная инфраструктура</h3>
+        <p data-i18n="feature_3_desc">Серверы размещены в проверенных дата-центрах Европы с резервными каналами связи и защитой от сбоев.</p>
+      </div>
+
+      <div class="feature reveal">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3 data-i18n="feature_4_title">Поддержка от создателя</h3>
+        <p data-i18n="feature_4_desc">Отвечаю лично — без ботов и без шаблонных ответов. Помогаю разобраться с настройкой и решить любой вопрос по-человечески.</p>
+      </div>
+
+      <div class="feature reveal">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+        </div>
+        <h3 data-i18n="feature_5_title">Минимум данных</h3>
+        <p data-i18n="feature_5_desc">Я не храню логи вашей активности и не сохраняю IP-адреса. Единственное, что вижу — общий объём трафика, чтобы понимать, что всё в порядке.</p>
+      </div>
+
+      <div class="feature reveal">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8"/><path d="M12 18v4"/></svg>
+        </div>
+        <h3 data-i18n="feature_6_title">Windows, iOS, Android</h3>
+        <p data-i18n="feature_6_desc">Работаем на трёх основных платформах. Один аккаунт — до 10 устройств одновременно.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag" data-i18n="pricing_tag">Тарифы</div>
+      <h2 data-i18n="pricing_title">Простые и честные цены</h2>
+      <p data-i18n="pricing_desc">Одна подписка — до 10 устройств. Без скрытых платежей и автоматических списаний.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div class="price-name" data-i18n="pricing_1_name">1 месяц</div>
+        <div class="price-amount">99<small>₽</small></div>
+        <div class="price-period" data-i18n="pricing_1_period">в месяц</div>
+        <ul class="price-features">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_1">Все доступные серверы</span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_2">До 10 устройств</span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_3">Без ограничений трафика</span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_4">Поддержка в Telegram</span></li>
+        </ul>
+        <a href="https://t.me/WayGVPN?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20WayG%20VPN%20%D0%BD%D0%B0%201%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86%20%2899%20%E2%82%BD%29." target="_blank" rel="noopener" class="btn btn-ghost" data-i18n="pricing_btn">Выбрать</a>
+      </div>
+
+      <div class="price-card featured reveal">
+        <div class="price-name" data-i18n="pricing_2_name">3 месяца</div>
+        <div class="price-amount">299<small>₽</small></div>
+        <div class="price-period" data-i18n="pricing_2_period">≈ 100 ₽ в месяц</div>
+        <ul class="price-features">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_1">Все доступные серверы</span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_2">До 10 устройств</span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_3">Без ограничений трафика</span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_4">Поддержка в Telegram</span></li>
+        </ul>
+        <a href="https://t.me/WayGVPN?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20WayG%20VPN%20%D0%BD%D0%B0%203%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86%D0%B0%20%28299%20%E2%82%BD%29." target="_blank" rel="noopener" class="btn btn-primary" data-i18n="pricing_btn">Выбрать</a>
+      </div>
+
+      <div class="price-card reveal">
+        <div class="price-name" data-i18n="pricing_3_name">6 месяцев</div>
+        <div class="price-amount">599<small>₽</small></div>
+        <div class="price-period" data-i18n="pricing_3_period">≈ 100 ₽ в месяц</div>
+        <ul class="price-features">
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_1">Все доступные серверы</span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_2">До 10 устройств</span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_3">Без ограничений трафика</span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_4">Поддержка в Telegram</span></li>
+        </ul>
+        <a href="https://t.me/WayGVPN?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20WayG%20VPN%20%D0%BD%D0%B0%206%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86%D0%B5%D0%B2%20%28599%20%E2%82%BD%29." target="_blank" rel="noopener" class="btn btn-ghost" data-i18n="pricing_btn">Выбрать</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag" data-i18n="faq_tag">Вопросы и ответы</div>
+      <h2 data-i18n="faq_title">Частые вопросы</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-q"><span data-i18n="faq_1_q">Что такое VLESS + XHTTP + REALITY?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a" data-i18n="faq_1_a">Это современный стек для защищённого соединения. VLESS — лёгкий протокол передачи данных с минимальными накладными расходами. XHTTP — транспорт, работающий поверх HTTP/2 для стабильной передачи данных. REALITY — технология, при которой соединение защищено по стандартам TLS 1.3, а сервер предъявляет сертификат легитимного сайта. Вместе они обеспечивают высокую скорость и надёжное шифрование.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q"><span data-i18n="faq_2_q">Как подключиться?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a" data-i18n-html="faq_2_a"><strong>1.</strong> Скачайте приложение <strong>v2RayTun</strong>:<br>— Android: <a href="https://play.google.com/store/search?q=v2raytun&c=apps" target="_blank" rel="noopener">Google Play</a><br>— iOS: <a href="https://apps.apple.com/us/app/v2raytun/id6476628951" target="_blank" rel="noopener">App Store</a><br>— Windows: <a href="https://github.com/mdf45/v2raytun/releases" target="_blank" rel="noopener">GitHub</a><br><br><strong>2.</strong> Напишите мне в Telegram <a href="https://t.me/WayGVPN" target="_blank" rel="noopener">@WayGVPN</a> — я отправлю персональную ссылку и QR-код.<br><br><strong>3.</strong> В приложении нажмите «+» → «Импорт из буфера обмена» (или «Импорт из QR-кода») → «Подключиться».<br><br>На Windows выберите режим <strong>Tunnel</strong> вместо Proxy и нажмите Connect.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q"><span data-i18n="faq_3_q">Какие данные вы обрабатываете?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a" data-i18n="faq_3_a">Я не храню логи вашей активности и не сохраняю IP-адреса. Единственное, что вижу — общий объём трафика, чтобы понимать, что всё работает в штатном режиме. Никаких трекеров и слежки за посещаемыми сайтами. Администрация вправе раскрыть данные по законному запросу уполномоченных органов в соответствии с действующим законодательством.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q"><span data-i18n="faq_4_q">Какие страны уже доступны?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a" data-i18n="faq_4_a">Сейчас стабильно работает сервер в Испании (Мадрид). Сервер в Германии (Франкфурт) проходит этап нагрузочного тестирования и будет запущен в ближайшие недели. Локация в Турции (Стамбул) пока на стадии рассмотрения — о запуске сообщим действующим подписчикам в нашем Telegram-канале.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q"><span data-i18n="faq_5_q">На скольких устройствах можно использовать аккаунт?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a" data-i18n="faq_5_a">До 10 устройств одновременно на любом тарифе. Подпиской могут пользоваться вы и члены вашей семьи, проживающие с вами совместно. Передача персональной ссылки/ключа третьим лицам запрещена правилами сервиса.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q"><span data-i18n="faq_6_q">Как оплатить и получить доступ?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a" data-i18n="faq_6_a">Нажмите кнопку «Выбрать» на нужном тарифе — откроется чат с поддержкой в Telegram (@WayGVPN) с уже подставленным сообщением о выбранном тарифе. Я помогу с оплатой и выдам персональный ключ доступа в течение нескольких минут.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q"><span data-i18n="faq_7_q">Можно ли вернуть деньги?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a" data-i18n="faq_7_a">Возврат возможен, если сервис не работал более 24 часов подряд по вине Администрации. В этом случае возврат рассчитывается пропорционально количеству неиспользованных дней. Если вы просто передумали или перестали пользоваться сервисом — средства не возвращаются. При блокировке за нарушение правил средства также не возвращаются.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q"><span data-i18n="faq_8_q">Как быстро появится сервер в Германии?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a" data-i18n="faq_8_a">Тестирование занимает около 2 недель. Мы хотим убедиться, что скорость и стабильность соединения соответствуют нашему стандарту. Действующие подписчики получат доступ к новому серверу первыми и без доплат.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="container">
+    <div class="cta reveal">
+      <h2 data-i18n="cta_title">Готовы подключиться?</h2>
+      <p data-i18n="cta_desc">Настройка занимает 2 минуты. Одна подписка — до 10 устройств, от 99 ₽ в месяц.</p>
+      <a href="https://t.me/WayGVPN?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20WayG%20VPN." target="_blank" rel="noopener" class="btn btn-primary btn-lg" data-i18n="cta_btn">Написать в поддержку</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo">Way<span class="g">G</span> VPN</a>
+      <p data-i18n="footer_brand_desc">Приватное и быстрое соединение на базе VLESS + XHTTP + REALITY. Разрабатываю и поддерживаю сервис лично.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4 data-i18n="footer_col_1">Продукт</h4>
+        <a href="#servers" data-i18n="nav_servers">Серверы</a>
+        <a href="#technology" data-i18n="nav_technology">Технология</a>
+        <a href="#features" data-i18n="nav_features">Возможности</a>
+        <a href="#pricing" data-i18n="nav_pricing">Тарифы</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_col_2">Связь</h4>
+        <a href="https://t.me/WayGVPN" target="_blank" rel="noopener">Telegram · @WayGVPN</a>
+        <a href="https://t.me/WayG_VPN_Official" target="_blank" rel="noopener">Telegram-канал</a>
+        <a href="https://discord.com/users/n1ce0095" target="_blank" rel="noopener">Discord · n1ce0095</a>
+        <a href="https://wa.me/79280977074" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:waygvpn@gmail.com">Gmail</a>
+      </div>
+      <div class="footer-col">
+        <h4 data-i18n="footer_col_3">Правовое</h4>
+        <a href="#" data-i18n="footer_legal_1">Правила использования</a>
+        <a href="#" data-i18n="footer_legal_2">Политика конфиденциальности</a>
+        <a href="#" data-i18n="footer_legal_3">Публичная оферта</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-legal">
+    <p data-i18n-html="footer_legal_text">Используя сервис WayG VPN, вы подтверждаете, что ознакомились и согласны с <a href="#">Правилами использования Сервиса</a> (редакция 1.2 от 03.10.2026). Сервис предоставляет доступ к защищённому соединению и не предназначен для совершения противоправных действий. Пользователь самостоятельно несёт ответственность за законность своих действий при использовании Сервиса. Актуальная редакция правил публикуется в <a href="https://t.me/WayG_VPN_Official" target="_blank" rel="noopener">Telegram-канале</a>.</p>
+  </div>
+
+  <div class="footer-bottom">
+    <span data-i18n="footer_copyright">© 2026 WayG VPN. Все права защищены.</span>
+    <span><span data-i18n="footer_support">Поддержка:</span> <a href="https://t.me/WayGVPN" target="_blank" rel="noopener">@WayGVPN</a></span>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // ============================================
+  // TRANSLATIONS
+  // ============================================
+  var translations = {
+    ru: {
+      nav_servers: "Серверы",
+      nav_technology: "Технология",
+      nav_features: "Возможности",
+      nav_pricing: "Тарифы",
+      nav_faq: "FAQ",
+      nav_connect: "Подключиться",
+      hero_badge: "Разрабатываю и поддерживаю сервис лично",
+      hero_title: "Приватное соединение<br>на <span class=\"gradient-text\">новом уровне</span>",
+      hero_desc: "WayG VPN — быстрое и надёжное соединение на базе VLESS + XHTTP + REALITY. Одна подписка на все ваши устройства, честная цена и поддержка от создателя сервиса.",
+      hero_btn_primary: "Выбрать тариф",
+      hero_btn_secondary: "Как это работает",
+      hero_note_1: "От 99 ₽ в месяц",
+      hero_note_2: "До 10 устройств",
+      hero_note_3: "Windows, iOS, Android",
+      protocol_label: "Стек технологий",
+      servers_tag: "Инфраструктура",
+      servers_title: "Наши серверы",
+      servers_desc: "Мы постепенно расширяем географию присутствия. Новые локации появляются регулярно — подписчики узнают о запуске первыми.",
+      server_active: "Активен",
+      server_testing: "Тестирование",
+      server_considering: "На рассмотрении",
+      server_spain: "Испания",
+      server_spain_city: "Мадрид · основной сервер",
+      server_germany: "Германия",
+      server_germany_city: "Франкфурт · идёт настройка",
+      server_turkey: "Турция",
+      server_turkey_city: "Стамбул · планируется",
+      server_load: "Загрузка",
+      server_load_low: "Низкая",
+      server_protocol: "Протокол",
+      server_speed: "Скорость",
+      server_speed_val: "до 300 Мбит/с",
+      server_stage: "Этап",
+      server_stage_val: "Нагрузочные тесты",
+      server_launch: "Ожидаемый запуск",
+      server_launch_val: "≈ 2 недели",
+      server_status_label: "Статус",
+      server_status_val: "Анализ локации",
+      server_priority: "Приоритет",
+      server_priority_val: "Средний",
+      tech_tag: "Технология",
+      tech_title: "Современный стек шифрования",
+      tech_desc: "Мы используем передовое сочетание протоколов, чтобы обеспечить высокую скорость и надёжную защиту соединения.",
+      tech_subtitle: "VLESS + XHTTP + REALITY",
+      tech_p1: "<strong>VLESS</strong> — лёгкий протокол передачи данных с минимальными накладными расходами. Обеспечивает высокую скорость без потери качества шифрования.",
+      tech_p2: "<strong>XHTTP</strong> — современный транспорт, работающий поверх HTTP/2. Обеспечивает стабильное соединение и эффективную передачу данных в любых сетевых условиях.",
+      tech_p3: "<strong>REALITY</strong> — технология, при которой соединение защищено по стандартам TLS 1.3, а сервер предъявляет сертификат легитимного сайта.",
+      features_tag: "Преимущества",
+      features_title: "Всё для комфортного соединения",
+      features_desc: "Продуманные детали, которые делают использование сервиса простым и предсказуемым.",
+      feature_1_title: "Современное шифрование",
+      feature_1_desc: "Соединение защищено по стандарту TLS 1.3. Данные передаются в зашифрованном виде на всём пути следования.",
+      feature_2_title: "Высокая скорость",
+      feature_2_desc: "Скорость до 300 Мбит/с. Стриминг, загрузки и видеозвонки — без задержек и просадок.",
+      feature_3_title: "Надёжная инфраструктура",
+      feature_3_desc: "Серверы размещены в проверенных дата-центрах Европы с резервными каналами связи и защитой от сбоев.",
+      feature_4_title: "Поддержка от создателя",
+      feature_4_desc: "Отвечаю лично — без ботов и без шаблонных ответов. Помогаю разобраться с настройкой и решить любой вопрос по-человечески.",
+      feature_5_title: "Минимум данных",
+      feature_5_desc: "Я не храню логи вашей активности и не сохраняю IP-адреса. Единственное, что вижу — общий объём трафика, чтобы понимать, что всё в порядке.",
+      feature_6_title: "Windows, iOS, Android",
+      feature_6_desc: "Работаем на трёх основных платформах. Один аккаунт — до 10 устройств одновременно.",
+      pricing_tag: "Тарифы",
+      pricing_title: "Простые и честные цены",
+      pricing_desc: "Одна подписка — до 10 устройств. Без скрытых платежей и автоматических списаний.",
+      pricing_1_name: "1 месяц",
+      pricing_1_period: "в месяц",
+      pricing_2_name: "3 месяца",
+      pricing_2_period: "≈ 100 ₽ в месяц",
+      pricing_3_name: "6 месяцев",
+      pricing_3_period: "≈ 100 ₽ в месяц",
+      pricing_feature_1: "Все доступные серверы",
+      pricing_feature_2: "До 10 устройств",
+      pricing_feature_3: "Без ограничений трафика",
+      pricing_feature_4: "Поддержка в Telegram",
+      pricing_btn: "Выбрать",
+      faq_tag: "Вопросы и ответы",
+      faq_title: "Частые вопросы",
+      faq_1_q: "Что такое VLESS + XHTTP + REALITY?",
+      faq_1_a: "Это современный стек для защищённого соединения. VLESS — лёгкий протокол передачи данных с минимальными накладными расходами. XHTTP — транспорт, работающий поверх HTTP/2 для стабильной передачи данных. REALITY — технология, при которой соединение защищено по стандартам TLS 1.3, а сервер предъявляет сертификат легитимного сайта. Вместе они обеспечивают высокую скорость и надёжное шифрование.",
+      faq_2_q: "Как подключиться?",
+      faq_2_a: "<strong>1.</strong> Скачайте приложение <strong>v2RayTun</strong>:<br>— Android: <a href=\"https://play.google.com/store/search?q=v2raytun&c=apps\" target=\"_blank\" rel=\"noopener\">Google Play</a><br>— iOS: <a href=\"https://apps.apple.com/us/app/v2raytun/id6476628951\" target=\"_blank\" rel=\"noopener\">App Store</a><br>— Windows: <a href=\"https://github.com/mdf45/v2raytun/releases\" target=\"_blank\" rel=\"noopener\">GitHub</a><br><br><strong>2.</strong> Напишите мне в Telegram <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — я отправлю персональную ссылку и QR-код.<br><br><strong>3.</strong> В приложении нажмите «+» → «Импорт из буфера обмена» → «Подключиться».<br><br>На Windows выберите режим <strong>Tunnel</strong> вместо Proxy.",
+      faq_3_q: "Какие данные вы обрабатываете?",
+      faq_3_a: "Я не храню логи вашей активности и не сохраняю IP-адреса. Единственное, что вижу — общий объём трафика, чтобы понимать, что всё работает в штатном режиме. Никаких трекеров и слежки за посещаемыми сайтами. Администрация вправе раскрыть данные по законному запросу уполномоченных органов в соответствии с действующим законодательством.",
+      faq_4_q: "Какие страны уже доступны?",
+      faq_4_a: "Сейчас стабильно работает сервер в Испании (Мадрид). Сервер в Германии (Франкфурт) проходит этап нагрузочного тестирования и будет запущен в ближайшие недели. Локация в Турции (Стамбул) пока на стадии рассмотрения — о запуске сообщим действующим подписчикам в нашем Telegram-канале.",
+      faq_5_q: "На скольких устройствах можно использовать аккаунт?",
+      faq_5_a: "До 10 устройств одновременно на любом тарифе. Подпиской могут пользоваться вы и члены вашей семьи, проживающие с вами совместно. Передача персональной ссылки/ключа третьим лицам запрещена правилами сервиса.",
+      faq_6_q: "Как оплатить и получить доступ?",
+      faq_6_a: "Нажмите кнопку «Выбрать» на нужном тарифе — откроется чат с поддержкой в Telegram (@WayGVPN) с уже подставленным сообщением о выбранном тарифе. Я помогу с оплатой и выдам персональный ключ доступа в течение нескольких минут.",
+      faq_7_q: "Можно ли вернуть деньги?",
+      faq_7_a: "Возврат возможен, если сервис не работал более 24 часов подряд по вине Администрации. В этом случае возврат рассчитывается пропорционально количеству неиспользованных дней. Если вы просто передумали или перестали пользоваться сервисом — средства не возвращаются. При блокировке за нарушение правил средства также не возвращаются.",
+      faq_8_q: "Как быстро появится сервер в Германии?",
+      faq_8_a: "Тестирование занимает около 2 недель. Мы хотим убедиться, что скорость и стабильность соединения соответствуют нашему стандарту. Действующие подписчики получат доступ к новому серверу первыми и без доплат.",
+      cta_title: "Готовы подключиться?",
+      cta_desc: "Настройка занимает 2 минуты. Одна подписка — до 10 устройств, от 99 ₽ в месяц.",
+      cta_btn: "Написать в поддержку",
+      footer_brand_desc: "Приватное и быстрое соединение на базе VLESS + XHTTP + REALITY. Разрабатываю и поддерживаю сервис лично.",
+      footer_col_1: "Продукт",
+      footer_col_2: "Связь",
+      footer_col_3: "Правовое",
+      footer_legal_1: "Правила использования",
+      footer_legal_2: "Политика конфиденциальности",
+      footer_legal_3: "Публичная оферта",
+      footer_legal_text: "Используя сервис WayG VPN, вы подтверждаете, что ознакомились и согласны с <a href=\"#\">Правилами использования Сервиса</a> (редакция 1.2 от 03.10.2026). Сервис предоставляет доступ к защищённому соединению и не предназначен для совершения противоправных действий. Пользователь самостоятельно несёт ответственность за законность своих действий при использовании Сервиса. Актуальная редакция правил публикуется в <a href=\"https://t.me/WayG_VPN_Official\" target=\"_blank\" rel=\"noopener\">Telegram-канале</a>.",
+      footer_copyright: "© 2026 WayG VPN. Все права защищены.",
+      footer_support: "Поддержка:"
+    },
+    uk: {
+      nav_servers: "Сервери",
+      nav_technology: "Технологія",
+      nav_features: "Можливості",
+      nav_pricing: "Тарифи",
+      nav_faq: "FAQ",
+      nav_connect: "Підключитися",
+      hero_badge: "Розробляю та підтримую сервіс особисто",
+      hero_title: "Приватне з'єднання<br>на <span class=\"gradient-text\">новому рівні</span>",
+      hero_desc: "WayG VPN — швидке та надійне з'єднання на базі VLESS + XHTTP + REALITY. Одна підписка на всі ваші пристрої, чесна ціна та підтримка від творця сервісу.",
+      hero_btn_primary: "Обрати тариф",
+      hero_btn_secondary: "Як це працює",
+      hero_note_1: "Від 99 ₽ на місяць",
+      hero_note_2: "До 10 пристроїв",
+      hero_note_3: "Windows, iOS, Android",
+      protocol_label: "Стек технологій",
+      servers_tag: "Інфраструктура",
+      servers_title: "Наші сервери",
+      servers_desc: "Ми поступово розширюємо географію. Нові локації з'являються регулярно — підписники дізнаються про запуск першими.",
+      server_active: "Активний",
+      server_testing: "Тестування",
+      server_considering: "На розгляді",
+      server_spain: "Іспанія",
+      server_spain_city: "Мадрид · основний сервер",
+      server_germany: "Німеччина",
+      server_germany_city: "Франкфурт · йде налаштування",
+      server_turkey: "Туреччина",
+      server_turkey_city: "Стамбул · планується",
+      server_load: "Завантаження",
+      server_load_low: "Низьке",
+      server_protocol: "Протокол",
+      server_speed: "Швидкість",
+      server_speed_val: "до 300 Мбіт/с",
+      server_stage: "Етап",
+      server_stage_val: "Навантажувальні тести",
+      server_launch: "Очікуваний запуск",
+      server_launch_val: "≈ 2 тижні",
+      server_status_label: "Статус",
+      server_status_val: "Аналіз локації",
+      server_priority: "Пріоритет",
+      server_priority_val: "Середній",
+      tech_tag: "Технологія",
+      tech_title: "Сучасний стек шифрування",
+      tech_desc: "Ми використовуємо передове поєднання протоколів, щоб забезпечити високу швидкість і надійний захист з'єднання.",
+      tech_subtitle: "VLESS + XHTTP + REALITY",
+      tech_p1: "<strong>VLESS</strong> — легкий протокол передачі даних з мінімальними накладними витратами. Забезпечує високу швидкість без втрати якості шифрування.",
+      tech_p2: "<strong>XHTTP</strong> — сучасний транспорт, що працює поверх HTTP/2. Забезпечує стабільне з'єднання та ефективну передачу даних у будь-яких мережевих умовах.",
+      tech_p3: "<strong>REALITY</strong> — технологія, при якій з'єднання захищено за стандартами TLS 1.3, а сервер пред'являє сертифікат легітимного сайту.",
+      features_tag: "Переваги",
+      features_title: "Все для комфортного з'єднання",
+      features_desc: "Продумані деталі, які роблять використання сервісу простим і передбачуваним.",
+      feature_1_title: "Сучасне шифрування",
+      feature_1_desc: "З'єднання захищено за стандартом TLS 1.3. Дані передаються в зашифрованому вигляді на всьому шляху прямування.",
+      feature_2_title: "Висока швидкість",
+      feature_2_desc: "Швидкість до 300 Мбіт/с. Стрімінг, завантаження та відеодзвінки — без затримок і просідань.",
+      feature_3_title: "Надійна інфраструктура",
+      feature_3_desc: "Сервери розміщені в перевірених дата-центрах Європи з резервними каналами зв'язку та захистом від збоїв.",
+      feature_4_title: "Підтримка від творця",
+      feature_4_desc: "Відповідаю особисто — без ботів і без шаблонних відповідей. Допомагаю розібратися з налаштуванням і вирішити будь-яке питання по-людськи.",
+      feature_5_title: "Мінімум даних",
+      feature_5_desc: "Я не зберігаю логи вашої активності та не зберігаю IP-адреси. Єдине, що бачу — загальний обсяг трафіку, щоб розуміти, що все гаразд.",
+      feature_6_title: "Windows, iOS, Android",
+      feature_6_desc: "Працюємо на трьох основних платформах. Один акаунт — до 10 пристроїв одночасно.",
+      pricing_tag: "Тарифи",
+      pricing_title: "Прості та чесні ціни",
+      pricing_desc: "Одна підписка — до 10 пристроїв. Без прихованих платежів і автоматичних списань.",
+      pricing_1_name: "1 місяць",
+      pricing_1_period: "на місяць",
+      pricing_2_name: "3 місяці",
+      pricing_2_period: "≈ 100 ₽ на місяць",
+      pricing_3_name: "6 місяців",
+      pricing_3_period: "≈ 100 ₽ на місяць",
+      pricing_feature_1: "Всі доступні сервери",
+      pricing_feature_2: "До 10 пристроїв",
+      pricing_feature_3: "Без обмежень трафіку",
+      pricing_feature_4: "Підтримка в Telegram",
+      pricing_btn: "Обрати",
+      faq_tag: "Питання та відповіді",
+      faq_title: "Часті питання",
+      faq_1_q: "Що таке VLESS + XHTTP + REALITY?",
+      faq_1_a: "Це сучасний стек для захищеного з'єднання. VLESS — легкий протокол передачі даних з мінімальними накладними витратами. XHTTP — транспорт, що працює поверх HTTP/2 для стабільної передачі даних. REALITY — технологія, при якій з'єднання захищено за стандартами TLS 1.3, а сервер пред'являє сертифікат легітимного сайту. Разом вони забезпечують високу швидкість і надійне шифрування.",
+      faq_2_q: "Як підключитися?",
+      faq_2_a: "<strong>1.</strong> Завантажте додаток <strong>v2RayTun</strong>:<br>— Android: <a href=\"https://play.google.com/store/search?q=v2raytun&c=apps\" target=\"_blank\" rel=\"noopener\">Google Play</a><br>— iOS: <a href=\"https://apps.apple.com/us/app/v2raytun/id6476628951\" target=\"_blank\" rel=\"noopener\">App Store</a><br>— Windows: <a href=\"https://github.com/mdf45/v2raytun/releases\" target=\"_blank\" rel=\"noopener\">GitHub</a><br><br><strong>2.</strong> Напишіть мені в Telegram <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — я надішлю персональне посилання та QR-код.<br><br><strong>3.</strong> У додатку натисніть «+» → «Імпорт з буфера обміну» → «Підключитися».<br><br>На Windows виберіть режим <strong>Tunnel</strong> замість Proxy.",
+      faq_3_q: "Які дані ви обробляєте?",
+      faq_3_a: "Я не зберігаю логи вашої активності та не зберігаю IP-адреси. Єдине, що бачу — загальний обсяг трафіку, щоб розуміти, що все працює в штатному режимі. Жодних трекерів і стеження за відвідуваними сайтами. Адміністрація має право розкрити дані за законним запитом уповноважених органів відповідно до чинного законодавства.",
+      faq_4_q: "Які країни вже доступні?",
+      faq_4_a: "Зараз стабільно працює сервер в Іспанії (Мадрид). Сервер у Німеччині (Франкфурт) проходить етап навантажувального тестування і буде запущений найближчими тижнями. Локація в Туреччині (Стамбул) поки на стадії розгляду — про запуск повідомимо діючим підписникам у нашому Telegram-каналі.",
+      faq_5_q: "На скількох пристроях можна використовувати акаунт?",
+      faq_5_a: "До 10 пристроїв одночасно на будь-якому тарифі. Підпискою можуть користуватися ви та члени вашої сім'ї, які проживають з вами спільно. Передача персонального посилання/ключа третім особам заборонена правилами сервісу.",
+      faq_6_q: "Як оплатити та отримати доступ?",
+      faq_6_a: "Натисніть кнопку «Обрати» на потрібному тарифі — відкриється чат з підтримкою в Telegram (@WayGVPN) з уже підставленим повідомленням про обраний тариф. Я допоможу з оплатою та видам персональний ключ доступу протягом кількох хвилин.",
+      faq_7_q: "Чи можна повернути гроші?",
+      faq_7_a: "Повернення можливе, якщо сервіс не працював більше 24 годин підряд з вини Адміністрації. У цьому випадку повернення розраховується пропорційно до кількості невикористаних днів. Якщо ви просто передумали або перестали користуватися сервісом — кошти не повертаються. При блокуванні за порушення правил кошти також не повертаються.",
+      faq_8_q: "Як швидко з'явиться сервер у Німеччині?",
+      faq_8_a: "Тестування займає близько 2 тижнів. Ми хочемо переконатися, що швидкість і стабільність з'єднання відповідають нашому стандарту. Діючі підписники отримають доступ до нового сервера першими і без доплат.",
+      cta_title: "Готові підключитися?",
+      cta_desc: "Налаштування займає 2 хвилини. Одна підписка — до 10 пристроїв, від 99 ₽ на місяць.",
+      cta_btn: "Написати в підтримку",
+      footer_brand_desc: "Приватне та швидке з'єднання на базі VLESS + XHTTP + REALITY. Розробляю та підтримую сервіс особисто.",
+      footer_col_1: "Продукт",
+      footer_col_2: "Зв'язок",
+      footer_col_3: "Правове",
+      footer_legal_1: "Правила використання",
+      footer_legal_2: "Політика конфіденційності",
+      footer_legal_3: "Публічна оферта",
+      footer_legal_text: "Використовуючи сервіс WayG VPN, ви підтверджуєте, що ознайомилися та згодні з <a href=\"#\">Правилами використання Сервісу</a> (редакція 1.2 від 03.10.2026). Сервіс надає доступ до захищеного з'єднання і не призначений для вчинення протиправних дій. Користувач самостійно несе відповідальність за законність своїх дій при використанні Сервісу. Актуальна редакція правил публікується в <a href=\"https://t.me/WayG_VPN_Official\" target=\"_blank\" rel=\"noopener\">Telegram-каналі</a>.",
+      footer_copyright: "© 2026 WayG VPN. Всі права захищені.",
+      footer_support: "Підтримка:"
+    },
+    en: {
+      nav_servers: "Servers",
+      nav_technology: "Technology",
+      nav_features: "Features",
+      nav_pricing: "Pricing",
+      nav_faq: "FAQ",
+      nav_connect: "Connect",
+      hero_badge: "Built and maintained personally by me",
+      hero_title: "Private connection<br>at a <span class=\"gradient-text\">new level</span>",
+      hero_desc: "WayG VPN is a fast and reliable connection built on VLESS + XHTTP + REALITY. One subscription for all your devices, honest pricing, and support from the creator.",
+      hero_btn_primary: "Choose a plan",
+      hero_btn_secondary: "How it works",
+      hero_note_1: "From 99 ₽ / month",
+      hero_note_2: "Up to 10 devices",
+      hero_note_3: "Windows, iOS, Android",
+      protocol_label: "Technology stack",
+      servers_tag: "Infrastructure",
+      servers_title: "Our servers",
+      servers_desc: "We are gradually expanding our geography. New locations appear regularly — subscribers are the first to know.",
+      server_active: "Active",
+      server_testing: "Testing",
+      server_considering: "Under review",
+      server_spain: "Spain",
+      server_spain_city: "Madrid · primary server",
+      server_germany: "Germany",
+      server_germany_city: "Frankfurt · being configured",
+      server_turkey: "Turkey",
+      server_turkey_city: "Istanbul · planned",
+      server_load: "Load",
+      server_load_low: "Low",
+      server_protocol: "Protocol",
+      server_speed: "Speed",
+      server_speed_val: "up to 300 Mbps",
+      server_stage: "Stage",
+      server_stage_val: "Load testing",
+      server_launch: "Expected launch",
+      server_launch_val: "≈ 2 weeks",
+      server_status_label: "Status",
+      server_status_val: "Location analysis",
+      server_priority: "Priority",
+      server_priority_val: "Medium",
+      tech_tag: "Technology",
+      tech_title: "Modern encryption stack",
+      tech_desc: "We use an advanced combination of protocols to ensure high speed and reliable connection protection.",
+      tech_subtitle: "VLESS + XHTTP + REALITY",
+      tech_p1: "<strong>VLESS</strong> is a lightweight data transfer protocol with minimal overhead. It provides high speed without compromising encryption quality.",
+      tech_p2: "<strong>XHTTP</strong> is a modern transport operating over HTTP/2. It ensures stable connection and efficient data transfer in any network conditions.",
+      tech_p3: "<strong>REALITY</strong> is a technology where the connection is secured according to TLS 1.3 standards, and the server presents a legitimate website certificate.",
+      features_tag: "Benefits",
+      features_title: "Everything for a comfortable connection",
+      features_desc: "Thoughtful details that make using the service simple and predictable.",
+      feature_1_title: "Modern encryption",
+      feature_1_desc: "The connection is secured according to TLS 1.3 standard. Data is transmitted encrypted along the entire path.",
+      feature_2_title: "High speed",
+      feature_2_desc: "Speed up to 300 Mbps. Streaming, downloads, and video calls — without delays or drops.",
+      feature_3_title: "Reliable infrastructure",
+      feature_3_desc: "Servers are located in trusted European data centers with backup communication channels and protection against failures.",
+      feature_4_title: "Support from the creator",
+      feature_4_desc: "I respond personally — no bots, no template answers. I help you set up and resolve any issue like a human.",
+      feature_5_title: "Minimum data",
+      feature_5_desc: "I don't store your activity logs or save IP addresses. The only thing I see is the total traffic volume to make sure everything is fine.",
+      feature_6_title: "Windows, iOS, Android",
+      feature_6_desc: "We work on three major platforms. One account — up to 10 devices simultaneously.",
+      pricing_tag: "Pricing",
+      pricing_title: "Simple and honest pricing",
+      pricing_desc: "One subscription — up to 10 devices. No hidden fees or automatic charges.",
+      pricing_1_name: "1 month",
+      pricing_1_period: "per month",
+      pricing_2_name: "3 months",
+      pricing_2_period: "≈ 100 ₽ per month",
+      pricing_3_name: "6 months",
+      pricing_3_period: "≈ 100 ₽ per month",
+      pricing_feature_1: "All available servers",
+      pricing_feature_2: "Up to 10 devices",
+      pricing_feature_3: "Unlimited traffic",
+      pricing_feature_4: "Support in Telegram",
+      pricing_btn: "Choose",
+      faq_tag: "Q&A",
+      faq_title: "Frequently asked questions",
+      faq_1_q: "What is VLESS + XHTTP + REALITY?",
+      faq_1_a: "This is a modern stack for a secure connection. VLESS is a lightweight data transfer protocol with minimal overhead. XHTTP is a transport operating over HTTP/2 for stable data transfer. REALITY is a technology where the connection is secured according to TLS 1.3 standards, and the server presents a legitimate website certificate. Together they provide high speed and reliable encryption.",
+      faq_2_q: "How to connect?",
+      faq_2_a: "<strong>1.</strong> Download the <strong>v2RayTun</strong> app:<br>— Android: <a href=\"https://play.google.com/store/search?q=v2raytun&c=apps\" target=\"_blank\" rel=\"noopener\">Google Play</a><br>— iOS: <a href=\"https://apps.apple.com/us/app/v2raytun/id6476628951\" target=\"_blank\" rel=\"noopener\">App Store</a><br>— Windows: <a href=\"https://github.com/mdf45/v2raytun/releases\" target=\"_blank\" rel=\"noopener\">GitHub</a><br><br><strong>2.</strong> Message me on Telegram <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — I will send you a personal link and QR code.<br><br><strong>3.</strong> In the app, tap \"+\" → \"Import from clipboard\" → \"Connect\".<br><br>On Windows, select <strong>Tunnel</strong> mode instead of Proxy.",
+      faq_3_q: "What data do you process?",
+      faq_3_a: "I don't store your activity logs or save IP addresses. The only thing I see is the total traffic volume to make sure everything works properly. No trackers or surveillance of visited sites. The administration may disclose data upon a lawful request from authorized bodies in accordance with applicable law.",
+      faq_4_q: "Which countries are already available?",
+      faq_4_a: "Currently, the server in Spain (Madrid) is operating stably. The server in Germany (Frankfurt) is undergoing load testing and will be launched in the coming weeks. The location in Turkey (Istanbul) is still under review — we will notify active subscribers in our Telegram channel about the launch.",
+      faq_5_q: "How many devices can use the account?",
+      faq_5_a: "Up to 10 devices simultaneously on any plan. The subscription can be used by you and your family members living with you. Transferring the personal link/key to third parties is prohibited by the service rules.",
+      faq_6_q: "How to pay and get access?",
+      faq_6_a: "Click the \"Choose\" button on the desired plan — a Telegram support chat (@WayGVPN) will open with a pre-filled message about the selected plan. I will help with payment and issue a personal access key within minutes.",
+      faq_7_q: "Can I get a refund?",
+      faq_7_a: "A refund is possible if the service was not working for more than 24 hours in a row due to the Administration's fault. In this case, the refund is calculated proportionally to the number of unused days. If you simply changed your mind or stopped using the service — funds are not refunded. In case of blocking for violating the rules, funds are also not refunded.",
+      faq_8_q: "How soon will the Germany server appear?",
+      faq_8_a: "Testing takes about 2 weeks. We want to make sure that the speed and stability of the connection meet our standard. Active subscribers will get access to the new server first and at no extra cost.",
+      cta_title: "Ready to connect?",
+      cta_desc: "Setup takes 2 minutes. One subscription — up to 10 devices, from 99 ₽ per month.",
+      cta_btn: "Message support",
+      footer_brand_desc: "Private and fast connection based on VLESS + XHTTP + REALITY. Built and maintained personally by me.",
+      footer_col_1: "Product",
+      footer_col_2: "Contact",
+      footer_col_3: "Legal",
+      footer_legal_1: "Terms of Use",
+      footer_legal_2: "Privacy Policy",
+      footer_legal_3: "Public Offer",
+      footer_legal_text: "By using WayG VPN, you confirm that you have read and agree to the <a href=\"#\">Terms of Service</a> (revision 1.2 dated 03.10.2026). The service provides access to a secure connection and is not intended for unlawful actions. The user is solely responsible for the legality of their actions when using the Service. The current version of the rules is published in the <a href=\"https://t.me/WayG_VPN_Official\" target=\"_blank\" rel=\"noopener\">Telegram channel</a>.",
+      footer_copyright: "© 2026 WayG VPN. All rights reserved.",
+      footer_support: "Support:"
+    },
+    fa: {
+      nav_servers: "سرورها",
+      nav_technology: "فناوری",
+      nav_features: "ویژگی‌ها",
+      nav_pricing: "قیمت‌ها",
+      nav_faq: "سوالات متداول",
+      nav_connect: "اتصال",
+      hero_badge: "توسط خودم ساخته و پشتیبانی می‌شود",
+      hero_title: "اتصال خصوصی<br>در <span class=\"gradient-text\">سطحی جدید</span>",
+      hero_desc: "WayG VPN یک اتصال سریع و قابل اعتماد بر پایه VLESS + XHTTP + REALITY است. یک اشتراک برای همه دستگاه‌های شما، قیمت منصفانه و پشتیبانی از طرف سازنده.",
+      hero_btn_primary: "انتخاب طرح",
+      hero_btn_secondary: "چگونه کار می‌کند",
+      hero_note_1: "از 99 ₽ در ماه",
+      hero_note_2: "تا 10 دستگاه",
+      hero_note_3: "ویندوز، iOS، اندروید",
+      protocol_label: "پشته فناوری",
+      servers_tag: "زیرساخت",
+      servers_title: "سرورهای ما",
+      servers_desc: "ما به تدریج در حال گسترش جغرافیای خود هستیم. مکان‌های جدید به طور منظم ظاهر می‌شوند — مشترکین اولین کسانی هستند که مطلع می‌شوند.",
+      server_active: "فعال",
+      server_testing: "در حال تست",
+      server_considering: "در حال بررسی",
+      server_spain: "اسپانیا",
+      server_spain_city: "مادرید · سرور اصلی",
+      server_germany: "آلمان",
+      server_germany_city: "فرانکفورت · در حال پیکربندی",
+      server_turkey: "ترکیه",
+      server_turkey_city: "استانبول · برنامه‌ریزی شده",
+      server_load: "بار",
+      server_load_low: "کم",
+      server_protocol: "پروتکل",
+      server_speed: "سرعت",
+      server_speed_val: "تا 300 مگابیت بر ثانیه",
+      server_stage: "مرحله",
+      server_stage_val: "تست بار",
+      server_launch: "راه‌اندازی مورد انتظار",
+      server_launch_val: "≈ 2 هفته",
+      server_status_label: "وضعیت",
+      server_status_val: "تحلیل مکان",
+      server_priority: "اولویت",
+      server_priority_val: "متوسط",
+      tech_tag: "فناوری",
+      tech_title: "پشته رمزنگاری مدرن",
+      tech_desc: "ما از ترکیبی پیشرفته از پروتکل‌ها برای تضمین سرعت بالا و حفاظت قابل اعتماد از اتصال استفاده می‌کنیم.",
+      tech_subtitle: "VLESS + XHTTP + REALITY",
+      tech_p1: "<strong>VLESS</strong> یک پروتکل انتقال داده سبک با حداقل سربار است. سرعت بالا را بدون به خطر انداختن کیفیت رمزنگاری فراهم می‌کند.",
+      tech_p2: "<strong>XHTTP</strong> یک ترانسپورت مدرن است که روی HTTP/2 کار می‌کند. اتصال پایدار و انتقال کارآمد داده را در هر شرایط شبکه‌ای تضمین می‌کند.",
+      tech_p3: "<strong>REALITY</strong> فناوری است که در آن اتصال مطابق با استانداردهای TLS 1.3 ایمن می‌شود و سرور گواهی یک وب‌سایت معتبر را ارائه می‌دهد.",
+      features_tag: "مزایا",
+      features_title: "همه چیز برای یک اتصال راحت",
+      features_desc: "جزئیات اندیشیده شده‌ای که استفاده از سرویس را ساده و قابل پیش‌بینی می‌کند.",
+      feature_1_title: "رمزنگاری مدرن",
+      feature_1_desc: "اتصال مطابق با استاندارد TLS 1.3 ایمن شده است. داده‌ها در تمام مسیر به صورت رمزنگاری شده منتقل می‌شوند.",
+      feature_2_title: "سرعت بالا",
+      feature_2_desc: "سرعت تا 300 مگابیت بر ثانیه. استریم، دانلود و تماس تصویری — بدون تاخیر یا افت.",
+      feature_3_title: "زیرساخت قابل اعتماد",
+      feature_3_desc: "سرورها در مراکز داده معتبر اروپایی با کانال‌های ارتباطی پشتیبان و محافظت در برابر خرابی قرار دارند.",
+      feature_4_title: "پشتیبانی از طرف سازنده",
+      feature_4_desc: "من شخصاً پاسخ می‌دهم — بدون ربات و بدون پاسخ‌های قالبی. کمک می‌کنم تنظیمات را انجام دهید و هر مشکلی را مانند یک انسان حل کنید.",
+      feature_5_title: "حداقل داده",
+      feature_5_desc: "من لاگ فعالیت شما را ذخیره نمی‌کنم و آدرس‌های IP را ذخیره نمی‌کنم. تنها چیزی که می‌بینم حجم کل ترافیک است تا مطمئن شوم همه چیز خوب است.",
+      feature_6_title: "ویندوز، iOS، اندروید",
+      feature_6_desc: "ما روی سه پلتفرم اصلی کار می‌کنیم. یک حساب — تا 10 دستگاه به طور همزمان.",
+      pricing_tag: "قیمت‌ها",
+      pricing_title: "قیمت‌های ساده و منصفانه",
+      pricing_desc: "یک اشتراک — تا 10 دستگاه. بدون هزینه پنهان یا شارژ خودکار.",
+      pricing_1_name: "1 ماه",
+      pricing_1_period: "در ماه",
+      pricing_2_name: "3 ماه",
+      pricing_2_period: "≈ 100 ₽ در ماه",
+      pricing_3_name: "6 ماه",
+      pricing_3_period: "≈ 100 ₽ در ماه",
+      pricing_feature_1: "همه سرورهای موجود",
+      pricing_feature_2: "تا 10 دستگاه",
+      pricing_feature_3: "ترافیک نامحدود",
+      pricing_feature_4: "پشتیبانی در تلگرام",
+      pricing_btn: "انتخاب",
+      faq_tag: "پرسش و پاسخ",
+      faq_title: "سوالات متداول",
+      faq_1_q: "VLESS + XHTTP + REALITY چیست؟",
+      faq_1_a: "این یک پشته مدرن برای اتصال ایمن است. VLESS یک پروتکل انتقال داده سبک با حداقل سربار است. XHTTP یک ترانسپورت است که روی HTTP/2 برای انتقال پایدار داده کار می‌کند. REALITY فناوری است که در آن اتصال مطابق با استانداردهای TLS 1.3 ایمن می‌شود و سرور گواهی یک وب‌سایت معتبر را ارائه می‌دهد. اینها با هم سرعت بالا و رمزنگاری قابل اعتماد را فراهم می‌کنند.",
+      faq_2_q: "چگونه متصل شویم؟",
+      faq_2_a: "<strong>1.</strong> برنامه <strong>v2RayTun</strong> را دانلود کنید:<br>— اندروید: <a href=\"https://play.google.com/store/search?q=v2raytun&c=apps\" target=\"_blank\" rel=\"noopener\">Google Play</a><br>— iOS: <a href=\"https://apps.apple.com/us/app/v2raytun/id6476628951\" target=\"_blank\" rel=\"noopener\">App Store</a><br>— ویندوز: <a href=\"https://github.com/mdf45/v2raytun/releases\" target=\"_blank\" rel=\"noopener\">GitHub</a><br><br><strong>2.</strong> در تلگرام به من پیام دهید <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — لینک شخصی و کد QR را برایتان ارسال می‌کنم.<br><br><strong>3.</strong> در برنامه روی \"+\" بزنید → \"Import from clipboard\" → \"Connect\".",
+      faq_3_q: "چه داده‌هایی را پردازش می‌کنید؟",
+      faq_3_a: "من لاگ فعالیت شما را ذخیره نمی‌کنم و آدرس‌های IP را ذخیره نمی‌کنم. تنها چیزی که می‌بینم حجم کل ترافیک است تا مطمئن شوم همه چیز درست کار می‌کند. بدون ردیاب یا نظارت بر سایت‌های بازدید شده. مدیریت ممکن است داده‌ها را در صورت درخواست قانونی از نهادهای مجاز مطابق با قانون قابل اجرا افشا کند.",
+      faq_4_q: "کدام کشورها در حال حاضر موجود هستند؟",
+      faq_4_a: "در حال حاضر سرور اسپانیا (مادرید) به طور پایدار کار می‌کند. سرور آلمان (فرانکفورت) در حال تست بار است و در هفته‌های آینده راه‌اندازی می‌شود. مکان ترکیه (استانبول) هنوز در حال بررسی است.",
+      faq_5_q: "چند دستگاه می‌توانند از حساب استفاده کنند؟",
+      faq_5_a: "تا 10 دستگاه به طور همزمان در هر طرح. اشتراک می‌تواند توسط شما و اعضای خانواده‌تان که با شما زندگی می‌کنند استفاده شود. انتقال لینک/کلید شخصی به اشخاص ثالث توسط قوانین سرویس ممنوع است.",
+      faq_6_q: "چگونه پرداخت کنیم و دسترسی بگیریم؟",
+      faq_6_a: "روی دکمه \"انتخاب\" در طرح مورد نظر کلیک کنید — یک چت پشتیبانی تلگرام (@WayGVPN) با پیام از پیش پر شده باز می‌شود. من در پرداخت کمک می‌کنم و ظرف چند دقیقه کلید دسترسی شخصی را صادر می‌کنم.",
+      faq_7_q: "آیا می‌توانم بازپرداخت بگیرم؟",
+      faq_7_a: "بازپرداخت در صورتی امکان‌پذیر است که سرویس بیش از 24 ساعت متوالی به دلیل تقصیر مدیریت کار نکرده باشد. در این صورت بازپرداخت به نسبت تعداد روزهای استفاده نشده محاسبه می‌شود. اگر به سادگی نظر خود را تغییر دادید یا استفاده را متوقف کردید — وجوه بازپرداخت نمی‌شود.",
+      faq_8_q: "چه مدت طول می‌کشد تا سرور آلمان ظاهر شود؟",
+      faq_8_a: "تست حدود 2 هفته طول می‌کشد. ما می‌خواهیم مطمئن شویم که سرعت و پایداری اتصال با استاندارد ما مطابقت دارد. مشترکین فعال اولین کسانی هستند که بدون هزینه اضافی به سرور جدید دسترسی پیدا می‌کنند.",
+      cta_title: "آماده اتصال هستید؟",
+      cta_desc: "راه‌اندازی 2 دقیقه طول می‌کشد. یک اشتراک — تا 10 دستگاه، از 99 ₽ در ماه.",
+      cta_btn: "پیام به پشتیبانی",
+      footer_brand_desc: "اتصال خصوصی و سریع بر پایه VLESS + XHTTP + REALITY. توسط خودم ساخته و پشتیبانی می‌شود.",
+      footer_col_1: "محصول",
+      footer_col_2: "تماس",
+      footer_col_3: "قانونی",
+      footer_legal_1: "شرایط استفاده",
+      footer_legal_2: "سیاست حفظ حریم خصوصی",
+      footer_legal_3: "پیشنهاد عمومی",
+      footer_legal_text: "با استفاده از WayG VPN، شما تأیید می‌کنید که <a href=\"#\">شرایط استفاده از سرویس</a> (نسخه 1.2 مورخ 03.10.2026) را خوانده و با آن موافق هستید. این سرویس دسترسی به یک اتصال ایمن را فراهم می‌کند و برای اقدامات غیرقانونی در نظر گرفته نشده است. کاربر مسئولیت قانونی بودن اقدامات خود را بر عهده دارد. نسخه فعلی قوانین در <a href=\"https://t.me/WayG_VPN_Official\" target=\"_blank\" rel=\"noopener\">کانال تلگرام</a> منتشر می‌شود.",
+      footer_copyright: "© 2026 WayG VPN. تمامی حقوق محفوظ است.",
+      footer_support: "پشتیبانی:"
+    },
+    fr: {
+      nav_servers: "Serveurs",
+      nav_technology: "Technologie",
+      nav_features: "Fonctionnalités",
+      nav_pricing: "Tarifs",
+      nav_faq: "FAQ",
+      nav_connect: "Se connecter",
+      hero_badge: "Développé et maintenu personnellement par moi",
+      hero_title: "Connexion privée<br>à un <span class=\"gradient-text\">nouveau niveau</span>",
+      hero_desc: "WayG VPN est une connexion rapide et fiable basée sur VLESS + XHTTP + REALITY. Un abonnement pour tous vos appareils, un prix honnête et un support du créateur.",
+      hero_btn_primary: "Choisir un forfait",
+      hero_btn_secondary: "Comment ça marche",
+      hero_note_1: "À partir de 99 ₽ / mois",
+      hero_note_2: "Jusqu'à 10 appareils",
+      hero_note_3: "Windows, iOS, Android",
+      protocol_label: "Stack technologique",
+      servers_tag: "Infrastructure",
+      servers_title: "Nos serveurs",
+      servers_desc: "Nous élargissons progressivement notre géographie. De nouveaux emplacements apparaissent régulièrement — les abonnés sont les premiers informés.",
+      server_active: "Actif",
+      server_testing: "En test",
+      server_considering: "En cours d'examen",
+      server_spain: "Espagne",
+      server_spain_city: "Madrid · serveur principal",
+      server_germany: "Allemagne",
+      server_germany_city: "Francfort · en cours de configuration",
+      server_turkey: "Turquie",
+      server_turkey_city: "Istanbul · prévu",
+      server_load: "Charge",
+      server_load_low: "Faible",
+      server_protocol: "Protocole",
+      server_speed: "Vitesse",
+      server_speed_val: "jusqu'à 300 Mbps",
+      server_stage: "Étape",
+      server_stage_val: "Tests de charge",
+      server_launch: "Lancement prévu",
+      server_launch_val: "≈ 2 semaines",
+      server_status_label: "Statut",
+      server_status_val: "Analyse de l'emplacement",
+      server_priority: "Priorité",
+      server_priority_val: "Moyenne",
+      tech_tag: "Technologie",
+      tech_title: "Stack de chiffrement moderne",
+      tech_desc: "Nous utilisons une combinaison avancée de protocoles pour garantir une vitesse élevée et une protection fiable de la connexion.",
+      tech_subtitle: "VLESS + XHTTP + REALITY",
+      tech_p1: "<strong>VLESS</strong> est un protocole de transfert de données léger avec un minimum de surcharge. Il offre une vitesse élevée sans compromettre la qualité du chiffrement.",
+      tech_p2: "<strong>XHTTP</strong> est un transport moderne fonctionnant sur HTTP/2. Il assure une connexion stable et un transfert de données efficace dans toutes les conditions réseau.",
+      tech_p3: "<strong>REALITY</strong> est une technologie où la connexion est sécurisée selon les normes TLS 1.3, et le serveur présente un certificat de site Web légitime.",
+      features_tag: "Avantages",
+      features_title: "Tout pour une connexion confortable",
+      features_desc: "Des détails réfléchis qui rendent l'utilisation du service simple et prévisible.",
+      feature_1_title: "Chiffrement moderne",
+      feature_1_desc: "La connexion est sécurisée selon la norme TLS 1.3. Les données sont transmises chiffrées sur tout le chemin.",
+      feature_2_title: "Vitesse élevée",
+      feature_2_desc: "Vitesse jusqu'à 300 Mbps. Streaming, téléchargements et appels vidéo — sans délais ni baisses.",
+      feature_3_title: "Infrastructure fiable",
+      feature_3_desc: "Les serveurs sont situés dans des centres de données européens de confiance avec des canaux de communication de secours.",
+      feature_4_title: "Support du créateur",
+      feature_4_desc: "Je réponds personnellement — sans bots ni réponses standardisées. Je vous aide à configurer et à résoudre tout problème de manière humaine.",
+      feature_5_title: "Minimum de données",
+      feature_5_desc: "Je ne stocke pas vos journaux d'activité et ne sauvegarde pas les adresses IP. La seule chose que je vois est le volume total de trafic pour m'assurer que tout va bien.",
+      feature_6_title: "Windows, iOS, Android",
+      feature_6_desc: "Nous fonctionnons sur trois plateformes principales. Un compte — jusqu'à 10 appareils simultanément.",
+      pricing_tag: "Tarifs",
+      pricing_title: "Des prix simples et honnêtes",
+      pricing_desc: "Un abonnement — jusqu'à 10 appareils. Pas de frais cachés ni de prélèvements automatiques.",
+      pricing_1_name: "1 mois",
+      pricing_1_period: "par mois",
+      pricing_2_name: "3 mois",
+      pricing_2_period: "≈ 100 ₽ par mois",
+      pricing_3_name: "6 mois",
+      pricing_3_period: "≈ 100 ₽ par mois",
+      pricing_feature_1: "Tous les serveurs disponibles",
+      pricing_feature_2: "Jusqu'à 10 appareils",
+      pricing_feature_3: "Trafic illimité",
+      pricing_feature_4: "Support sur Telegram",
+      pricing_btn: "Choisir",
+      faq_tag: "Questions & Réponses",
+      faq_title: "Questions fréquentes",
+      faq_1_q: "Qu'est-ce que VLESS + XHTTP + REALITY ?",
+      faq_1_a: "C'est un stack moderne pour une connexion sécurisée. VLESS est un protocole de transfert de données léger avec un minimum de surcharge. XHTTP est un transport fonctionnant sur HTTP/2 pour un transfert de données stable. REALITY est une technologie où la connexion est sécurisée selon les normes TLS 1.3. Ensemble, ils offrent une vitesse élevée et un chiffrement fiable.",
+      faq_2_q: "Comment se connecter ?",
+      faq_2_a: "<strong>1.</strong> Téléchargez l'application <strong>v2RayTun</strong> :<br>— Android : <a href=\"https://play.google.com/store/search?q=v2raytun&c=apps\" target=\"_blank\" rel=\"noopener\">Google Play</a><br>— iOS : <a href=\"https://apps.apple.com/us/app/v2raytun/id6476628951\" target=\"_blank\" rel=\"noopener\">App Store</a><br>— Windows : <a href=\"https://github.com/mdf45/v2raytun/releases\" target=\"_blank\" rel=\"noopener\">GitHub</a><br><br><strong>2.</strong> Envoyez-moi un message sur Telegram <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — je vous enverrai un lien personnel et un code QR.<br><br><strong>3.</strong> Dans l'application, appuyez sur « + » → « Import from clipboard » → « Connect ».<br><br>Sous Windows, sélectionnez le mode <strong>Tunnel</strong> au lieu de Proxy.",
+      faq_3_q: "Quelles données traitez-vous ?",
+      faq_3_a: "Je ne stocke pas vos journaux d'activité et ne sauvegarde pas les adresses IP. La seule chose que je vois est le volume total de trafic. Pas de trackers ni de surveillance des sites visités. L'administration peut divulguer des données sur demande légale des autorités compétentes.",
+      faq_4_q: "Quels pays sont déjà disponibles ?",
+      faq_4_a: "Actuellement, le serveur en Espagne (Madrid) fonctionne de manière stable. Le serveur en Allemagne (Francfort) est en cours de test de charge et sera lancé dans les semaines à venir. L'emplacement en Turquie (Istanbul) est encore en cours d'examen.",
+      faq_5_q: "Combien d'appareils peuvent utiliser le compte ?",
+      faq_5_a: "Jusqu'à 10 appareils simultanément sur n'importe quel forfait. L'abonnement peut être utilisé par vous et les membres de votre famille vivant avec vous. Le transfert du lien/clé personnel à des tiers est interdit.",
+      faq_6_q: "Comment payer et obtenir l'accès ?",
+      faq_6_a: "Cliquez sur le bouton « Choisir » sur le forfait souhaité — un chat de support Telegram (@WayGVPN) s'ouvrira avec un message pré-rempli. Je vous aiderai avec le paiement et émettrai une clé d'accès personnelle en quelques minutes.",
+      faq_7_q: "Puis-je obtenir un remboursement ?",
+      faq_7_a: "Un remboursement est possible si le service n'a pas fonctionné pendant plus de 24 heures consécutives en raison de la faute de l'Administration. Si vous avez simplement changé d'avis ou cessé d'utiliser le service — les fonds ne sont pas remboursés.",
+      faq_8_q: "Dans combien de temps le serveur en Allemagne apparaîtra-t-il ?",
+      faq_8_a: "Les tests prennent environ 2 semaines. Nous voulons nous assurer que la vitesse et la stabilité de la connexion correspondent à notre norme. Les abonnés actifs obtiendront l'accès au nouveau serveur en premier et sans frais supplémentaires.",
+      cta_title: "Prêt à vous connecter ?",
+      cta_desc: "La configuration prend 2 minutes. Un abonnement — jusqu'à 10 appareils, à partir de 99 ₽ par mois.",
+      cta_btn: "Contacter le support",
+      footer_brand_desc: "Connexion privée et rapide basée sur VLESS + XHTTP + REALITY. Développé et maintenu personnellement par moi.",
+      footer_col_1: "Produit",
+      footer_col_2: "Contact",
+      footer_col_3: "Légal",
+      footer_legal_1: "Conditions d'utilisation",
+      footer_legal_2: "Politique de confidentialité",
+      footer_legal_3: "Offre publique",
+      footer_legal_text: "En utilisant WayG VPN, vous confirmez avoir lu et accepté les <a href=\"#\">Conditions d'utilisation du service</a> (révision 1.2 du 03.10.2026). Le service fournit un accès à une connexion sécurisée et n'est pas destiné à des actions illégales. L'utilisateur est seul responsable de la légalité de ses actions. La version actuelle des règles est publiée dans le <a href=\"https://t.me/WayG_VPN_Official\" target=\"_blank\" rel=\"noopener\">canal Telegram</a>.",
+      footer_copyright: "© 2026 WayG VPN. Tous droits réservés.",
+      footer_support: "Support :"
+    }
+  };
+
+  var langLabels = { ru: 'RU', uk: 'UK', en: 'EN', fa: 'FA', fr: 'FR' };
+  var htmlEl = document.documentElement;
+
+  // ============================================
+  // THEME
+  // ============================================
+  var themeToggle = document.getElementById('themeToggle');
+  var iconSun = document.getElementById('iconSun');
+  var iconMoon = document.getElementById('iconMoon');
+
+  function applyTheme(theme) {
+    htmlEl.setAttribute('data-theme', theme);
+    try { localStorage.setItem('wayg-theme', theme); } catch(e) {}
+    if (theme === 'light') {
+      iconSun.style.display = 'none';
+      iconMoon.style.display = 'block';
+    } else {
+      iconSun.style.display = 'block';
+      iconMoon.style.display = 'none';
+    }
+  }
+
+  var savedTheme = 'dark';
+  try { savedTheme = localStorage.getItem('wayg-theme') || 'dark'; } catch(e) {}
+  applyTheme(savedTheme);
+
+  themeToggle.addEventListener('click', function() {
+    var current = htmlEl.getAttribute('data-theme');
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  });
+
+  // ============================================
+  // LANGUAGE
+  // ============================================
+  var langSwitcher = document.getElementById('langSwitcher');
+  var langBtn = document.getElementById('langBtn');
+  var langLabel = document.getElementById('langLabel');
+
+  langBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    langSwitcher.classList.toggle('open');
+  });
+
+  document.addEventListener('click', function() {
+    langSwitcher.classList.remove('open');
+  });
+
+  function applyLanguage(lang) {
+    if (!translations[lang]) lang = 'ru';
+
+    htmlEl.setAttribute('lang', lang);
+    htmlEl.setAttribute('dir', lang === 'fa' ? 'rtl' : 'ltr');
+
+    // Update dropdown active
+    var links = document.querySelectorAll('.lang-dropdown a');
+    for (var i = 0; i < links.length; i++) {
+      links[i].classList.toggle('active', links[i].getAttribute('data-lang') === lang);
+    }
+
+    // Update label
+    langLabel.textContent = langLabels[lang] || 'RU';
+
+    // Translate all data-i18n (text content)
+    var textEls = document.querySelectorAll('[data-i18n]');
+    for (var j = 0; j < textEls.length; j++) {
+      var key = textEls[j].getAttribute('data-i18n');
+      if (translations[lang][key] !== undefined) {
+        textEls[j].textContent = translations[lang][key];
+      }
+    }
+
+    // Translate all data-i18n-html (innerHTML)
+    var htmlEls = document.querySelectorAll('[data-i18n-html]');
+    for (var k = 0; k < htmlEls.length; k++) {
+      var hkey = htmlEls[k].getAttribute('data-i18n-html');
+      if (translations[lang][hkey] !== undefined) {
+        htmlEls[k].innerHTML = translations[lang][hkey];
+      }
+    }
+
+    try { localStorage.setItem('wayg-lang', lang); } catch(e) {}
+    langSwitcher.classList.remove('open');
+  }
+
+  // Wire up dropdown links
+  var langLinks = document.querySelectorAll('.lang-dropdown a');
+  for (var i = 0; i < langLinks.length; i++) {
+    langLinks[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var lang = this.getAttribute('data-lang');
+      applyLanguage(lang);
+    });
+  }
+
+  var savedLang = 'ru';
+  try { savedLang = localStorage.getItem('wayg-lang') || 'ru'; } catch(e) {}
+  applyLanguage(savedLang);
+
+  // ============================================
+  // FAQ ACCORDION
+  // ============================================
+  var faqItems = document.querySelectorAll('.faq-item');
+  for (var f = 0; f < faqItems.length; f++) {
+    faqItems[f].addEventListener('click', function() {
+      this.classList.toggle('open');
+    });
+  }
+
+  // ============================================
+  // NAV SCROLL
+  // ============================================
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 20) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  }, { passive: true });
+
+  // ============================================
+  // REVEAL ANIMATIONS
+  // ============================================
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].isIntersecting) {
+          entries[i].target.classList.add('visible');
+          observer.unobserve(entries[i].target);
+        }
+      }
+    }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+    var revealEls = document.querySelectorAll('.reveal');
+    for (var r = 0; r < revealEls.length; r++) {
+      observer.observe(revealEls[r]);
+    }
+  } else {
+    // Fallback: show everything
+    var revealEls2 = document.querySelectorAll('.reveal');
+    for (var r2 = 0; r2 < revealEls2.length; r2++) {
+      revealEls2[r2].classList.add('visible');
+    }
+  }
+})();
+</script>
+
+</body>
+</html>
