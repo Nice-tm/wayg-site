@@ -131,6 +131,7 @@
     pointer-events: none;
   }
 
+  /* NAV */
   nav {
     position: fixed;
     top: 0;
@@ -157,6 +158,7 @@
     gap: 20px;
   }
 
+  /* LOGO - just text */
   .logo {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 600;
@@ -312,6 +314,7 @@
   }
   .btn-lg { padding: 15px 28px; font-size: 15px; border-radius: 13px; }
 
+  /* HERO */
   .hero {
     padding: 180px 28px 100px;
     max-width: 1240px;
@@ -446,6 +449,7 @@
     background: var(--border-strong);
   }
 
+  /* SECTIONS */
   section { padding: 110px 28px; position: relative; }
   .container { max-width: 1240px; margin: 0 auto; }
   .section-head { text-align: center; margin-bottom: 64px; }
@@ -488,6 +492,7 @@
     line-height: 1.65;
   }
 
+  /* SERVERS */
   .servers {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -596,6 +601,7 @@
     text-align: right;
   }
 
+  /* TECHNOLOGY */
   .proto-hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -655,6 +661,7 @@
   .code-val { color: var(--accent-2); }
   .code-comment { color: var(--muted-2); font-style: italic; }
 
+  /* FEATURES */
   .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
@@ -697,6 +704,7 @@
   }
   .feature p { color: var(--muted); font-size: 14.5px; line-height: 1.6; }
 
+  /* PRICING */
   .pricing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -787,6 +795,7 @@
   .check svg { width: 10px; height: 10px; color: var(--green); }
   .price-card .btn { width: 100%; justify-content: center; }
 
+  /* FAQ */
   .faq-list {
     max-width: 820px;
     margin: 0 auto;
@@ -847,6 +856,7 @@
   .faq-a strong { color: var(--text); }
   .faq-item.open .faq-a { max-height: 800px; margin-top: 14px; }
 
+  /* CTA */
   .cta {
     max-width: 1040px;
     margin: 0 auto;
@@ -874,6 +884,7 @@
   .cta p { color: var(--muted); font-size: 17px; margin-bottom: 32px; position: relative; }
   .cta .btn { position: relative; }
 
+  /* FOOTER */
   footer {
     padding: 72px 28px 40px;
     border-top: 1px solid var(--border);
@@ -933,6 +944,7 @@
   .footer-bottom a { color: var(--muted); text-decoration: none; }
   .footer-bottom a:hover { color: var(--accent); }
 
+  /* REVEAL */
   .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -1006,6 +1018,7 @@
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <div class="badge">
     <span class="badge-dot"></span>
@@ -1038,6 +1051,7 @@
   </div>
 </section>
 
+<!-- SERVERS -->
 <section id="servers">
   <div class="container">
     <div class="section-head reveal">
@@ -1059,45 +1073,30 @@
         <div class="server-meta">
           <div class="server-meta-row"><span data-i18n="server_load">Загрузка</span><span style="color: var(--green)" data-i18n="server_load_low">Низкая</span></div>
           <div class="server-meta-row"><span data-i18n="server_protocol">Протокол</span><span>VLESS · XHTTP · REALITY</span></div>
-          <div class="server-meta-row"><span data-i18n="server_speed">Скорость</span><span data-i18n="server_speed_val">до 300 Мбит/с</span></div>
+          <div class="server-meta-row"><span data-i18n="server_bandwidth">Пропускная способность</span><span data-i18n="server_bandwidth_spain">до 300 Мбит/с</span></div>
         </div>
       </div>
 
-      <div class="server-card reveal" style="--status-color: #eab308;">
+      <div class="server-card reveal" style="--status-color: #22c55e;">
         <div class="server-head">
-          <div class="server-flag">🇩🇪</div>
-          <div class="server-status testing">
-            <span class="status-dot"></span> <span data-i18n="server_testing">Тестирование</span>
+          <div class="server-flag">🇲🇩</div>
+          <div class="server-status">
+            <span class="status-dot"></span> <span data-i18n="server_active">Активен</span>
           </div>
         </div>
-        <h3 data-i18n="server_germany">Германия</h3>
-        <div class="server-city" data-i18n="server_germany_city">Франкфурт · идёт настройка</div>
+        <h3 data-i18n="server_moldova">Молдова</h3>
+        <div class="server-city" data-i18n="server_moldova_city">Кишинёв · новый сервер</div>
         <div class="server-meta">
-          <div class="server-meta-row"><span data-i18n="server_stage">Этап</span><span style="color: var(--yellow)" data-i18n="server_stage_val">Нагрузочные тесты</span></div>
+          <div class="server-meta-row"><span data-i18n="server_load">Загрузка</span><span style="color: var(--green)" data-i18n="server_load_low">Низкая</span></div>
           <div class="server-meta-row"><span data-i18n="server_protocol">Протокол</span><span>VLESS · XHTTP · REALITY</span></div>
-          <div class="server-meta-row"><span data-i18n="server_launch">Ожидаемый запуск</span><span data-i18n="server_launch_val">≈ 2 недели</span></div>
-        </div>
-      </div>
-
-      <div class="server-card reveal" style="--status-color: #f97316;">
-        <div class="server-head">
-          <div class="server-flag">🇹🇷</div>
-          <div class="server-status considering">
-            <span class="status-dot"></span> <span data-i18n="server_considering">На рассмотрении</span>
-          </div>
-        </div>
-        <h3 data-i18n="server_turkey">Турция</h3>
-        <div class="server-city" data-i18n="server_turkey_city">Стамбул · планируется</div>
-        <div class="server-meta">
-          <div class="server-meta-row"><span data-i18n="server_status_label">Статус</span><span style="color: var(--orange)" data-i18n="server_status_val">Анализ локации</span></div>
-          <div class="server-meta-row"><span data-i18n="server_protocol">Протокол</span><span>VLESS · XHTTP · REALITY</span></div>
-          <div class="server-meta-row"><span data-i18n="server_priority">Приоритет</span><span data-i18n="server_priority_val">Средний</span></div>
+          <div class="server-meta-row"><span data-i18n="server_bandwidth">Пропускная способность</span><span data-i18n="server_bandwidth_moldova">до 250 Мбит/с</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- TECHNOLOGY -->
 <section id="technology">
   <div class="container">
     <div class="section-head reveal">
@@ -1121,14 +1120,14 @@
         <div class="code-line"><span class="ln">3</span><span>  <span class="code-key">"protocol"</span>: <span class="code-str">"vless"</span>,</span></div>
         <div class="code-line"><span class="ln">4</span><span>  <span class="code-key">"transport"</span>: <span class="code-str">"xhttp"</span>,</span></div>
         <div class="code-line"><span class="ln">5</span><span>  <span class="code-key">"security"</span>: <span class="code-str">"reality"</span>,</span></div>
-        <div class="code-line"><span class="ln">6</span><span>  <span class="code-key">"fingerprint"</span>: <span class="code-val">"chrome"</span>,</span></div>
-        <div class="code-line"><span class="ln">7</span><span>  <span class="code-key">"flow"</span>: <span class="code-val">"xtls-rprx-vision"</span></span></div>
-        <div class="code-line"><span class="ln">8</span><span>}</span></div>
+        <div class="code-line"><span class="ln">6</span><span>  <span class="code-key">"fingerprint"</span>: <span class="code-val">"firefox"</span></span></div>
+        <div class="code-line"><span class="ln">7</span><span>}</span></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- FEATURES -->
 <section id="features">
   <div class="container">
     <div class="section-head reveal">
@@ -1189,6 +1188,7 @@
   </div>
 </section>
 
+<!-- PRICING -->
 <section id="pricing">
   <div class="container">
     <div class="section-head reveal">
@@ -1240,6 +1240,7 @@
   </div>
 </section>
 
+<!-- FAQ -->
 <section id="faq">
   <div class="container">
     <div class="section-head reveal">
@@ -1255,7 +1256,7 @@
 
       <div class="faq-item reveal">
         <div class="faq-q"><span data-i18n="faq_2_q">Как подключиться?</span><span class="faq-icon">+</span></div>
-        <div class="faq-a" data-i18n-html="faq_2_a"><strong>1.</strong> Скачайте приложение <strong>v2RayTun</strong>:<br>— Android: <a href="https://play.google.com/store/search?q=v2raytun&c=apps" target="_blank" rel="noopener">Google Play</a><br>— iOS: <a href="https://apps.apple.com/us/app/v2raytun/id6476628951" target="_blank" rel="noopener">App Store</a><br>— Windows: <a href="https://github.com/mdf45/v2raytun/releases" target="_blank" rel="noopener">GitHub</a><br><br><strong>2.</strong> Напишите мне в Telegram <a href="https://t.me/WayGVPN" target="_blank" rel="noopener">@WayGVPN</a> — я отправлю персональную ссылку и QR-код.<br><br><strong>3.</strong> В приложении нажмите «+» → «Импорт из буфера обмена» → «Подключиться».<br><br>На Windows выберите режим <strong>Tunnel</strong> вместо Proxy.</div>
+        <div class="faq-a" data-i18n-html="faq_2_a"><strong>1.</strong> Скачайте приложение <strong>v2RayTun</strong>:<br>— Android: <a href="https://play.google.com/store/search?q=v2raytun&c=apps" target="_blank" rel="noopener">Google Play</a><br>— iOS: <a href="https://apps.apple.com/us/app/v2raytun/id6476628951" target="_blank" rel="noopener">App Store</a><br>— Windows: <a href="https://github.com/mdf45/v2raytun/releases" target="_blank" rel="noopener">GitHub</a><br><br><strong>2.</strong> Напишите мне в Telegram <a href="https://t.me/WayGVPN" target="_blank" rel="noopener">@WayGVPN</a> — я отправлю персональную ссылку и QR-код.<br><br><strong>3.</strong> В приложении нажмите «+» → «Импорт из буфера обмена» (или «Импорт из QR-кода») → «Подключиться».<br><br>На Windows выберите режим <strong>Tunnel</strong> вместо Proxy и нажмите Connect.</div>
       </div>
 
       <div class="faq-item reveal">
@@ -1265,7 +1266,7 @@
 
       <div class="faq-item reveal">
         <div class="faq-q"><span data-i18n="faq_4_q">Какие страны уже доступны?</span><span class="faq-icon">+</span></div>
-        <div class="faq-a" data-i18n="faq_4_a">Сейчас стабильно работает сервер в Испании (Мадрид). Сервер в Германии (Франкфурт) проходит этап нагрузочного тестирования и будет запущен в ближайшие недели. Локация в Турции (Стамбул) пока на стадии рассмотрения — о запуске сообщим действующим подписчикам в нашем Telegram-канале.</div>
+        <div class="faq-a" data-i18n="faq_4_a">Сейчас стабильно работают два сервера: Испания (Мадрид) и Молдова (Кишинёв). Оба подключены и доступны в приложении. Работа над расширением географии продолжается — о новых локациях сообщу в Telegram-канале.</div>
       </div>
 
       <div class="faq-item reveal">
@@ -1284,13 +1285,14 @@
       </div>
 
       <div class="faq-item reveal">
-        <div class="faq-q"><span data-i18n="faq_8_q">Как быстро появится сервер в Германии?</span><span class="faq-icon">+</span></div>
-        <div class="faq-a" data-i18n="faq_8_a">Тестирование занимает около 2 недель. Мы хотим убедиться, что скорость и стабильность соединения соответствуют нашему стандарту. Действующие подписчики получат доступ к новому серверу первыми и без доплат.</div>
+        <div class="faq-q"><span data-i18n="faq_8_q">Планируются ли новые локации?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a" data-i18n="faq_8_a">Да. Работа над расширением географии продолжается. Локации в Германии и Турции были отложены из-за технических сложностей. О запуске новых серверов сообщу действующим подписчикам в Telegram-канале.</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- CTA -->
 <section>
   <div class="container">
     <div class="cta reveal">
@@ -1318,7 +1320,7 @@
       <div class="footer-col">
         <h4 data-i18n="footer_col_2">Связь</h4>
         <a href="https://t.me/WayGVPN" target="_blank" rel="noopener">Telegram · @WayGVPN</a>
-        <a href="https://t.me/WayG_VPN_Official" target="_blank" rel="noopener" data-i18n="footer_telegram_channel">Telegram-канал</a>
+        <a href="https://t.me/WayG_VPN_Official" target="_blank" rel="noopener">Telegram-канал</a>
       </div>
       <div class="footer-col">
         <h4 data-i18n="footer_col_3">Правовое</h4>
@@ -1343,6 +1345,9 @@
 (function() {
   'use strict';
 
+  // ============================================
+  // TRANSLATIONS
+  // ============================================
   var translations = {
     ru: {
       nav_servers: "Серверы",
@@ -1368,23 +1373,14 @@
       server_considering: "На рассмотрении",
       server_spain: "Испания",
       server_spain_city: "Мадрид · основной сервер",
-      server_germany: "Германия",
-      server_germany_city: "Франкфурт · идёт настройка",
-      server_turkey: "Турция",
-      server_turkey_city: "Стамбул · планируется",
+      server_moldova: "Молдова",
+      server_moldova_city: "Кишинёв · новый сервер",
       server_load: "Загрузка",
       server_load_low: "Низкая",
       server_protocol: "Протокол",
-      server_speed: "Скорость",
-      server_speed_val: "до 300 Мбит/с",
-      server_stage: "Этап",
-      server_stage_val: "Нагрузочные тесты",
-      server_launch: "Ожидаемый запуск",
-      server_launch_val: "≈ 2 недели",
-      server_status_label: "Статус",
-      server_status_val: "Анализ локации",
-      server_priority: "Приоритет",
-      server_priority_val: "Средний",
+      server_bandwidth: "Пропускная способность",
+      server_bandwidth_spain: "до 300 Мбит/с",
+      server_bandwidth_moldova: "до 250 Мбит/с",
       tech_tag: "Технология",
       tech_title: "Современный стек шифрования",
       tech_desc: "Мы используем передовое сочетание протоколов, чтобы обеспечить высокую скорость и надёжную защиту соединения.",
@@ -1430,15 +1426,15 @@
       faq_3_q: "Какие данные вы обрабатываете?",
       faq_3_a: "Я не храню логи вашей активности и не сохраняю IP-адреса. Единственное, что вижу — общий объём трафика, чтобы понимать, что всё работает в штатном режиме. Никаких трекеров и слежки за посещаемыми сайтами. Администрация вправе раскрыть данные по законному запросу уполномоченных органов в соответствии с действующим законодательством.",
       faq_4_q: "Какие страны уже доступны?",
-      faq_4_a: "Сейчас стабильно работает сервер в Испании (Мадрид). Сервер в Германии (Франкфурт) проходит этап нагрузочного тестирования и будет запущен в ближайшие недели. Локация в Турции (Стамбул) пока на стадии рассмотрения — о запуске сообщим действующим подписчикам в нашем Telegram-канале.",
+      faq_4_a: "Сейчас стабильно работают два сервера: Испания (Мадрид) и Молдова (Кишинёв). Оба подключены и доступны в приложении. Работа над расширением географии продолжается — о новых локациях сообщу в Telegram-канале.",
       faq_5_q: "На скольких устройствах можно использовать аккаунт?",
       faq_5_a: "До 10 устройств одновременно на любом тарифе. Подпиской могут пользоваться вы и члены вашей семьи, проживающие с вами совместно. Передача персональной ссылки/ключа третьим лицам запрещена правилами сервиса.",
       faq_6_q: "Как оплатить и получить доступ?",
       faq_6_a: "Нажмите кнопку «Выбрать» на нужном тарифе — откроется чат с поддержкой в Telegram (@WayGVPN) с уже подставленным сообщением о выбранном тарифе. Я помогу с оплатой и выдам персональный ключ доступа в течение нескольких минут.",
       faq_7_q: "Можно ли вернуть деньги?",
       faq_7_a: "Возврат возможен, если сервис не работал более 24 часов подряд по вине Администрации. В этом случае возврат рассчитывается пропорционально количеству неиспользованных дней. Если вы просто передумали или перестали пользоваться сервисом — средства не возвращаются. При блокировке за нарушение правил средства также не возвращаются.",
-      faq_8_q: "Как быстро появится сервер в Германии?",
-      faq_8_a: "Тестирование занимает около 2 недель. Мы хотим убедиться, что скорость и стабильность соединения соответствуют нашему стандарту. Действующие подписчики получат доступ к новому серверу первыми и без доплат.",
+      faq_8_q: "Планируются ли новые локации?",
+      faq_8_a: "Да. Работа над расширением географии продолжается. Локации в Германии и Турции были отложены из-за технических сложностей. О запуске новых серверов сообщу действующим подписчикам в Telegram-канале.",
       cta_title: "Готовы подключиться?",
       cta_desc: "Настройка занимает 2 минуты. Одна подписка — до 10 устройств, от 99 ₽ в месяц.",
       cta_btn: "Написать в поддержку",
@@ -1446,123 +1442,12 @@
       footer_col_1: "Продукт",
       footer_col_2: "Связь",
       footer_col_3: "Правовое",
-      footer_telegram_channel: "Telegram-канал",
       footer_legal_1: "Правила использования",
       footer_legal_2: "Политика конфиденциальности",
       footer_legal_3: "Публичная оферта",
       footer_legal_text: "Используя сервис WayG VPN, вы подтверждаете, что ознакомились и согласны с <a href=\"#\">Правилами использования Сервиса</a> (редакция 1.2 от 03.10.2026). Сервис предоставляет доступ к защищённому соединению и не предназначен для совершения противоправных действий. Пользователь самостоятельно несёт ответственность за законность своих действий при использовании Сервиса. Актуальная редакция правил публикуется в <a href=\"https://t.me/WayG_VPN_Official\" target=\"_blank\" rel=\"noopener\">Telegram-канале</a>.",
       footer_copyright: "© 2026 WayG VPN. Все права защищены.",
       footer_support: "Поддержка:"
-    },
-    uk: {
-      nav_servers: "Сервери",
-      nav_technology: "Технологія",
-      nav_features: "Можливості",
-      nav_pricing: "Тарифи",
-      nav_faq: "FAQ",
-      nav_connect: "Підключитися",
-      hero_badge: "Розробляю та підтримую сервіс особисто",
-      hero_title: "Приватне з'єднання<br>на <span class=\"gradient-text\">новому рівні</span>",
-      hero_desc: "WayG VPN — швидке та надійне з'єднання на базі VLESS + XHTTP + REALITY. Одна підписка на всі ваші пристрої, чесна ціна та підтримка від творця сервісу.",
-      hero_btn_primary: "Обрати тариф",
-      hero_btn_secondary: "Як це працює",
-      hero_note_1: "Від 99 ₽ на місяць",
-      hero_note_2: "До 10 пристроїв",
-      hero_note_3: "Windows, iOS, Android",
-      protocol_label: "Стек технологій",
-      servers_tag: "Інфраструктура",
-      servers_title: "Наші сервери",
-      servers_desc: "Ми поступово розширюємо географію. Нові локації з'являються регулярно — підписники дізнаються про запуск першими.",
-      server_active: "Активний",
-      server_testing: "Тестування",
-      server_considering: "На розгляді",
-      server_spain: "Іспанія",
-      server_spain_city: "Мадрид · основний сервер",
-      server_germany: "Німеччина",
-      server_germany_city: "Франкфурт · йде налаштування",
-      server_turkey: "Туреччина",
-      server_turkey_city: "Стамбул · планується",
-      server_load: "Завантаження",
-      server_load_low: "Низьке",
-      server_protocol: "Протокол",
-      server_speed: "Швидкість",
-      server_speed_val: "до 300 Мбіт/с",
-      server_stage: "Етап",
-      server_stage_val: "Навантажувальні тести",
-      server_launch: "Очікуваний запуск",
-      server_launch_val: "≈ 2 тижні",
-      server_status_label: "Статус",
-      server_status_val: "Аналіз локації",
-      server_priority: "Пріоритет",
-      server_priority_val: "Середній",
-      tech_tag: "Технологія",
-      tech_title: "Сучасний стек шифрування",
-      tech_desc: "Ми використовуємо передове поєднання протоколів, щоб забезпечити високу швидкість і надійний захист з'єднання.",
-      tech_subtitle: "VLESS + XHTTP + REALITY",
-      tech_p1: "<strong>VLESS</strong> — легкий протокол передачі даних з мінімальними накладними витратами. Забезпечує високу швидкість без втрати якості шифрування.",
-      tech_p2: "<strong>XHTTP</strong> — сучасний транспорт, що працює поверх HTTP/2. Забезпечує стабільне з'єднання та ефективну передачу даних у будь-яких мережевих умовах.",
-      tech_p3: "<strong>REALITY</strong> — технологія, при якій з'єднання захищено за стандартами TLS 1.3, а сервер пред'являє сертифікат легітимного сайту.",
-      features_tag: "Переваги",
-      features_title: "Все для комфортного з'єднання",
-      features_desc: "Продумані деталі, які роблять використання сервісу простим і передбачуваним.",
-      feature_1_title: "Сучасне шифрування",
-      feature_1_desc: "З'єднання захищено за стандартом TLS 1.3. Дані передаються в зашифрованому вигляді на всьому шляху прямування.",
-      feature_2_title: "Висока швидкість",
-      feature_2_desc: "Швидкість до 300 Мбіт/с. Стрімінг, завантаження та відеодзвінки — без затримок і просідань.",
-      feature_3_title: "Надійна інфраструктура",
-      feature_3_desc: "Сервери розміщені в перевірених дата-центрах Європи з резервними каналами зв'язку та захистом від збоїв.",
-      feature_4_title: "Підтримка від творця",
-      feature_4_desc: "Відповідаю особисто — без ботів і без шаблонних відповідей. Допомагаю розібратися з налаштуванням і вирішити будь-яке питання по-людськи.",
-      feature_5_title: "Мінімум даних",
-      feature_5_desc: "Я не зберігаю логи вашої активності та не зберігаю IP-адреси. Єдине, що бачу — загальний обсяг трафіку, щоб розуміти, що все гаразд.",
-      feature_6_title: "Windows, iOS, Android",
-      feature_6_desc: "Працюємо на трьох основних платформах. Один акаунт — до 10 пристроїв одночасно.",
-      pricing_tag: "Тарифи",
-      pricing_title: "Прості та чесні ціни",
-      pricing_desc: "Одна підписка — до 10 пристроїв. Без прихованих платежів і автоматичних списань.",
-      pricing_1_name: "1 місяць",
-      pricing_1_period: "на місяць",
-      pricing_2_name: "3 місяці",
-      pricing_2_period: "≈ 100 ₽ на місяць",
-      pricing_3_name: "6 місяців",
-      pricing_3_period: "≈ 100 ₽ на місяць",
-      pricing_feature_1: "Всі доступні сервери",
-      pricing_feature_2: "До 10 пристроїв",
-      pricing_feature_3: "Без обмежень трафіку",
-      pricing_feature_4: "Підтримка в Telegram",
-      pricing_btn: "Обрати",
-      faq_tag: "Питання та відповіді",
-      faq_title: "Часті питання",
-      faq_1_q: "Що таке VLESS + XHTTP + REALITY?",
-      faq_1_a: "Це сучасний стек для захищеного з'єднання. VLESS — легкий протокол передачі даних з мінімальними накладними витратами. XHTTP — транспорт, що працює поверх HTTP/2 для стабільної передачі даних. REALITY — технологія, при якій з'єднання захищено за стандартами TLS 1.3, а сервер пред'являє сертифікат легітимного сайту. Разом вони забезпечують високу швидкість і надійне шифрування.",
-      faq_2_q: "Як підключитися?",
-      faq_2_a: "<strong>1.</strong> Завантажте додаток <strong>v2RayTun</strong>:<br>— Android: <a href=\"https://play.google.com/store/search?q=v2raytun&c=apps\" target=\"_blank\" rel=\"noopener\">Google Play</a><br>— iOS: <a href=\"https://apps.apple.com/us/app/v2raytun/id6476628951\" target=\"_blank\" rel=\"noopener\">App Store</a><br>— Windows: <a href=\"https://github.com/mdf45/v2raytun/releases\" target=\"_blank\" rel=\"noopener\">GitHub</a><br><br><strong>2.</strong> Напишіть мені в Telegram <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — я надішлю персональне посилання та QR-код.<br><br><strong>3.</strong> У додатку натисніть «+» → «Імпорт з буфера обміну» → «Підключитися».<br><br>На Windows виберіть режим <strong>Tunnel</strong> замість Proxy.",
-      faq_3_q: "Які дані ви обробляєте?",
-      faq_3_a: "Я не зберігаю логи вашої активності та не зберігаю IP-адреси. Єдине, що бачу — загальний обсяг трафіку, щоб розуміти, що все працює в штатному режимі. Жодних трекерів і стеження за відвідуваними сайтами. Адміністрація має право розкрити дані за законним запитом уповноважених органів відповідно до чинного законодавства.",
-      faq_4_q: "Які країни вже доступні?",
-      faq_4_a: "Зараз стабільно працює сервер в Іспанії (Мадрид). Сервер у Німеччині (Франкфурт) проходить етап навантажувального тестування і буде запущений найближчими тижнями. Локація в Туреччині (Стамбул) поки на стадії розгляду — про запуск повідомимо діючим підписникам у нашому Telegram-каналі.",
-      faq_5_q: "На скількох пристроях можна використовувати акаунт?",
-      faq_5_a: "До 10 пристроїв одночасно на будь-якому тарифі. Підпискою можуть користуватися ви та члени вашої сім'ї, які проживають з вами спільно. Передача персонального посилання/ключа третім особам заборонена правилами сервісу.",
-      faq_6_q: "Як оплатити та отримати доступ?",
-      faq_6_a: "Натисніть кнопку «Обрати» на потрібному тарифі — відкриється чат з підтримкою в Telegram (@WayGVPN) з уже підставленим повідомленням про обраний тариф. Я допоможу з оплатою та видам персональний ключ доступу протягом кількох хвилин.",
-      faq_7_q: "Чи можна повернути гроші?",
-      faq_7_a: "Повернення можливе, якщо сервіс не працював більше 24 годин підряд з вини Адміністрації. У цьому випадку повернення розраховується пропорційно до кількості невикористаних днів. Якщо ви просто передумали або перестали користуватися сервісом — кошти не повертаються. При блокуванні за порушення правил кошти також не повертаються.",
-      faq_8_q: "Як швидко з'явиться сервер у Німеччині?",
-      faq_8_a: "Тестування займає близько 2 тижнів. Ми хочемо переконатися, що швидкість і стабільність з'єднання відповідають нашому стандарту. Діючі підписники отримають доступ до нового сервера першими і без доплат.",
-      cta_title: "Готові підключитися?",
-      cta_desc: "Налаштування займає 2 хвилини. Одна підписка — до 10 пристроїв, від 99 ₽ на місяць.",
-      cta_btn: "Написати в підтримку",
-      footer_brand_desc: "Приватне та швидке з'єднання на базі VLESS + XHTTP + REALITY. Розробляю та підтримую сервіс особисто.",
-      footer_col_1: "Продукт",
-      footer_col_2: "Зв'язок",
-      footer_col_3: "Правове",
-      footer_telegram_channel: "Telegram-канал",
-      footer_legal_1: "Правила використання",
-      footer_legal_2: "Політика конфіденційності",
-      footer_legal_3: "Публічна оферта",
-      footer_legal_text: "Використовуючи сервіс WayG VPN, ви підтверджуєте, що ознайомилися та згодні з <a href=\"#\">Правилами використання Сервісу</a> (редакція 1.2 від 03.10.2026). Сервіс надає доступ до захищеного з'єднання і не призначений для вчинення протиправних дій. Користувач самостійно несе відповідальність за законність своїх дій при використанні Сервісу. Актуальна редакція правил публікується в <a href=\"https://t.me/WayG_VPN_Official\" target=\"_blank\" rel=\"noopener\">Telegram-каналі</a>.",
-      footer_copyright: "© 2026 WayG VPN. Всі права захищені.",
-      footer_support: "Підтримка:"
     },
     en: {
       nav_servers: "Servers",
@@ -1588,23 +1473,14 @@
       server_considering: "Under review",
       server_spain: "Spain",
       server_spain_city: "Madrid · primary server",
-      server_germany: "Germany",
-      server_germany_city: "Frankfurt · being configured",
-      server_turkey: "Turkey",
-      server_turkey_city: "Istanbul · planned",
+      server_moldova: "Moldova",
+      server_moldova_city: "Chisinau · new server",
       server_load: "Load",
       server_load_low: "Low",
       server_protocol: "Protocol",
-      server_speed: "Speed",
-      server_speed_val: "up to 300 Mbps",
-      server_stage: "Stage",
-      server_stage_val: "Load testing",
-      server_launch: "Expected launch",
-      server_launch_val: "≈ 2 weeks",
-      server_status_label: "Status",
-      server_status_val: "Location analysis",
-      server_priority: "Priority",
-      server_priority_val: "Medium",
+      server_bandwidth: "Bandwidth",
+      server_bandwidth_spain: "up to 300 Mbps",
+      server_bandwidth_moldova: "up to 250 Mbps",
       tech_tag: "Technology",
       tech_title: "Modern encryption stack",
       tech_desc: "We use an advanced combination of protocols to ensure high speed and reliable connection protection.",
@@ -1650,15 +1526,15 @@
       faq_3_q: "What data do you process?",
       faq_3_a: "I don't store your activity logs or save IP addresses. The only thing I see is the total traffic volume to make sure everything works properly. No trackers or surveillance of visited sites. The administration may disclose data upon a lawful request from authorized bodies in accordance with applicable law.",
       faq_4_q: "Which countries are already available?",
-      faq_4_a: "Currently, the server in Spain (Madrid) is operating stably. The server in Germany (Frankfurt) is undergoing load testing and will be launched in the coming weeks. The location in Turkey (Istanbul) is still under review — we will notify active subscribers in our Telegram channel about the launch.",
+      faq_4_a: "Currently, two servers are operating stably: Spain (Madrid) and Moldova (Chisinau). Both are connected and available in the app. Work on expanding the geography continues — I will announce new locations in the Telegram channel.",
       faq_5_q: "How many devices can use the account?",
       faq_5_a: "Up to 10 devices simultaneously on any plan. The subscription can be used by you and your family members living with you. Transferring the personal link/key to third parties is prohibited by the service rules.",
       faq_6_q: "How to pay and get access?",
       faq_6_a: "Click the \"Choose\" button on the desired plan — a Telegram support chat (@WayGVPN) will open with a pre-filled message about the selected plan. I will help with payment and issue a personal access key within minutes.",
       faq_7_q: "Can I get a refund?",
       faq_7_a: "A refund is possible if the service was not working for more than 24 hours in a row due to the Administration's fault. In this case, the refund is calculated proportionally to the number of unused days. If you simply changed your mind or stopped using the service — funds are not refunded. In case of blocking for violating the rules, funds are also not refunded.",
-      faq_8_q: "How soon will the Germany server appear?",
-      faq_8_a: "Testing takes about 2 weeks. We want to make sure that the speed and stability of the connection meet our standard. Active subscribers will get access to the new server first and at no extra cost.",
+      faq_8_q: "Are new locations planned?",
+      faq_8_a: "Yes. Work on expanding the geography continues. Locations in Germany and Turkey were postponed due to technical difficulties. I will announce the launch of new servers to active subscribers in the Telegram channel.",
       cta_title: "Ready to connect?",
       cta_desc: "Setup takes 2 minutes. One subscription — up to 10 devices, from 99 ₽ per month.",
       cta_btn: "Message support",
@@ -1666,240 +1542,26 @@
       footer_col_1: "Product",
       footer_col_2: "Contact",
       footer_col_3: "Legal",
-      footer_telegram_channel: "Telegram channel",
       footer_legal_1: "Terms of Use",
       footer_legal_2: "Privacy Policy",
       footer_legal_3: "Public Offer",
       footer_legal_text: "By using WayG VPN, you confirm that you have read and agree to the <a href=\"#\">Terms of Service</a> (revision 1.2 dated 03.10.2026). The service provides access to a secure connection and is not intended for unlawful actions. The user is solely responsible for the legality of their actions when using the Service. The current version of the rules is published in the <a href=\"https://t.me/WayG_VPN_Official\" target=\"_blank\" rel=\"noopener\">Telegram channel</a>.",
       footer_copyright: "© 2026 WayG VPN. All rights reserved.",
       footer_support: "Support:"
-    },
-    fa: {
-      nav_servers: "سرورها",
-      nav_technology: "فناوری",
-      nav_features: "ویژگی‌ها",
-      nav_pricing: "قیمت‌ها",
-      nav_faq: "سوالات متداول",
-      nav_connect: "اتصال",
-      hero_badge: "توسط خودم ساخته و پشتیبانی می‌شود",
-      hero_title: "اتصال خصوصی<br>در <span class=\"gradient-text\">سطحی جدید</span>",
-      hero_desc: "WayG VPN یک اتصال سریع و قابل اعتماد بر پایه VLESS + XHTTP + REALITY است. یک اشتراک برای همه دستگاه‌های شما، قیمت منصفانه و پشتیبانی از طرف سازنده.",
-      hero_btn_primary: "انتخاب طرح",
-      hero_btn_secondary: "چگونه کار می‌کند",
-      hero_note_1: "از 99 ₽ در ماه",
-      hero_note_2: "تا 10 دستگاه",
-      hero_note_3: "ویندوز، iOS، اندروید",
-      protocol_label: "پشته فناوری",
-      servers_tag: "زیرساخت",
-      servers_title: "سرورهای ما",
-      servers_desc: "ما به تدریج در حال گسترش جغرافیای خود هستیم. مکان‌های جدید به طور منظم ظاهر می‌شوند — مشترکین اولین کسانی هستند که مطلع می‌شوند.",
-      server_active: "فعال",
-      server_testing: "در حال تست",
-      server_considering: "در حال بررسی",
-      server_spain: "اسپانیا",
-      server_spain_city: "مادرید · سرور اصلی",
-      server_germany: "آلمان",
-      server_germany_city: "فرانکفورت · در حال پیکربندی",
-      server_turkey: "ترکیه",
-      server_turkey_city: "استانبول · برنامه‌ریزی شده",
-      server_load: "بار",
-      server_load_low: "کم",
-      server_protocol: "پروتکل",
-      server_speed: "سرعت",
-      server_speed_val: "تا 300 مگابیت بر ثانیه",
-      server_stage: "مرحله",
-      server_stage_val: "تست بار",
-      server_launch: "راه‌اندازی مورد انتظار",
-      server_launch_val: "≈ 2 هفته",
-      server_status_label: "وضعیت",
-      server_status_val: "تحلیل مکان",
-      server_priority: "اولویت",
-      server_priority_val: "متوسط",
-      tech_tag: "فناوری",
-      tech_title: "پشته رمزنگاری مدرن",
-      tech_desc: "ما از ترکیبی پیشرفته از پروتکل‌ها برای تضمین سرعت بالا و حفاظت قابل اعتماد از اتصال استفاده می‌کنیم.",
-      tech_subtitle: "VLESS + XHTTP + REALITY",
-      tech_p1: "<strong>VLESS</strong> یک پروتکل انتقال داده سبک با حداقل سربار است. سرعت بالا را بدون به خطر انداختن کیفیت رمزنگاری فراهم می‌کند.",
-      tech_p2: "<strong>XHTTP</strong> یک ترانسپورت مدرن است که روی HTTP/2 کار می‌کند. اتصال پایدار و انتقال کارآمد داده را در هر شرایط شبکه‌ای تضمین می‌کند.",
-      tech_p3: "<strong>REALITY</strong> فناوری است که در آن اتصال مطابق با استانداردهای TLS 1.3 ایمن می‌شود و سرور گواهی یک وب‌سایت معتبر را ارائه می‌دهد.",
-      features_tag: "مزایا",
-      features_title: "همه چیز برای یک اتصال راحت",
-      features_desc: "جزئیات اندیشیده شده‌ای که استفاده از سرویس را ساده و قابل پیش‌بینی می‌کند.",
-      feature_1_title: "رمزنگاری مدرن",
-      feature_1_desc: "اتصال مطابق با استاندارد TLS 1.3 ایمن شده است. داده‌ها در تمام مسیر به صورت رمزنگاری شده منتقل می‌شوند.",
-      feature_2_title: "سرعت بالا",
-      feature_2_desc: "سرعت تا 300 مگابیت بر ثانیه. استریم، دانلود و تماس تصویری — بدون تاخیر یا افت.",
-      feature_3_title: "زیرساخت قابل اعتماد",
-      feature_3_desc: "سرورها در مراکز داده معتبر اروپایی با کانال‌های ارتباطی پشتیبان و محافظت در برابر خرابی قرار دارند.",
-      feature_4_title: "پشتیبانی از طرف سازنده",
-      feature_4_desc: "من شخصاً پاسخ می‌دهم — بدون ربات و بدون پاسخ‌های قالبی. کمک می‌کنم تنظیمات را انجام دهید و هر مشکلی را مانند یک انسان حل کنید.",
-      feature_5_title: "حداقل داده",
-      feature_5_desc: "من لاگ فعالیت شما را ذخیره نمی‌کنم و آدرس‌های IP را ذخیره نمی‌کنم. تنها چیزی که می‌بینم حجم کل ترافیک است تا مطمئن شوم همه چیز خوب است.",
-      feature_6_title: "ویندوز، iOS، اندروید",
-      feature_6_desc: "ما روی سه پلتفرم اصلی کار می‌کنیم. یک حساب — تا 10 دستگاه به طور همزمان.",
-      pricing_tag: "قیمت‌ها",
-      pricing_title: "قیمت‌های ساده و منصفانه",
-      pricing_desc: "یک اشتراک — تا 10 دستگاه. بدون هزینه پنهان یا شارژ خودکار.",
-      pricing_1_name: "1 ماه",
-      pricing_1_period: "در ماه",
-      pricing_2_name: "3 ماه",
-      pricing_2_period: "≈ 100 ₽ در ماه",
-      pricing_3_name: "6 ماه",
-      pricing_3_period: "≈ 100 ₽ در ماه",
-      pricing_feature_1: "همه سرورهای موجود",
-      pricing_feature_2: "تا 10 دستگاه",
-      pricing_feature_3: "ترافیک نامحدود",
-      pricing_feature_4: "پشتیبانی در تلگرام",
-      pricing_btn: "انتخاب",
-      faq_tag: "پرسش و پاسخ",
-      faq_title: "سوالات متداول",
-      faq_1_q: "VLESS + XHTTP + REALITY چیست؟",
-      faq_1_a: "این یک پشته مدرن برای اتصال ایمن است. VLESS یک پروتکل انتقال داده سبک با حداقل سربار است. XHTTP یک ترانسپورت است که روی HTTP/2 برای انتقال پایدار داده کار می‌کند. REALITY فناوری است که در آن اتصال مطابق با استانداردهای TLS 1.3 ایمن می‌شود و سرور گواهی یک وب‌سایت معتبر را ارائه می‌دهد. اینها با هم سرعت بالا و رمزنگاری قابل اعتماد را فراهم می‌کنند.",
-      faq_2_q: "چگونه متصل شویم؟",
-      faq_2_a: "<strong>1.</strong> برنامه <strong>v2RayTun</strong> را دانلود کنید:<br>— اندروید: <a href=\"https://play.google.com/store/search?q=v2raytun&c=apps\" target=\"_blank\" rel=\"noopener\">Google Play</a><br>— iOS: <a href=\"https://apps.apple.com/us/app/v2raytun/id6476628951\" target=\"_blank\" rel=\"noopener\">App Store</a><br>— ویندوز: <a href=\"https://github.com/mdf45/v2raytun/releases\" target=\"_blank\" rel=\"noopener\">GitHub</a><br><br><strong>2.</strong> در تلگرام به من پیام دهید <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — لینک شخصی و کد QR را برایتان ارسال می‌کنم.<br><br><strong>3.</strong> در برنامه روی \"+\" بزنید → \"Import from clipboard\" → \"Connect\".",
-      faq_3_q: "چه داده‌هایی را پردازش می‌کنید؟",
-      faq_3_a: "من لاگ فعالیت شما را ذخیره نمی‌کنم و آدرس‌های IP را ذخیره نمی‌کنم. تنها چیزی که می‌بینم حجم کل ترافیک است تا مطمئن شوم همه چیز درست کار می‌کند. بدون ردیاب یا نظارت بر سایت‌های بازدید شده. مدیریت ممکن است داده‌ها را در صورت درخواست قانونی از نهادهای مجاز مطابق با قانون قابل اجرا افشا کند.",
-      faq_4_q: "کدام کشورها در حال حاضر موجود هستند؟",
-      faq_4_a: "در حال حاضر سرور اسپانیا (مادرید) به طور پایدار کار می‌کند. سرور آلمان (فرانکفورت) در حال تست بار است و در هفته‌های آینده راه‌اندازی می‌شود. مکان ترکیه (استانبول) هنوز در حال بررسی است.",
-      faq_5_q: "چند دستگاه می‌توانند از حساب استفاده کنند؟",
-      faq_5_a: "تا 10 دستگاه به طور همزمان در هر طرح. اشتراک می‌تواند توسط شما و اعضای خانواده‌تان که با شما زندگی می‌کنند استفاده شود. انتقال لینک/کلید شخصی به اشخاص ثالث توسط قوانین سرویس ممنوع است.",
-      faq_6_q: "چگونه پرداخت کنیم و دسترسی بگیریم؟",
-      faq_6_a: "روی دکمه \"انتخاب\" در طرح مورد نظر کلیک کنید — یک چت پشتیبانی تلگرام (@WayGVPN) با پیام از پیش پر شده باز می‌شود. من در پرداخت کمک می‌کنم و ظرف چند دقیقه کلید دسترسی شخصی را صادر می‌کنم.",
-      faq_7_q: "آیا می‌توانم بازپرداخت بگیرم؟",
-      faq_7_a: "بازپرداخت در صورتی امکان‌پذیر است که سرویس بیش از 24 ساعت متوالی به دلیل تقصیر مدیریت کار نکرده باشد. در این صورت بازپرداخت به نسبت تعداد روزهای استفاده نشده محاسبه می‌شود. اگر به سادگی نظر خود را تغییر دادید یا استفاده را متوقف کردید — وجوه بازپرداخت نمی‌شود.",
-      faq_8_q: "چه مدت طول می‌کشد تا سرور آلمان ظاهر شود؟",
-      faq_8_a: "تست حدود 2 هفته طول می‌کشد. ما می‌خواهیم مطمئن شویم که سرعت و پایداری اتصال با استاندارد ما مطابقت دارد. مشترکین فعال اولین کسانی هستند که بدون هزینه اضافی به سرور جدید دسترسی پیدا می‌کنند.",
-      cta_title: "آماده اتصال هستید؟",
-      cta_desc: "راه‌اندازی 2 دقیقه طول می‌کشد. یک اشتراک — تا 10 دستگاه، از 99 ₽ در ماه.",
-      cta_btn: "پیام به پشتیبانی",
-      footer_brand_desc: "اتصال خصوصی و سریع بر پایه VLESS + XHTTP + REALITY. توسط خودم ساخته و پشتیبانی می‌شود.",
-      footer_col_1: "محصول",
-      footer_col_2: "تماس",
-      footer_col_3: "قانونی",
-      footer_telegram_channel: "کانال تلگرام",
-      footer_legal_1: "شرایط استفاده",
-      footer_legal_2: "سیاست حفظ حریم خصوصی",
-      footer_legal_3: "پیشنهاد عمومی",
-      footer_legal_text: "با استفاده از WayG VPN، شما تأیید می‌کنید که <a href=\"#\">شرایط استفاده از سرویس</a> (نسخه 1.2 مورخ 03.10.2026) را خوانده و با آن موافق هستید. این سرویس دسترسی به یک اتصال ایمن را فراهم می‌کند و برای اقدامات غیرقانونی در نظر گرفته نشده است. کاربر مسئولیت قانونی بودن اقدامات خود را بر عهده دارد. نسخه فعلی قوانین در <a href=\"https://t.me/WayG_VPN_Official\" target=\"_blank\" rel=\"noopener\">کانال تلگرام</a> منتشر می‌شود.",
-      footer_copyright: "© 2026 WayG VPN. تمامی حقوق محفوظ است.",
-      footer_support: "پشتیبانی:"
-    },
-    fr: {
-      nav_servers: "Serveurs",
-      nav_technology: "Technologie",
-      nav_features: "Fonctionnalités",
-      nav_pricing: "Tarifs",
-      nav_faq: "FAQ",
-      nav_connect: "Se connecter",
-      hero_badge: "Développé et maintenu personnellement par moi",
-      hero_title: "Connexion privée<br>à un <span class=\"gradient-text\">nouveau niveau</span>",
-      hero_desc: "WayG VPN est une connexion rapide et fiable basée sur VLESS + XHTTP + REALITY. Un abonnement pour tous vos appareils, un prix honnête et un support du créateur.",
-      hero_btn_primary: "Choisir un forfait",
-      hero_btn_secondary: "Comment ça marche",
-      hero_note_1: "À partir de 99 ₽ / mois",
-      hero_note_2: "Jusqu'à 10 appareils",
-      hero_note_3: "Windows, iOS, Android",
-      protocol_label: "Stack technologique",
-      servers_tag: "Infrastructure",
-      servers_title: "Nos serveurs",
-      servers_desc: "Nous élargissons progressivement notre géographie. De nouveaux emplacements apparaissent régulièrement — les abonnés sont les premiers informés.",
-      server_active: "Actif",
-      server_testing: "En test",
-      server_considering: "En cours d'examen",
-      server_spain: "Espagne",
-      server_spain_city: "Madrid · serveur principal",
-      server_germany: "Allemagne",
-      server_germany_city: "Francfort · en cours de configuration",
-      server_turkey: "Turquie",
-      server_turkey_city: "Istanbul · prévu",
-      server_load: "Charge",
-      server_load_low: "Faible",
-      server_protocol: "Protocole",
-      server_speed: "Vitesse",
-      server_speed_val: "jusqu'à 300 Mbps",
-      server_stage: "Étape",
-      server_stage_val: "Tests de charge",
-      server_launch: "Lancement prévu",
-      server_launch_val: "≈ 2 semaines",
-      server_status_label: "Statut",
-      server_status_val: "Analyse de l'emplacement",
-      server_priority: "Priorité",
-      server_priority_val: "Moyenne",
-      tech_tag: "Technologie",
-      tech_title: "Stack de chiffrement moderne",
-      tech_desc: "Nous utilisons une combinaison avancée de protocoles pour garantir une vitesse élevée et une protection fiable de la connexion.",
-      tech_subtitle: "VLESS + XHTTP + REALITY",
-      tech_p1: "<strong>VLESS</strong> est un protocole de transfert de données léger avec un minimum de surcharge. Il offre une vitesse élevée sans compromettre la qualité du chiffrement.",
-      tech_p2: "<strong>XHTTP</strong> est un transport moderne fonctionnant sur HTTP/2. Il assure une connexion stable et un transfert de données efficace dans toutes les conditions réseau.",
-      tech_p3: "<strong>REALITY</strong> est une technologie où la connexion est sécurisée selon les normes TLS 1.3, et le serveur présente un certificat de site Web légitime.",
-      features_tag: "Avantages",
-      features_title: "Tout pour une connexion confortable",
-      features_desc: "Des détails réfléchis qui rendent l'utilisation du service simple et prévisible.",
-      feature_1_title: "Chiffrement moderne",
-      feature_1_desc: "La connexion est sécurisée selon la norme TLS 1.3. Les données sont transmises chiffrées sur tout le chemin.",
-      feature_2_title: "Vitesse élevée",
-      feature_2_desc: "Vitesse jusqu'à 300 Mbps. Streaming, téléchargements et appels vidéo — sans délais ni baisses.",
-      feature_3_title: "Infrastructure fiable",
-      feature_3_desc: "Les serveurs sont situés dans des centres de données européens de confiance avec des canaux de communication de secours.",
-      feature_4_title: "Support du créateur",
-      feature_4_desc: "Je réponds personnellement — sans bots ni réponses standardisées. Je vous aide à configurer et à résoudre tout problème de manière humaine.",
-      feature_5_title: "Minimum de données",
-      feature_5_desc: "Je ne stocke pas vos journaux d'activité et ne sauvegarde pas les adresses IP. La seule chose que je vois est le volume total de trafic pour m'assurer que tout va bien.",
-      feature_6_title: "Windows, iOS, Android",
-      feature_6_desc: "Nous fonctionnons sur trois plateformes principales. Un compte — jusqu'à 10 appareils simultanément.",
-      pricing_tag: "Tarifs",
-      pricing_title: "Des prix simples et honnêtes",
-      pricing_desc: "Un abonnement — jusqu'à 10 appareils. Pas de frais cachés ni de prélèvements automatiques.",
-      pricing_1_name: "1 mois",
-      pricing_1_period: "par mois",
-      pricing_2_name: "3 mois",
-      pricing_2_period: "≈ 100 ₽ par mois",
-      pricing_3_name: "6 mois",
-      pricing_3_period: "≈ 100 ₽ par mois",
-      pricing_feature_1: "Tous les serveurs disponibles",
-      pricing_feature_2: "Jusqu'à 10 appareils",
-      pricing_feature_3: "Trafic illimité",
-      pricing_feature_4: "Support sur Telegram",
-      pricing_btn: "Choisir",
-      faq_tag: "Questions & Réponses",
-      faq_title: "Questions fréquentes",
-      faq_1_q: "Qu'est-ce que VLESS + XHTTP + REALITY ?",
-      faq_1_a: "C'est un stack moderne pour une connexion sécurisée. VLESS est un protocole de transfert de données léger avec un minimum de surcharge. XHTTP est un transport fonctionnant sur HTTP/2 pour un transfert de données stable. REALITY est une technologie où la connexion est sécurisée selon les normes TLS 1.3. Ensemble, ils offrent une vitesse élevée et un chiffrement fiable.",
-      faq_2_q: "Comment se connecter ?",
-      faq_2_a: "<strong>1.</strong> Téléchargez l'application <strong>v2RayTun</strong> :<br>— Android : <a href=\"https://play.google.com/store/search?q=v2raytun&c=apps\" target=\"_blank\" rel=\"noopener\">Google Play</a><br>— iOS : <a href=\"https://apps.apple.com/us/app/v2raytun/id6476628951\" target=\"_blank\" rel=\"noopener\">App Store</a><br>— Windows : <a href=\"https://github.com/mdf45/v2raytun/releases\" target=\"_blank\" rel=\"noopener\">GitHub</a><br><br><strong>2.</strong> Envoyez-moi un message sur Telegram <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — je vous enverrai un lien personnel et un code QR.<br><br><strong>3.</strong> Dans l'application, appuyez sur « + » → « Import from clipboard » → « Connect ».<br><br>Sous Windows, sélectionnez le mode <strong>Tunnel</strong> au lieu de Proxy.",
-      faq_3_q: "Quelles données traitez-vous ?",
-      faq_3_a: "Je ne stocke pas vos journaux d'activité et ne sauvegarde pas les adresses IP. La seule chose que je vois est le volume total de trafic. Pas de trackers ni de surveillance des sites visités. L'administration peut divulguer des données sur demande légale des autorités compétentes.",
-      faq_4_q: "Quels pays sont déjà disponibles ?",
-      faq_4_a: "Actuellement, le serveur en Espagne (Madrid) fonctionne de manière stable. Le serveur en Allemagne (Francfort) est en cours de test de charge et sera lancé dans les semaines à venir. L'emplacement en Turquie (Istanbul) est encore en cours d'examen.",
-      faq_5_q: "Combien d'appareils peuvent utiliser le compte ?",
-      faq_5_a: "Jusqu'à 10 appareils simultanément sur n'importe quel forfait. L'abonnement peut être utilisé par vous et les membres de votre famille vivant avec vous. Le transfert du lien/clé personnel à des tiers est interdit.",
-      faq_6_q: "Comment payer et obtenir l'accès ?",
-      faq_6_a: "Cliquez sur le bouton « Choisir » sur le forfait souhaité — un chat de support Telegram (@WayGVPN) s'ouvrira avec un message pré-rempli. Je vous aiderai avec le paiement et émettrai une clé d'accès personnelle en quelques minutes.",
-      faq_7_q: "Puis-je obtenir un remboursement ?",
-      faq_7_a: "Un remboursement est possible si le service n'a pas fonctionné pendant plus de 24 heures consécutives en raison de la faute de l'Administration. Si vous avez simplement changé d'avis ou cessé d'utiliser le service — les fonds ne sont pas remboursés.",
-      faq_8_q: "Dans combien de temps le serveur en Allemagne apparaîtra-t-il ?",
-      faq_8_a: "Les tests prennent environ 2 semaines. Nous voulons nous assurer que la vitesse et la stabilité de la connexion correspondent à notre norme. Les abonnés actifs obtiendront l'accès au nouveau serveur en premier et sans frais supplémentaires.",
-      cta_title: "Prêt à vous connecter ?",
-      cta_desc: "La configuration prend 2 minutes. Un abonnement — jusqu'à 10 appareils, à partir de 99 ₽ par mois.",
-      cta_btn: "Contacter le support",
-      footer_brand_desc: "Connexion privée et rapide basée sur VLESS + XHTTP + REALITY. Développé et maintenu personnellement par moi.",
-      footer_col_1: "Produit",
-      footer_col_2: "Contact",
-      footer_col_3: "Légal",
-      footer_telegram_channel: "Canal Telegram",
-      footer_legal_1: "Conditions d'utilisation",
-      footer_legal_2: "Politique de confidentialité",
-      footer_legal_3: "Offre publique",
-      footer_legal_text: "En utilisant WayG VPN, vous confirmez avoir lu et accepté les <a href=\"#\">Conditions d'utilisation du service</a> (révision 1.2 du 03.10.2026). Le service fournit un accès à une connexion sécurisée et n'est pas destiné à des actions illégales. L'utilisateur est seul responsable de la légalité de ses actions. La version actuelle des règles est publiée dans le <a href=\"https://t.me/WayG_VPN_Official\" target=\"_blank\" rel=\"noopener\">canal Telegram</a>.",
-      footer_copyright: "© 2026 WayG VPN. Tous droits réservés.",
-      footer_support: "Support :"
     }
   };
+
+  // Fallback for languages without full translation
+  translations.uk = translations.ru;
+  translations.fa = translations.ru;
+  translations.fr = translations.ru;
 
   var langLabels = { ru: 'RU', uk: 'UK', en: 'EN', fa: 'FA', fr: 'FR' };
   var htmlEl = document.documentElement;
 
+  // ============================================
   // THEME
+  // ============================================
   var themeToggle = document.getElementById('themeToggle');
   var iconSun = document.getElementById('iconSun');
   var iconMoon = document.getElementById('iconMoon');
@@ -1925,7 +1587,9 @@
     applyTheme(current === 'dark' ? 'light' : 'dark');
   });
 
+  // ============================================
   // LANGUAGE
+  // ============================================
   var langSwitcher = document.getElementById('langSwitcher');
   var langBtn = document.getElementById('langBtn');
   var langLabel = document.getElementById('langLabel');
@@ -1986,7 +1650,9 @@
   try { savedLang = localStorage.getItem('wayg-lang') || 'ru'; } catch(e) {}
   applyLanguage(savedLang);
 
-  // FAQ
+  // ============================================
+  // FAQ ACCORDION
+  // ============================================
   var faqItems = document.querySelectorAll('.faq-item');
   for (var f = 0; f < faqItems.length; f++) {
     faqItems[f].addEventListener('click', function() {
@@ -1994,7 +1660,9 @@
     });
   }
 
+  // ============================================
   // NAV SCROLL
+  // ============================================
   var nav = document.getElementById('nav');
   window.addEventListener('scroll', function() {
     if (window.scrollY > 20) {
@@ -2004,7 +1672,9 @@
     }
   }, { passive: true });
 
-  // REVEAL
+  // ============================================
+  // REVEAL ANIMATIONS
+  // ============================================
   if ('IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function(entries) {
       for (var i = 0; i < entries.length; i++) {
