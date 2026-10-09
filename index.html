@@ -2,6 +2,8 @@
 <html lang="ru" data-theme="dark">
 <head>
 <meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2304050a'/%3E%3Ctext x='16' y='23' font-size='20' font-weight='800' text-anchor='middle' fill='%236b9dff' font-family='sans-serif'%3EG%3C/text%3E%3C/svg%3E">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WayG VPN — Приватное соединение нового поколения</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,6 +23,7 @@
     --green: #22c55e;
     --yellow: #eab308;
     --orange: #f97316;
+    --red: #ef4444;
     --card: rgba(255,255,255,0.025);
     --card-hover: rgba(255,255,255,0.05);
     --border: rgba(255,255,255,0.07);
@@ -43,6 +46,7 @@
     --green: #16a34a;
     --yellow: #ca8a04;
     --orange: #ea580c;
+    --red: #dc2626;
     --card: rgba(0,0,0,0.02);
     --card-hover: rgba(0,0,0,0.04);
     --border: rgba(0,0,0,0.06);
@@ -70,6 +74,7 @@
   html[dir="rtl"] .server-head { flex-direction: row-reverse; }
   html[dir="rtl"] .logo { flex-direction: row-reverse; }
   html[dir="rtl"] .lang-dropdown { right: auto; left: 0; }
+  html[dir="rtl"] .restriction-head { flex-direction: row-reverse; }
 
   body {
     font-family: 'Inter', -apple-system, sans-serif;
@@ -695,6 +700,63 @@
   }
   .feature p { color: var(--muted); font-size: 14.5px; line-height: 1.6; }
 
+  /* RESTRICTION NOTICE */
+  .restriction-notice {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 36px;
+    border-radius: 22px;
+    background: linear-gradient(135deg, rgba(249,115,22,0.09), rgba(234,179,8,0.05));
+    border: 1px solid rgba(249,115,22,0.35);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 60px -25px rgba(249,115,22,0.35);
+  }
+  .restriction-notice::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--orange), var(--yellow), var(--orange), transparent);
+    opacity: 0.7;
+  }
+  .restriction-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--orange);
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+  }
+  .restriction-head svg {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    color: var(--orange);
+  }
+  .restriction-notice p {
+    color: var(--muted);
+    font-size: 14.5px;
+    line-height: 1.75;
+    margin-bottom: 12px;
+  }
+  .restriction-notice p:last-child { margin-bottom: 0; }
+  .restriction-notice strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .restriction-notice .blocked-note {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(249,115,22,0.2);
+    color: var(--orange);
+    font-weight: 500;
+  }
+
   .pricing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -954,7 +1016,25 @@
     .protocol-strip { padding: 20px 22px; gap: 18px; }
     .nav-controls .btn-primary { display: none; }
     .lang-btn .lang-label { display: none; }
+    .restriction-notice { padding: 26px 22px; }
+    .restriction-head { font-size: 17px; }
   }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+  .terms-dialog { border: 1px solid var(--border-strong); border-radius: 20px; background: var(--bg-soft); color: var(--text); width: min(780px, calc(100vw - 24px)); max-height: 88vh; padding: 0; margin: auto; overflow: hidden; }
+  .terms-dialog[open] { display: flex; flex-direction: column; }
+  .terms-dialog::backdrop { background: rgba(2,3,8,0.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .terms-head { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+  .terms-head h3 { flex: 1; font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 600; }
+  .terms-tabs { display: flex; gap: 4px; }
+  .terms-tabs button, .terms-close { font: inherit; font-size: 13px; color: var(--muted); background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 6px 11px; cursor: pointer; }
+  .terms-tabs button[aria-pressed="true"] { color: var(--text); border-color: var(--accent); }
+  .terms-tabs button:hover, .terms-close:hover { background: var(--card-hover); color: var(--text); }
+  .terms-body { overflow-y: auto; padding: 4px 24px 28px; text-align: left; }
+  .terms-body h2 { font-family: 'Space Grotesk', sans-serif; font-size: 17px; margin: 26px 0 8px; }
+  .terms-body p, .terms-body li { font-size: 15px; color: var(--muted); margin: 7px 0; }
+  .terms-body ul { padding-left: 20px; }
+  .terms-body .muted { font-size: 14px; }
+  .terms-body a { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -991,11 +1071,11 @@
           <span class="lang-label" id="langLabel">RU</span>
         </button>
         <div class="lang-dropdown">
-          <a data-lang="ru">🇷🇺 Русский</a>
-          <a data-lang="uk">🇺🇦 Українська</a>
-          <a data-lang="en">🇬🇧 English</a>
-          <a data-lang="fa">🇮🇷 فارسی</a>
-          <a data-lang="fr">🇫🇷 Français</a>
+          <a href="#" data-lang="ru">🇷🇺 Русский</a>
+          <a href="#" data-lang="uk">🇺🇦 Українська</a>
+          <a href="#" data-lang="en">🇬🇧 English</a>
+          <a href="#" data-lang="fa">🇮🇷 فارسی</a>
+          <a href="#" data-lang="fr">🇫🇷 Français</a>
         </div>
       </div>
 
@@ -1048,14 +1128,10 @@
       <div class="server-card reveal" style="--status-color: #22c55e;">
         <div class="server-head">
           <div class="server-flag">🇪🇸</div>
-          <div class="server-status">
-            <span class="status-dot"></span> <span data-i18n="server_active">Активен</span>
-          </div>
         </div>
         <h3 data-i18n="server_spain">Испания</h3>
         <div class="server-city" data-i18n="server_spain_city">Мадрид · основной сервер</div>
         <div class="server-meta">
-          <div class="server-meta-row"><span data-i18n="server_load">Загрузка</span><span style="color: var(--green)" data-i18n="server_load_low">Низкая</span></div>
           <div class="server-meta-row"><span data-i18n="server_protocol">Протокол</span><span>VLESS · XHTTP · REALITY</span></div>
           <div class="server-meta-row"><span data-i18n="server_speed">Пропускная способность</span><span data-i18n="server_speed_val_es">до 300 Мбит/с</span></div>
         </div>
@@ -1064,14 +1140,10 @@
       <div class="server-card reveal" style="--status-color: #22c55e;">
         <div class="server-head">
           <div class="server-flag">🇲🇩</div>
-          <div class="server-status">
-            <span class="status-dot"></span> <span data-i18n="server_active">Активен</span>
-          </div>
         </div>
         <h3 data-i18n="server_moldova">Молдова</h3>
         <div class="server-city" data-i18n="server_moldova_city">Кишинёв · сервер</div>
         <div class="server-meta">
-          <div class="server-meta-row"><span data-i18n="server_load">Загрузка</span><span style="color: var(--green)" data-i18n="server_load_low">Низкая</span></div>
           <div class="server-meta-row"><span data-i18n="server_protocol">Протокол</span><span>VLESS · XHTTP · REALITY</span></div>
           <div class="server-meta-row"><span data-i18n="server_speed">Пропускная способность</span><span data-i18n="server_speed_val_md">до 250 Мбит/с</span></div>
         </div>
@@ -1093,19 +1165,17 @@
         <h3 data-i18n="tech_subtitle">VLESS + XHTTP + REALITY</h3>
         <p data-i18n-html="tech_p1"><strong>VLESS</strong> — лёгкий протокол передачи данных с минимальными накладными расходами. Обеспечивает высокую скорость без потери качества шифрования.</p>
         <p data-i18n-html="tech_p2"><strong>XHTTP</strong> — современный транспорт, работающий поверх HTTP/2. Обеспечивает стабильное соединение и эффективную передачу данных в любых сетевых условиях.</p>
-        <p data-i18n-html="tech_p3"><strong>REALITY</strong> — технология, при которой соединение защищено по стандартам TLS 1.3, а сервер предъявляет сертификат легитимного сайта.</p>
+        <p data-i18n-html="tech_p3"><strong>REALITY</strong> — технология защиты соединения на базе TLS 1.3.</p>
       </div>
 
       <div class="proto-code reveal">
         <div class="proto-code-head"><span></span><span></span><span></span></div>
-        <div class="code-line"><span class="ln">1</span><span><span class="code-comment">// Конфигурация клиента</span></span></div>
+        <div class="code-line"><span class="ln">1</span><span><span class="code-comment">// Стек WayG</span></span></div>
         <div class="code-line"><span class="ln">2</span><span>{</span></div>
         <div class="code-line"><span class="ln">3</span><span>  <span class="code-key">"protocol"</span>: <span class="code-str">"vless"</span>,</span></div>
         <div class="code-line"><span class="ln">4</span><span>  <span class="code-key">"transport"</span>: <span class="code-str">"xhttp"</span>,</span></div>
-        <div class="code-line"><span class="ln">5</span><span>  <span class="code-key">"security"</span>: <span class="code-str">"reality"</span>,</span></div>
-        <div class="code-line"><span class="ln">6</span><span>  <span class="code-key">"fingerprint"</span>: <span class="code-val">"chrome"</span>,</span></div>
-        <div class="code-line"><span class="ln">7</span><span>  <span class="code-key">"flow"</span>: <span class="code-val">"xtls-rprx-vision"</span></span></div>
-        <div class="code-line"><span class="ln">8</span><span>}</span></div>
+        <div class="code-line"><span class="ln">5</span><span>  <span class="code-key">"security"</span>: <span class="code-str">"reality"</span></span></div>
+        <div class="code-line"><span class="ln">6</span><span>}</span></div>
       </div>
     </div>
   </div>
@@ -1125,7 +1195,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
         <h3 data-i18n="feature_1_title">Современное шифрование</h3>
-        <p data-i18n="feature_1_desc">Соединение защищено по стандарту TLS 1.3. Данные передаются в зашифрованном виде на всём пути следования.</p>
+        <p data-i18n="feature_1_desc">Соединение между вашим устройством и сервером защищено по стандарту TLS 1.3.</p>
       </div>
 
       <div class="feature reveal">
@@ -1133,15 +1203,15 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         </div>
         <h3 data-i18n="feature_2_title">Высокая скорость</h3>
-        <p data-i18n="feature_2_desc">Пропускная способность до 300 Мбит/с на сервере в Испании и до 250 Мбит/с в Молдове. Стриминг, загрузки и видеозвонки — без задержек.</p>
+        <p data-i18n="feature_2_desc">Пропускная способность до 300 Мбит/с на сервере в Испании и до 250 Мбит/с в Молдове. Реальная скорость зависит от вашего провайдера.</p>
       </div>
 
       <div class="feature reveal">
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v6H4z"/><path d="M4 14h16v6H4z"/><path d="M8 7h.01M8 17h.01"/></svg>
         </div>
-        <h3 data-i18n="feature_3_title">Надёжная инфраструктура</h3>
-        <p data-i18n="feature_3_desc">Серверы размещены в проверенных дата-центрах Европы с резервными каналами связи и защитой от сбоев.</p>
+        <h3 data-i18n="feature_3_title">Серверы в Европе</h3>
+        <p data-i18n="feature_3_desc">Серверы размещены в дата-центрах Европы. Можно выбрать тот, что лучше работает у вашего провайдера.</p>
       </div>
 
       <div class="feature reveal">
@@ -1157,7 +1227,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
         </div>
         <h3 data-i18n="feature_5_title">Минимум данных</h3>
-        <p data-i18n="feature_5_desc">Я не храню логи вашей активности и не сохраняю IP-адреса. Единственное, что вижу — общий объём трафика, чтобы понимать, что всё в порядке.</p>
+        <p data-i18n="feature_5_desc">Я не веду журнал посещённых вами сайтов. Обрабатываю только технические данные для работы сервиса: объём трафика, время и число подключений.</p>
       </div>
 
       <div class="feature reveal">
@@ -1167,6 +1237,25 @@
         <h3 data-i18n="feature_6_title">Windows, iOS, Android</h3>
         <p data-i18n="feature_6_desc">Работаем на трёх основных платформах. Один аккаунт — до 10 устройств одновременно.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESTRICTION NOTICE -->
+<section id="restrictions">
+  <div class="container">
+    <div class="restriction-notice reveal">
+      <div class="restriction-head">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        <span data-i18n="restriction_title">Ограничение предоставления услуг</span>
+      </div>
+      <p data-i18n-html="restriction_p1">Сервис не предоставляется <strong>гражданам Украины</strong>, а также лицам, постоянно проживающим на территориях <strong>ДНР и ЛНР</strong>, в связи с платёжными и правовыми ограничениями.</p>
+      <p data-i18n-html="restriction_p2">Также сервис не предоставляется <strong>гражданам Израиля и Афганистана</strong> по соображениям безопасности.</p>
+      <p class="blocked-note" data-i18n-html="restriction_p3">При выявлении принадлежности к указанным категориям доступ к сервису будет заблокирован.</p>
     </div>
   </div>
 </section>
@@ -1187,7 +1276,7 @@
         <ul class="price-features">
           <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_1">Все доступные серверы</span></li>
           <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_2">До 10 устройств</span></li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_3">Без ограничений трафика</span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_3">Трафик без лимита по тарифу</span></li>
           <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_4">Поддержка в Telegram</span></li>
         </ul>
         <a href="https://t.me/WayGVPN?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20WayG%20VPN%20%D0%BD%D0%B0%201%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86%20%2899%20%E2%82%BD%29." target="_blank" rel="noopener" class="btn btn-ghost" data-i18n="pricing_btn">Выбрать</a>
@@ -1200,7 +1289,7 @@
         <ul class="price-features">
           <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_1">Все доступные серверы</span></li>
           <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_2">До 10 устройств</span></li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_3">Без ограничений трафика</span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_3">Трафик без лимита по тарифу</span></li>
           <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_4">Поддержка в Telegram</span></li>
         </ul>
         <a href="https://t.me/WayGVPN?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20WayG%20VPN%20%D0%BD%D0%B0%203%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86%D0%B0%20%28299%20%E2%82%BD%29." target="_blank" rel="noopener" class="btn btn-primary" data-i18n="pricing_btn">Выбрать</a>
@@ -1213,7 +1302,7 @@
         <ul class="price-features">
           <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_1">Все доступные серверы</span></li>
           <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_2">До 10 устройств</span></li>
-          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_3">Без ограничений трафика</span></li>
+          <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_3">Трафик без лимита по тарифу</span></li>
           <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_4">Поддержка в Telegram</span></li>
         </ul>
         <a href="https://t.me/WayGVPN?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20WayG%20VPN%20%D0%BD%D0%B0%206%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86%D0%B5%D0%B2%20%28599%20%E2%82%BD%29." target="_blank" rel="noopener" class="btn btn-ghost" data-i18n="pricing_btn">Выбрать</a>
@@ -1232,7 +1321,7 @@
     <div class="faq-list">
       <div class="faq-item reveal">
         <div class="faq-q"><span data-i18n="faq_1_q">Что такое VLESS + XHTTP + REALITY?</span><span class="faq-icon">+</span></div>
-        <div class="faq-a" data-i18n="faq_1_a">Это современный стек для защищённого соединения. VLESS — лёгкий протокол передачи данных с минимальными накладными расходами. XHTTP — транспорт, работающий поверх HTTP/2 для стабильной передачи данных. REALITY — технология, при которой соединение защищено по стандартам TLS 1.3, а сервер предъявляет сертификат легитимного сайта. Вместе они обеспечивают высокую скорость и надёжное шифрование.</div>
+        <div class="faq-a" data-i18n="faq_1_a">Это современный стек для защищённого соединения. VLESS — лёгкий протокол передачи данных с минимальными накладными расходами. XHTTP — транспорт, работающий поверх HTTP/2. REALITY — технология защиты соединения на базе TLS 1.3. Вместе они обеспечивают высокую скорость и шифрование.</div>
       </div>
 
       <div class="faq-item reveal">
@@ -1242,7 +1331,7 @@
 
       <div class="faq-item reveal">
         <div class="faq-q"><span data-i18n="faq_3_q">Какие данные вы обрабатываете?</span><span class="faq-icon">+</span></div>
-        <div class="faq-a" data-i18n="faq_3_a">Я не храню логи вашей активности и не сохраняю IP-адреса. Единственное, что вижу — общий объём трафика, чтобы понимать, что всё работает в штатном режиме. Никаких трекеров и слежки за посещаемыми сайтами. Администрация вправе раскрыть данные по законному запросу уполномоченных органов в соответствии с действующим законодательством.</div>
+        <div class="faq-a" data-i18n="faq_3_a">Я не веду журнал посещённых вами сайтов и не анализирую содержимое трафика. Обрабатываются только технические данные для работы сервиса: ваш идентификатор в Telegram или email, объём трафика, время и число подключений. Сервер технически видит IP-адреса подключающихся устройств, постоянный журнал IP я не веду. Данные раскрываются только по законному требованию уполномоченных органов. Подробности — в разделе о данных в правилах.</div>
       </div>
 
       <div class="faq-item reveal">
@@ -1256,13 +1345,18 @@
       </div>
 
       <div class="faq-item reveal">
-        <div class="faq-q"><span data-i18n="faq_6_q">Как оплатить и получить доступ?</span><span class="faq-icon">+</span></div>
-        <div class="faq-a" data-i18n="faq_6_a">Нажмите кнопку «Выбрать» на нужном тарифе — откроется чат с поддержкой в Telegram (@WayGVPN) с уже подставленным сообщением о выбранном тарифе. Я помогу с оплатой и выдам персональный ключ доступа в течение нескольких минут.</div>
+        <div class="faq-q"><span data-i18n="faq_6_q">Кому сервис не предоставляется?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a" data-i18n="faq_6_a">Сервис не предоставляется гражданам Украины, лицам, постоянно проживающим на территориях ДНР и ЛНР (в связи с платёжными и правовыми ограничениями), а также гражданам Израиля и Афганистана. Если принадлежность к этим категориям выяснится, доступ будет прекращён.</div>
       </div>
 
       <div class="faq-item reveal">
-        <div class="faq-q"><span data-i18n="faq_7_q">Можно ли вернуть деньги?</span><span class="faq-icon">+</span></div>
-        <div class="faq-a" data-i18n="faq_7_a">Возврат возможен, если сервис не работал более 24 часов подряд по вине Администрации. В этом случае возврат рассчитывается пропорционально количеству неиспользованных дней. Если вы просто передумали или перестали пользоваться сервисом — средства не возвращаются. При блокировке за нарушение правил средства также не возвращаются.</div>
+        <div class="faq-q"><span data-i18n="faq_7_q">Как оплатить и получить доступ?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a" data-i18n="faq_7_a">Нажмите кнопку «Выбрать» на нужном тарифе — откроется чат с поддержкой в Telegram (@WayGVPN) с уже подставленным сообщением о выбранном тарифе. Я помогу с оплатой и выдам персональный ключ доступа в течение нескольких минут.</div>
+      </div>
+
+      <div class="faq-item reveal">
+        <div class="faq-q"><span data-i18n="faq_8_q">Можно ли вернуть деньги?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a" data-i18n="faq_8_a">Если сервис не работал более 24 часов подряд по моей вине, возврат производится пропорционально неиспользованным дням. В остальных случаях возврат неиспользованной части рассматривается по закону о защите прав потребителей. При блокировке за нарушение правил средства не возвращаются.</div>
       </div>
     </div>
   </div>
@@ -1299,15 +1393,15 @@
       </div>
       <div class="footer-col">
         <h4 data-i18n="footer_col_3">Правовое</h4>
-        <a href="#" data-i18n="footer_legal_1">Правила использования</a>
-        <a href="#" data-i18n="footer_legal_2">Политика конфиденциальности</a>
-        <a href="#" data-i18n="footer_legal_3">Публичная оферта</a>
+        <a href="#terms" data-terms data-i18n="footer_legal_1">Правила использования</a>
+        <a href="#terms" data-terms="privacy" data-i18n="footer_legal_2">Политика конфиденциальности</a>
+        <a href="#terms" data-terms data-i18n="footer_legal_3">Публичная оферта</a>
       </div>
     </div>
   </div>
 
   <div class="footer-legal">
-    <p data-i18n-html="footer_legal_text">Используя сервис WayG VPN, вы подтверждаете, что ознакомились и согласны с <a href="#">Правилами использования Сервиса</a> (редакция 1.2 от 03.10.2026). Сервис предоставляет доступ к защищённому соединению и не предназначен для совершения противоправных действий. Пользователь самостоятельно несёт ответственность за законность своих действий при использовании Сервиса. Актуальная редакция правил публикуется в <a href="https://t.me/WayG_VPN_Official" target="_blank" rel="noopener">Telegram-канале</a>.</p>
+    <p data-i18n-html="footer_legal_text">Используя сервис WayG VPN, вы подтверждаете, что ознакомились и согласны с <a href="#terms" data-terms>Правилами использования Сервиса</a> (редакция 1.3 от 09.10.2026). Сервис предоставляет доступ к защищённому соединению и не предназначен для совершения противоправных действий. Пользователь самостоятельно несёт ответственность за законность своих действий. Актуальная редакция правил публикуется в <a href="https://t.me/WayG_VPN_Official" target="_blank" rel="noopener">Telegram-канале</a>.</p>
   </div>
 
   <div class="footer-bottom">
@@ -1315,6 +1409,127 @@
     <span><span data-i18n="footer_support">Поддержка:</span> <a href="https://t.me/WayGVPN" target="_blank" rel="noopener">@WayGVPN</a></span>
   </div>
 </footer>
+
+<dialog class="terms-dialog" id="termsDialog" aria-labelledby="termsTitle">
+  <div class="terms-head">
+    <h3 id="termsTitle" data-i18n="footer_legal_1">Правила использования</h3>
+    <div class="terms-tabs"><button type="button" data-tl="ru" aria-pressed="true">Русский</button><button type="button" data-tl="en" aria-pressed="false">English</button></div>
+    <button type="button" class="terms-close" id="termsClose" aria-label="Закрыть">✕</button>
+  </div>
+  <div class="terms-body">
+    <div id="terms-ru" lang="ru" dir="ltr"><p class="muted">Редакция 1.3 от 09.10.2026. Актуальная версия публикуется в <a href="https://t.me/WayG_VPN_Official" target="_blank" rel="noopener">Telegram-канале</a>.</p>
+
+<h2 id="t-ru-general">1. Общие положения</h2>
+<p>1.1. Эти Правила — публичная оферта на оказание услуги доступа к защищённому соединению (далее — Сервис). Оплата доступа или использование Сервиса означает принятие Правил.</p>
+<p>1.2. Исполнитель — самозанятый, плательщик налога на профессиональный доход. Реквизиты сообщаются при оплате по запросу в Telegram. Чек выдаётся в соответствии с законодательством о НПД.</p>
+<p>1.3. Сервис защищает соединение и не предназначен для противоправных действий. Пользователь самостоятельно отвечает за законность своих действий.</p>
+<p>1.4. Пользователь подтверждает, что ему исполнилось 18 лет, либо что у него есть согласие законного представителя.</p>
+
+<h2 id="t-ru-access">2. Доступ и использование</h2>
+<p>2.1. Доступ выдаётся на оплаченный срок в виде персональной ссылки или ключа.</p>
+<p>2.2. Одну подписку можно использовать на устройствах Пользователя и членов его семьи, проживающих с ним, не более 10 устройств одновременно.</p>
+<p>2.3. Ссылку или ключ нельзя передавать третьим лицам, публиковать, продавать, сдавать в аренду или использовать для подключения неограниченного круга лиц.</p>
+<p>2.4. Сервис предназначен для личного некоммерческого использования. Коммерческое использование допускается только с письменного согласия Исполнителя.</p>
+<p>2.5. Трафик по тарифу не ограничен, но более 400 ГБ в сутки считается нетипичным и может стать поводом для обращения Исполнителя к Пользователю.</p>
+
+<h2 id="t-ru-prohibited">3. Запрещённое использование</h2>
+<p>Сервис нельзя использовать для:</p>
+<ul>
+<li>распространения материалов, запрещённых законодательством РФ;</li>
+<li>распространения детской порнографии, экстремистских и террористических материалов;</li>
+<li>взлома, фишинга, кражи данных, несанкционированного доступа к чужим системам;</li>
+<li>DDoS-атак, спама, распространения вредоносного ПО;</li>
+<li>мошенничества, отмывания денег, торговли наркотиками, оружием, персональными данными;</li>
+<li>нарушения авторских и смежных прав;</li>
+<li>травли, преследования, угроз, доксинга, распространения чужих персональных данных без согласия;</li>
+<li>разжигания ненависти и дискриминации по любым признакам;</li>
+<li>любых иных противоправных действий.</li>
+</ul>
+
+<h2 id="t-ru-measures">4. Нарушения и меры</h2>
+<p>4.1. Признаками нарушения могут быть: превышение числа устройств, нетипичный объём трафика, жалобы третьих лиц или уполномоченных органов, признаки коммерческого или противоправного использования.</p>
+<p>4.2. Исполнитель сначала связывается с Пользователем. При случайном нарушении ограничивается предупреждением, при повторном или грубом нарушении ограничивает или прекращает доступ.</p>
+<p>4.3. При подтверждённом нарушении доступ прекращается без возврата средств, а Пользователь может быть внесён в чёрный список, то есть ему может быть отказано в повторном доступе.</p>
+
+<h2 id="t-ru-payment">5. Оплата и возврат</h2>
+<p>5.1. Оплата производится вперёд за выбранный период.</p>
+<p>5.2. Если Сервис не работал более 24 часов подряд по вине Исполнителя, возврат производится пропорционально неиспользованным дням. Пример: оплачено 30 дней, Сервис работал 20, возврат за оставшиеся 10.</p>
+<p>5.3. В остальных случаях отказа от услуги возврат неиспользованной части рассматривается в порядке, предусмотренном законом о защите прав потребителей.</p>
+<p>5.4. При блокировке за нарушение Правил средства не возвращаются.</p>
+
+<h2 id="t-ru-privacy">6. Данные и конфиденциальность</h2>
+<p>6.1. Исполнитель не ведёт журнал посещённых Пользователем сайтов и не анализирует содержимое трафика.</p>
+<p>6.2. Обрабатываются только технические данные, нужные для работы: идентификатор Пользователя (Telegram ID или email), объём трафика, время подключений, число одновременных подключений. Сервер технически видит IP-адреса подключающихся устройств, постоянный журнал IP-адресов не ведётся.</p>
+<p>6.3. Данные не продаются и не передаются третьим лицам в маркетинговых целях.</p>
+<p>6.4. Имеющиеся данные раскрываются только по законному требованию уполномоченных органов. Исполнитель уведомляет Пользователя об этом, если закон не запрещает.</p>
+<p>6.5. Данные хранятся, пока действует подписка, и удаляются по запросу Пользователя, если закон не требует их сохранения (например, для налогового учёта).</p>
+<p>6.6. Сайт не использует cookie и трекеры. Единственный сторонний ресурс — шрифты Google Fonts.</p>
+
+<h2 id="t-ru-restrictions">7. Ограничения доступа</h2>
+<p>Сервис не предоставляется гражданам Украины, лицам, постоянно проживающим на территориях ДНР и ЛНР, а также гражданам Израиля и Афганистана в связи с платёжными и правовыми ограничениями. Если принадлежность к этим категориям выяснится, доступ будет прекращён.</p>
+
+<h2 id="t-ru-liability">8. Ответственность</h2>
+<p>8.1. Сервис предоставляется «как есть». Бесперебойная работа не гарантируется. Исполнитель не отвечает за перебои из-за обстоятельств непреодолимой силы, действий провайдеров и третьих лиц.</p>
+<p>8.2. В пределах, допустимых законом, Исполнитель не отвечает за действия Пользователя. Претензии, возникшие из-за действий Пользователя, он урегулирует самостоятельно.</p>
+
+<h2 id="t-ru-final">9. Изменения, поддержка, применимое право</h2>
+<p>9.1. Правила могут меняться. Новая редакция публикуется в Telegram-канале, продолжение использования Сервиса означает согласие с ней.</p>
+<p>9.2. Поддержка: <a href="https://t.me/WayGVPN" target="_blank" rel="noopener">@WayGVPN</a>. Круглосуточный ответ не гарантируется.</p>
+<p>9.3. К отношениям сторон применяется законодательство Российской Федерации.</p>
+</div>
+    <div id="terms-en" lang="en" dir="ltr" hidden><p class="muted">Revision 1.3 of 09.10.2026. The current version is published in the <a href="https://t.me/WayG_VPN_Official" target="_blank" rel="noopener">Telegram channel</a>.</p>
+<h2 id="t-en-general">1. General provisions</h2>
+<p>1.1. These Terms are a public offer for the service of access to a secure connection (the "Service"). Payment for access or use of the Service constitutes acceptance of the Terms.</p>
+<p>1.2. The Provider is a self-employed person, a professional income tax payer. Details are provided upon payment on request via Telegram. A receipt is issued in accordance with the law.</p>
+<p>1.3. The Service protects the connection and is not intended for unlawful actions. The User is solely responsible for the legality of their actions.</p>
+<p>1.4. The User confirms that they are at least 18 years old, or have the consent of a legal representative.</p>
+<h2 id="t-en-access">2. Access and use</h2>
+<p>2.1. Access is issued for the paid period as a personal link or key.</p>
+<p>2.2. One subscription may be used on devices of the User and family members living with them, up to 10 devices at the same time.</p>
+<p>2.3. The link or key must not be passed to third parties, published, sold, rented out or used to connect an unlimited number of persons.</p>
+<p>2.4. The Service is for personal, non-commercial use. Commercial use requires the Provider's written consent.</p>
+<p>2.5. Traffic is unlimited by plan, but more than 400 GB per day is considered atypical and may prompt the Provider to contact the User.</p>
+<h2 id="t-en-prohibited">3. Prohibited use</h2>
+<p>The Service must not be used for:</p>
+<ul>
+<li>distributing materials prohibited by the laws of the Russian Federation;</li>
+<li>distributing child pornography, extremist or terrorist materials;</li>
+<li>hacking, phishing, data theft, unauthorized access to other systems;</li>
+<li>DDoS attacks, spam, distribution of malware;</li>
+<li>fraud, money laundering, trafficking in drugs, weapons or personal data;</li>
+<li>infringement of copyright and related rights;</li>
+<li>bullying, stalking, threats, doxxing, distributing others' personal data without consent;</li>
+<li>inciting hatred and discrimination on any grounds;</li>
+<li>any other unlawful actions.</li>
+</ul>
+<h2 id="t-en-measures">4. Violations and measures</h2>
+<p>4.1. Signs of violation may include: exceeding the device limit, atypical traffic volume, complaints from third parties or authorized bodies, signs of commercial or unlawful use.</p>
+<p>4.2. The Provider first contacts the User. For an accidental violation it limits itself to a warning; for a repeated or serious violation it restricts or terminates access.</p>
+<p>4.3. In case of a confirmed violation, access is terminated without refund, and the User may be added to a blacklist, i.e. may be denied repeated access.</p>
+<h2 id="t-en-payment">5. Payment and refunds</h2>
+<p>5.1. Payment is made in advance for the selected period.</p>
+<p>5.2. If the Service did not work for more than 24 hours in a row due to the Provider's fault, a refund is made proportionally to unused days. Example: 30 days paid, the Service worked 20, refund for the remaining 10.</p>
+<p>5.3. In other cases of cancellation, a refund of the unused part is considered under consumer protection law.</p>
+<p>5.4. In case of blocking for violation of the Terms, funds are not refunded.</p>
+<h2 id="t-en-privacy">6. Data and privacy</h2>
+<p>6.1. The Provider does not keep a log of the sites visited by the User and does not inspect traffic content.</p>
+<p>6.2. Only technical data needed to operate the Service is processed: the User identifier (Telegram ID or email), traffic volume, connection time, number of simultaneous connections. The server technically sees the IP addresses of connecting devices; no permanent IP log is kept.</p>
+<p>6.3. Data is not sold or shared with third parties for marketing purposes.</p>
+<p>6.4. Existing data is disclosed only upon a lawful request from authorized bodies. The Provider notifies the User of this unless prohibited by law.</p>
+<p>6.5. Data is kept while the subscription is active and deleted upon the User's request unless the law requires retention (e.g. for tax records).</p>
+<p>6.6. The site does not use cookies, trackers or third-party resources, except fonts loaded from Google Fonts.</p>
+<h2 id="t-en-restrictions">7. Access restrictions</h2>
+<p>The Service is not provided to citizens of Ukraine, persons permanently residing in the territories of the DPR and LPR, or citizens of Israel and Afghanistan, due to payment and legal restrictions. If such status is discovered, access will be terminated.</p>
+<h2 id="t-en-liability">8. Liability</h2>
+<p>8.1. The Service is provided "as is". Uninterrupted operation is not guaranteed. The Provider is not liable for interruptions caused by force majeure, actions of providers or third parties.</p>
+<p>8.2. To the extent permitted by law, the Provider is not liable for the User's actions. Claims arising from the User's actions are settled by the User.</p>
+<h2 id="t-en-final">9. Changes, support, governing law</h2>
+<p>9.1. The Terms may change. The new revision is published in the Telegram channel; continued use of the Service constitutes acceptance.</p>
+<p>9.2. Support: <a href="https://t.me/WayGVPN" target="_blank" rel="noopener">@WayGVPN</a>. Round-the-clock response is not guaranteed.</p>
+<p>9.3. The laws of the Russian Federation apply to the relations of the parties.</p>
+</div>
+  </div>
+</dialog>
 
 <script>
 (function() {
@@ -1357,22 +1572,26 @@
       tech_subtitle: "VLESS + XHTTP + REALITY",
       tech_p1: "<strong>VLESS</strong> — лёгкий протокол передачи данных с минимальными накладными расходами. Обеспечивает высокую скорость без потери качества шифрования.",
       tech_p2: "<strong>XHTTP</strong> — современный транспорт, работающий поверх HTTP/2. Обеспечивает стабильное соединение и эффективную передачу данных в любых сетевых условиях.",
-      tech_p3: "<strong>REALITY</strong> — технология, при которой соединение защищено по стандартам TLS 1.3, а сервер предъявляет сертификат легитимного сайта.",
+      tech_p3: "<strong>REALITY</strong> — технология защиты соединения на базе TLS 1.3.",
       features_tag: "Преимущества",
       features_title: "Всё для комфортного соединения",
       features_desc: "Продуманные детали, которые делают использование сервиса простым и предсказуемым.",
       feature_1_title: "Современное шифрование",
-      feature_1_desc: "Соединение защищено по стандарту TLS 1.3. Данные передаются в зашифрованном виде на всём пути следования.",
+      feature_1_desc: "Соединение между вашим устройством и сервером защищено по стандарту TLS 1.3.",
       feature_2_title: "Высокая скорость",
-      feature_2_desc: "Пропускная способность до 300 Мбит/с на сервере в Испании и до 250 Мбит/с в Молдове. Стриминг, загрузки и видеозвонки — без задержек.",
-      feature_3_title: "Надёжная инфраструктура",
-      feature_3_desc: "Серверы размещены в проверенных дата-центрах Европы с резервными каналами связи и защитой от сбоев.",
+      feature_2_desc: "Пропускная способность до 300 Мбит/с на сервере в Испании и до 250 Мбит/с в Молдове. Реальная скорость зависит от вашего провайдера.",
+      feature_3_title: "Серверы в Европе",
+      feature_3_desc: "Серверы размещены в дата-центрах Европы. Можно выбрать тот, что лучше работает у вашего провайдера.",
       feature_4_title: "Поддержка от создателя",
       feature_4_desc: "Отвечаю лично — без ботов и без шаблонных ответов. Помогаю разобраться с настройкой и решить любой вопрос по-человечески.",
       feature_5_title: "Минимум данных",
-      feature_5_desc: "Я не храню логи вашей активности и не сохраняю IP-адреса. Единственное, что вижу — общий объём трафика, чтобы понимать, что всё в порядке.",
+      feature_5_desc: "Я не веду журнал посещённых вами сайтов. Обрабатываю только технические данные для работы сервиса: объём трафика, время и число подключений.",
       feature_6_title: "Windows, iOS, Android",
       feature_6_desc: "Работаем на трёх основных платформах. Один аккаунт — до 10 устройств одновременно.",
+      restriction_title: "Ограничение предоставления услуг",
+      restriction_p1: "Сервис не предоставляется <strong>гражданам Украины</strong>, а также лицам, постоянно проживающим на территориях <strong>ДНР и ЛНР</strong>, в связи с платёжными и правовыми ограничениями.",
+      restriction_p2: "Также сервис не предоставляется <strong>гражданам Израиля и Афганистана</strong> по соображениям безопасности.",
+      restriction_p3: "При выявлении принадлежности к указанным категориям доступ к сервису будет заблокирован.",
       pricing_tag: "Тарифы",
       pricing_title: "Простые и честные цены",
       pricing_desc: "Одна подписка — до 10 устройств. Без скрытых платежей и автоматических списаний.",
@@ -1384,25 +1603,27 @@
       pricing_3_period: "≈ 100 ₽ в месяц",
       pricing_feature_1: "Все доступные серверы",
       pricing_feature_2: "До 10 устройств",
-      pricing_feature_3: "Без ограничений трафика",
+      pricing_feature_3: "Трафик без лимита по тарифу",
       pricing_feature_4: "Поддержка в Telegram",
       pricing_btn: "Выбрать",
       faq_tag: "Вопросы и ответы",
       faq_title: "Частые вопросы",
       faq_1_q: "Что такое VLESS + XHTTP + REALITY?",
-      faq_1_a: "Это современный стек для защищённого соединения. VLESS — лёгкий протокол передачи данных с минимальными накладными расходами. XHTTP — транспорт, работающий поверх HTTP/2 для стабильной передачи данных. REALITY — технология, при которой соединение защищено по стандартам TLS 1.3, а сервер предъявляет сертификат легитимного сайта. Вместе они обеспечивают высокую скорость и надёжное шифрование.",
+      faq_1_a: "Это современный стек для защищённого соединения. VLESS — лёгкий протокол передачи данных с минимальными накладными расходами. XHTTP — транспорт, работающий поверх HTTP/2. REALITY — технология защиты соединения на базе TLS 1.3. Вместе они обеспечивают высокую скорость и шифрование.",
       faq_2_q: "Как подключиться?",
       faq_2_a: "<strong>1.</strong> Скачайте приложение <strong>v2RayTun</strong>:<br>— Android: <a href=\"https://play.google.com/store/search?q=v2raytun&c=apps\" target=\"_blank\" rel=\"noopener\">Google Play</a><br>— iOS: <a href=\"https://apps.apple.com/us/app/v2raytun/id6476628951\" target=\"_blank\" rel=\"noopener\">App Store</a><br>— Windows: <a href=\"https://github.com/mdf45/v2raytun/releases\" target=\"_blank\" rel=\"noopener\">GitHub</a><br><br><strong>2.</strong> Напишите мне в Telegram <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — я отправлю персональную ссылку и QR-код.<br><br><strong>3.</strong> В приложении нажмите «+» → «Импорт из буфера обмена» → «Подключиться».<br><br>На Windows выберите режим <strong>Tunnel</strong> вместо Proxy.",
       faq_3_q: "Какие данные вы обрабатываете?",
-      faq_3_a: "Я не храню логи вашей активности и не сохраняю IP-адреса. Единственное, что вижу — общий объём трафика, чтобы понимать, что всё работает в штатном режиме. Никаких трекеров и слежки за посещаемыми сайтами. Администрация вправе раскрыть данные по законному запросу уполномоченных органов в соответствии с действующим законодательством.",
+      faq_3_a: "Я не веду журнал посещённых вами сайтов и не анализирую содержимое трафика. Обрабатываются только технические данные для работы сервиса: ваш идентификатор в Telegram или email, объём трафика, время и число подключений. Сервер технически видит IP-адреса подключающихся устройств, постоянный журнал IP я не веду. Данные раскрываются только по законному требованию уполномоченных органов. Подробности — в разделе о данных в правилах.",
       faq_4_q: "Какие страны уже доступны?",
       faq_4_a: "Сейчас стабильно работают два сервера: Испания (Мадрид) с пропускной способностью до 300 Мбит/с и Молдова (Кишинёв) с пропускной способностью до 250 Мбит/с. Оба сервера работают на стеке VLESS + XHTTP + REALITY. Планы по расширению географии появятся позже.",
       faq_5_q: "На скольких устройствах можно использовать аккаунт?",
       faq_5_a: "До 10 устройств одновременно на любом тарифе. Подпиской могут пользоваться вы и члены вашей семьи, проживающие с вами совместно. Передача персональной ссылки/ключа третьим лицам запрещена правилами сервиса.",
-      faq_6_q: "Как оплатить и получить доступ?",
-      faq_6_a: "Нажмите кнопку «Выбрать» на нужном тарифе — откроется чат с поддержкой в Telegram (@WayGVPN) с уже подставленным сообщением о выбранном тарифе. Я помогу с оплатой и выдам персональный ключ доступа в течение нескольких минут.",
-      faq_7_q: "Можно ли вернуть деньги?",
-      faq_7_a: "Возврат возможен, если сервис не работал более 24 часов подряд по вине Администрации. В этом случае возврат рассчитывается пропорционально количеству неиспользованных дней. Если вы просто передумали или перестали пользоваться сервисом — средства не возвращаются. При блокировке за нарушение правил средства также не возвращаются.",
+      faq_6_q: "Кому сервис не предоставляется?",
+      faq_6_a: "Сервис не предоставляется гражданам Украины, лицам, постоянно проживающим на территориях ДНР и ЛНР (в связи с платёжными и правовыми ограничениями), а также гражданам Израиля и Афганистана. Если принадлежность к этим категориям выяснится, доступ будет прекращён.",
+      faq_7_q: "Как оплатить и получить доступ?",
+      faq_7_a: "Нажмите кнопку «Выбрать» на нужном тарифе — откроется чат с поддержкой в Telegram (@WayGVPN) с уже подставленным сообщением о выбранном тарифе. Я помогу с оплатой и выдам персональный ключ доступа в течение нескольких минут.",
+      faq_8_q: "Можно ли вернуть деньги?",
+      faq_8_a: "Если сервис не работал более 24 часов подряд по моей вине, возврат производится пропорционально неиспользованным дням. В остальных случаях возврат неиспользованной части рассматривается по закону о защите прав потребителей. При блокировке за нарушение правил средства не возвращаются.",
       cta_title: "Готовы подключиться?",
       cta_desc: "Настройка занимает 2 минуты. Одна подписка — до 10 устройств, от 99 ₽ в месяц.",
       cta_btn: "Написать в поддержку",
@@ -1414,7 +1635,7 @@
       footer_legal_1: "Правила использования",
       footer_legal_2: "Политика конфиденциальности",
       footer_legal_3: "Публичная оферта",
-      footer_legal_text: "Используя сервис WayG VPN, вы подтверждаете, что ознакомились и согласны с <a href=\"#\">Правилами использования Сервиса</a> (редакция 1.2 от 03.10.2026). Сервис предоставляет доступ к защищённому соединению и не предназначен для совершения противоправных действий. Пользователь самостоятельно несёт ответственность за законность своих действий при использовании Сервиса. Актуальная редакция правил публикуется в <a href=\"https://t.me/WayG_VPN_Official\" target=\"_blank\" rel=\"noopener\">Telegram-канале</a>.",
+      footer_legal_text: "Используя сервис WayG VPN, вы подтверждаете, что ознакомились и согласны с <a href=\"#terms\" data-terms>Правилами использования Сервиса</a> (редакция 1.3 от 09.10.2026). Сервис предоставляет доступ к защищённому соединению и не предназначен для совершения противоправных действий. Пользователь самостоятельно несёт ответственность за законность своих действий. Актуальная редакция правил публикуется в <a href=\"https://t.me/WayG_VPN_Official\" target=\"_blank\" rel=\"noopener\">Telegram-канале</a>.",
       footer_copyright: "© 2026 WayG VPN. Все права защищены.",
       footer_support: "Поддержка:"
     },
@@ -1454,22 +1675,26 @@
       tech_subtitle: "VLESS + XHTTP + REALITY",
       tech_p1: "<strong>VLESS</strong> — легкий протокол передачі даних з мінімальними накладними витратами. Забезпечує високу швидкість без втрати якості шифрування.",
       tech_p2: "<strong>XHTTP</strong> — сучасний транспорт, що працює поверх HTTP/2. Забезпечує стабільне з'єднання та ефективну передачу даних у будь-яких мережевих умовах.",
-      tech_p3: "<strong>REALITY</strong> — технологія, при якій з'єднання захищено за стандартами TLS 1.3, а сервер пред'являє сертифікат легітимного сайту.",
+      tech_p3: "<strong>REALITY</strong> — технологія захисту з'єднання на базі TLS 1.3.",
       features_tag: "Переваги",
       features_title: "Все для комфортного з'єднання",
       features_desc: "Продумані деталі, які роблять використання сервісу простим і передбачуваним.",
       feature_1_title: "Сучасне шифрування",
-      feature_1_desc: "З'єднання захищено за стандартом TLS 1.3. Дані передаються в зашифрованому вигляді на всьому шляху прямування.",
+      feature_1_desc: "З'єднання між вашим пристроєм і сервером захищене за стандартом TLS 1.3.",
       feature_2_title: "Висока швидкість",
-      feature_2_desc: "Пропускна здатність до 300 Мбіт/с на сервері в Іспанії та до 250 Мбіт/с у Молдові. Стрімінг, завантаження та відеодзвінки — без затримок.",
-      feature_3_title: "Надійна інфраструктура",
-      feature_3_desc: "Сервери розміщені в перевірених дата-центрах Європи з резервними каналами зв'язку та захистом від збоїв.",
+      feature_2_desc: "Пропускна здатність до 300 Мбіт/с на сервері в Іспанії та до 250 Мбіт/с у Молдові. Реальна швидкість залежить від вашого провайдера.",
+      feature_3_title: "Сервери в Європі",
+      feature_3_desc: "Сервери розміщені в дата-центрах Європи. Можна обрати той, що краще працює у вашого провайдера.",
       feature_4_title: "Підтримка від творця",
       feature_4_desc: "Відповідаю особисто — без ботів і без шаблонних відповідей. Допомагаю розібратися з налаштуванням і вирішити будь-яке питання по-людськи.",
       feature_5_title: "Мінімум даних",
-      feature_5_desc: "Я не зберігаю логи вашої активності та не зберігаю IP-адреси. Єдине, що бачу — загальний обсяг трафіку, щоб розуміти, що все гаразд.",
+      feature_5_desc: "Я не веду журнал відвіданих вами сайтів. Обробляю лише технічні дані для роботи сервісу: обсяг трафіку, час і кількість підключень.",
       feature_6_title: "Windows, iOS, Android",
       feature_6_desc: "Працюємо на трьох основних платформах. Один акаунт — до 10 пристроїв одночасно.",
+      restriction_title: "Обмеження надання послуг",
+      restriction_p1: "Сервіс не надається <strong>громадянам України</strong>, а також особам, які постійно проживають на територіях <strong>ДНР і ЛНР</strong>, у зв'язку з платіжними та правовими обмеженнями.",
+      restriction_p2: "Також сервіс не надається <strong>громадянам Ізраїлю та Афганістану</strong> з міркувань безпеки.",
+      restriction_p3: "При виявленні належності до зазначених категорій доступ до сервісу буде заблоковано.",
       pricing_tag: "Тарифи",
       pricing_title: "Прості та чесні ціни",
       pricing_desc: "Одна підписка — до 10 пристроїв. Без прихованих платежів і автоматичних списань.",
@@ -1481,25 +1706,27 @@
       pricing_3_period: "≈ 100 ₽ на місяць",
       pricing_feature_1: "Всі доступні сервери",
       pricing_feature_2: "До 10 пристроїв",
-      pricing_feature_3: "Без обмежень трафіку",
+      pricing_feature_3: "Трафік без ліміту за тарифом",
       pricing_feature_4: "Підтримка в Telegram",
       pricing_btn: "Обрати",
       faq_tag: "Питання та відповіді",
       faq_title: "Часті питання",
       faq_1_q: "Що таке VLESS + XHTTP + REALITY?",
-      faq_1_a: "Це сучасний стек для захищеного з'єднання. VLESS — легкий протокол передачі даних з мінімальними накладними витратами. XHTTP — транспорт, що працює поверх HTTP/2 для стабільної передачі даних. REALITY — технологія, при якій з'єднання захищено за стандартами TLS 1.3, а сервер пред'являє сертифікат легітимного сайту. Разом вони забезпечують високу швидкість і надійне шифрування.",
+      faq_1_a: "Це сучасний стек для захищеного з'єднання. VLESS — легкий протокол передачі даних з мінімальними накладними витратами. XHTTP — транспорт, що працює поверх HTTP/2. REALITY — технологія захисту з'єднання на базі TLS 1.3. Разом вони забезпечують високу швидкість і шифрування.",
       faq_2_q: "Як підключитися?",
       faq_2_a: "<strong>1.</strong> Завантажте додаток <strong>v2RayTun</strong>:<br>— Android: <a href=\"https://play.google.com/store/search?q=v2raytun&c=apps\" target=\"_blank\" rel=\"noopener\">Google Play</a><br>— iOS: <a href=\"https://apps.apple.com/us/app/v2raytun/id6476628951\" target=\"_blank\" rel=\"noopener\">App Store</a><br>— Windows: <a href=\"https://github.com/mdf45/v2raytun/releases\" target=\"_blank\" rel=\"noopener\">GitHub</a><br><br><strong>2.</strong> Напишіть мені в Telegram <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — я надішлю персональне посилання та QR-код.<br><br><strong>3.</strong> У додатку натисніть «+» → «Імпорт з буфера обміну» → «Підключитися».<br><br>На Windows виберіть режим <strong>Tunnel</strong> замість Proxy.",
       faq_3_q: "Які дані ви обробляєте?",
-      faq_3_a: "Я не зберігаю логи вашої активності та не зберігаю IP-адреси. Єдине, що бачу — загальний обсяг трафіку, щоб розуміти, що все працює в штатному режимі. Жодних трекерів і стеження за відвідуваними сайтами. Адміністрація має право розкрити дані за законним запитом уповноважених органів відповідно до чинного законодавства.",
+      faq_3_a: "Я не веду журнал відвіданих вами сайтів і не аналізую вміст трафіку. Обробляються лише технічні дані для роботи сервісу: ваш ідентифікатор у Telegram або email, обсяг трафіку, час і кількість підключень. Сервер технічно бачить IP-адреси пристроїв, що підключаються; постійного журналу IP я не веду. Дані розкриваються лише за законною вимогою уповноважених органів. Подробиці — у розділі про дані в правилах.",
       faq_4_q: "Які країни вже доступні?",
       faq_4_a: "Зараз стабільно працюють два сервери: Іспанія (Мадрид) з пропускною здатністю до 300 Мбіт/с та Молдова (Кишинів) з пропускною здатністю до 250 Мбіт/с. Обидва сервери працюють на стеку VLESS + XHTTP + REALITY. Плани щодо розширення географії з'являться пізніше.",
       faq_5_q: "На скількох пристроях можна використовувати акаунт?",
       faq_5_a: "До 10 пристроїв одночасно на будь-якому тарифі. Підпискою можуть користуватися ви та члени вашої сім'ї, які проживають з вами спільно. Передача персонального посилання/ключа третім особам заборонена правилами сервісу.",
-      faq_6_q: "Як оплатити та отримати доступ?",
-      faq_6_a: "Натисніть кнопку «Обрати» на потрібному тарифі — відкриється чат з підтримкою в Telegram (@WayGVPN) з уже підставленим повідомленням про обраний тариф. Я допоможу з оплатою та видам персональний ключ доступу протягом кількох хвилин.",
-      faq_7_q: "Чи можна повернути гроші?",
-      faq_7_a: "Повернення можливе, якщо сервіс не працював більше 24 годин підряд з вини Адміністрації. У цьому випадку повернення розраховується пропорційно до кількості невикористаних днів. Якщо ви просто передумали або перестали користуватися сервісом — кошти не повертаються. При блокуванні за порушення правил кошти також не повертаються.",
+      faq_6_q: "Кому сервіс не надається?",
+      faq_6_a: "Сервіс не надається громадянам України, особам, які постійно проживають на територіях ДНР і ЛНР (у зв'язку з платіжними та правовими обмеженнями), а також громадянам Ізраїлю та Афганістану. Якщо належність до цих категорій з'ясується, доступ буде припинено.",
+      faq_7_q: "Як оплатити та отримати доступ?",
+      faq_7_a: "Натисніть кнопку «Обрати» на потрібному тарифі — відкриється чат з підтримкою в Telegram (@WayGVPN) з уже підставленим повідомленням про обраний тариф. Я допоможу з оплатою та видам персональний ключ доступу протягом кількох хвилин.",
+      faq_8_q: "Чи можна повернути гроші?",
+      faq_8_a: "Якщо сервіс не працював понад 24 години поспіль з моєї вини, повернення здійснюється пропорційно невикористаним дням. В інших випадках повернення невикористаної частини розглядається відповідно до закону про захист прав споживачів. У разі блокування за порушення правил кошти не повертаються.",
       cta_title: "Готові підключитися?",
       cta_desc: "Налаштування займає 2 хвилини. Одна підписка — до 10 пристроїв, від 99 ₽ на місяць.",
       cta_btn: "Написати в підтримку",
@@ -1511,7 +1738,7 @@
       footer_legal_1: "Правила використання",
       footer_legal_2: "Політика конфіденційності",
       footer_legal_3: "Публічна оферта",
-      footer_legal_text: "Використовуючи сервіс WayG VPN, ви підтверджуєте, що ознайомилися та згодні з <a href=\"#\">Правилами використання Сервісу</a> (редакція 1.2 від 03.10.2026). Сервіс надає доступ до захищеного з'єднання і не призначений для вчинення протиправних дій. Користувач самостійно несе відповідальність за законність своїх дій при використанні Сервісу. Актуальна редакція правил публікується в <a href=\"https://t.me/WayG_VPN_Official\" target=\"_blank\" rel=\"noopener\">Telegram-каналі</a>.",
+      footer_legal_text: "Користуючись сервісом WayG VPN, ви підтверджуєте, що ознайомилися та погоджуєтеся з <a href=\"#terms\" data-terms>Правилами використання Сервісу</a> (редакція 1.3 від 09.10.2026). Сервіс надає доступ до захищеного з'єднання і не призначений для протиправних дій. Користувач самостійно відповідає за законність своїх дій. Актуальна редакція правил публікується в <a href=\"https://t.me/WayG_VPN_Official\" target=\"_blank\" rel=\"noopener\">Telegram-каналі</a>.",
       footer_copyright: "© 2026 WayG VPN. Всі права захищені.",
       footer_support: "Підтримка:"
     },
@@ -1551,22 +1778,26 @@
       tech_subtitle: "VLESS + XHTTP + REALITY",
       tech_p1: "<strong>VLESS</strong> is a lightweight data transfer protocol with minimal overhead. It provides high speed without compromising encryption quality.",
       tech_p2: "<strong>XHTTP</strong> is a modern transport operating over HTTP/2. It ensures stable connection and efficient data transfer in any network conditions.",
-      tech_p3: "<strong>REALITY</strong> is a technology where the connection is secured according to TLS 1.3 standards, and the server presents a legitimate website certificate.",
+      tech_p3: "<strong>REALITY</strong> is a connection protection technology based on TLS 1.3.",
       features_tag: "Benefits",
       features_title: "Everything for a comfortable connection",
       features_desc: "Thoughtful details that make using the service simple and predictable.",
       feature_1_title: "Modern encryption",
-      feature_1_desc: "The connection is secured according to TLS 1.3 standard. Data is transmitted encrypted along the entire path.",
+      feature_1_desc: "The connection between your device and the server is protected using the TLS 1.3 standard.",
       feature_2_title: "High speed",
-      feature_2_desc: "Bandwidth up to 300 Mbps on the Spain server and up to 250 Mbps in Moldova. Streaming, downloads, and video calls — without delays.",
-      feature_3_title: "Reliable infrastructure",
-      feature_3_desc: "Servers are located in trusted European data centers with backup communication channels and protection against failures.",
+      feature_2_desc: "Bandwidth up to 300 Mbps on the Spain server and up to 250 Mbps in Moldova. Real speed depends on your internet provider.",
+      feature_3_title: "Servers in Europe",
+      feature_3_desc: "Servers are located in European data centers. Choose the one that works best with your provider.",
       feature_4_title: "Support from the creator",
       feature_4_desc: "I respond personally — no bots, no template answers. I help you set up and resolve any issue like a human.",
       feature_5_title: "Minimum data",
-      feature_5_desc: "I don't store your activity logs or save IP addresses. The only thing I see is the total traffic volume to make sure everything is fine.",
+      feature_5_desc: "I don't keep a log of the sites you visit. I only process technical data needed to run the service: traffic volume, connection time and number.",
       feature_6_title: "Windows, iOS, Android",
       feature_6_desc: "We work on three major platforms. One account — up to 10 devices simultaneously.",
+      restriction_title: "Service Restrictions",
+      restriction_p1: "The service is not provided to <strong>citizens of Ukraine</strong>, as well as persons permanently residing in the territories of the <strong>DPR and LPR</strong>, due to payment and legal restrictions.",
+      restriction_p2: "The service is also not provided to <strong>citizens of Israel and Afghanistan</strong> for security reasons.",
+      restriction_p3: "If affiliation with the specified categories is detected, access to the service will be blocked.",
       pricing_tag: "Pricing",
       pricing_title: "Simple and honest pricing",
       pricing_desc: "One subscription — up to 10 devices. No hidden fees or automatic charges.",
@@ -1578,25 +1809,27 @@
       pricing_3_period: "≈ 100 ₽ per month",
       pricing_feature_1: "All available servers",
       pricing_feature_2: "Up to 10 devices",
-      pricing_feature_3: "Unlimited traffic",
+      pricing_feature_3: "Traffic unlimited by plan",
       pricing_feature_4: "Support in Telegram",
       pricing_btn: "Choose",
       faq_tag: "Q&A",
       faq_title: "Frequently asked questions",
       faq_1_q: "What is VLESS + XHTTP + REALITY?",
-      faq_1_a: "This is a modern stack for a secure connection. VLESS is a lightweight data transfer protocol with minimal overhead. XHTTP is a transport operating over HTTP/2 for stable data transfer. REALITY is a technology where the connection is secured according to TLS 1.3 standards, and the server presents a legitimate website certificate. Together they provide high speed and reliable encryption.",
+      faq_1_a: "This is a modern stack for a secure connection. VLESS is a lightweight data transfer protocol with minimal overhead. XHTTP is a transport operating over HTTP/2. REALITY is a connection protection technology based on TLS 1.3. Together they provide high speed and encryption.",
       faq_2_q: "How to connect?",
       faq_2_a: "<strong>1.</strong> Download the <strong>v2RayTun</strong> app:<br>— Android: <a href=\"https://play.google.com/store/search?q=v2raytun&c=apps\" target=\"_blank\" rel=\"noopener\">Google Play</a><br>— iOS: <a href=\"https://apps.apple.com/us/app/v2raytun/id6476628951\" target=\"_blank\" rel=\"noopener\">App Store</a><br>— Windows: <a href=\"https://github.com/mdf45/v2raytun/releases\" target=\"_blank\" rel=\"noopener\">GitHub</a><br><br><strong>2.</strong> Message me on Telegram <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — I will send you a personal link and QR code.<br><br><strong>3.</strong> In the app, tap \"+\" → \"Import from clipboard\" → \"Connect\".<br><br>On Windows, select <strong>Tunnel</strong> mode instead of Proxy.",
       faq_3_q: "What data do you process?",
-      faq_3_a: "I don't store your activity logs or save IP addresses. The only thing I see is the total traffic volume to make sure everything works properly. No trackers or surveillance of visited sites. The administration may disclose data upon a lawful request from authorized bodies in accordance with applicable law.",
+      faq_3_a: "I don't keep a log of the sites you visit and don't inspect the content of your traffic. Only technical data needed to run the service is processed: your Telegram ID or email, traffic volume, connection time and number of connections. The server technically sees the IP addresses of connecting devices; I don't keep a permanent IP log. Data is disclosed only upon a lawful request from authorized bodies. See the data section of the terms for details.",
       faq_4_q: "Which countries are already available?",
       faq_4_a: "Two servers are currently running stably: Spain (Madrid) with bandwidth up to 300 Mbps and Moldova (Chisinau) with bandwidth up to 250 Mbps. Both servers run on the VLESS + XHTTP + REALITY stack. Expansion plans will be announced later.",
       faq_5_q: "How many devices can use the account?",
       faq_5_a: "Up to 10 devices simultaneously on any plan. The subscription can be used by you and your family members living with you. Transferring the personal link/key to third parties is prohibited by the service rules.",
-      faq_6_q: "How to pay and get access?",
-      faq_6_a: "Click the \"Choose\" button on the desired plan — a Telegram support chat (@WayGVPN) will open with a pre-filled message about the selected plan. I will help with payment and issue a personal access key within minutes.",
-      faq_7_q: "Can I get a refund?",
-      faq_7_a: "A refund is possible if the service was not working for more than 24 hours in a row due to the Administration's fault. In this case, the refund is calculated proportionally to the number of unused days. If you simply changed your mind or stopped using the service — funds are not refunded. In case of blocking for violating the rules, funds are also not refunded.",
+      faq_6_q: "Who is not eligible for the service?",
+      faq_6_a: "The service is not provided to citizens of Ukraine, persons permanently residing in the territories of the DPR and LPR (due to payment and legal restrictions), as well as citizens of Israel and Afghanistan. If membership of these categories is discovered, access will be terminated.",
+      faq_7_q: "How to pay and get access?",
+      faq_7_a: "Click the \"Choose\" button on the desired plan — a Telegram support chat (@WayGVPN) will open with a pre-filled message about the selected plan. I will help with payment and issue a personal access key within minutes.",
+      faq_8_q: "Can I get a refund?",
+      faq_8_a: "If the service did not work for more than 24 hours in a row due to my fault, a refund is made proportionally to unused days. In other cases, a refund of the unused part is considered in accordance with consumer protection law. In case of blocking for violation of the rules, funds are not refunded.",
       cta_title: "Ready to connect?",
       cta_desc: "Setup takes 2 minutes. One subscription — up to 10 devices, from 99 ₽ per month.",
       cta_btn: "Message support",
@@ -1608,7 +1841,7 @@
       footer_legal_1: "Terms of Use",
       footer_legal_2: "Privacy Policy",
       footer_legal_3: "Public Offer",
-      footer_legal_text: "By using WayG VPN, you confirm that you have read and agree to the <a href=\"#\">Terms of Service</a> (revision 1.2 dated 03.10.2026). The service provides access to a secure connection and is not intended for unlawful actions. The user is solely responsible for the legality of their actions when using the Service. The current version of the rules is published in the <a href=\"https://t.me/WayG_VPN_Official\" target=\"_blank\" rel=\"noopener\">Telegram channel</a>.",
+      footer_legal_text: "By using WayG VPN, you confirm that you have read and agree to the <a href=\"#terms\" data-terms>Terms of Service</a> (revision 1.3 dated 09.10.2026). The service provides access to a secure connection and is not intended for illegal actions. The user is solely responsible for the legality of their actions. The current version of the rules is published in the <a href=\"https://t.me/WayG_VPN_Official\" target=\"_blank\" rel=\"noopener\">Telegram channel</a>.",
       footer_copyright: "© 2026 WayG VPN. All rights reserved.",
       footer_support: "Support:"
     },
@@ -1648,22 +1881,26 @@
       tech_subtitle: "VLESS + XHTTP + REALITY",
       tech_p1: "<strong>VLESS</strong> یک پروتکل انتقال داده سبک با حداقل سربار است. سرعت بالا را بدون به خطر انداختن کیفیت رمزنگاری فراهم می‌کند.",
       tech_p2: "<strong>XHTTP</strong> یک ترانسپورت مدرن است که روی HTTP/2 کار می‌کند. اتصال پایدار و انتقال کارآمد داده را در هر شرایط شبکه‌ای تضمین می‌کند.",
-      tech_p3: "<strong>REALITY</strong> فناوری است که در آن اتصال مطابق با استانداردهای TLS 1.3 ایمن می‌شود و سرور گواهی یک وب‌سایت معتبر را ارائه می‌دهد.",
+      tech_p3: "<strong>REALITY</strong> فناوری محافظت از اتصال بر پایهٔ TLS 1.3 است.",
       features_tag: "مزایا",
       features_title: "همه چیز برای یک اتصال راحت",
       features_desc: "جزئیات اندیشیده شده‌ای که استفاده از سرویس را ساده و قابل پیش‌بینی می‌کند.",
       feature_1_title: "رمزنگاری مدرن",
-      feature_1_desc: "اتصال مطابق با استاندارد TLS 1.3 ایمن شده است. داده‌ها در تمام مسیر به صورت رمزنگاری شده منتقل می‌شوند.",
+      feature_1_desc: "اتصال بین دستگاه شما و سرور طبق استاندارد TLS 1.3 محافظت می‌شود.",
       feature_2_title: "سرعت بالا",
-      feature_2_desc: "پهنای باند تا 300 مگابیت بر ثانیه در سرور اسپانیا و تا 250 مگابیت بر ثانیه در مولداوی. استریم، دانلود و تماس تصویری — بدون تاخیر.",
-      feature_3_title: "زیرساخت قابل اعتماد",
-      feature_3_desc: "سرورها در مراکز داده معتبر اروپایی با کانال‌های ارتباطی پشتیبان و محافظت در برابر خرابی قرار دارند.",
+      feature_2_desc: "پهنای باند تا ۳۰۰ مگابیت بر ثانیه روی سرور اسپانیا و تا ۲۵۰ مگابیت بر ثانیه در مولداوی. سرعت واقعی به اینترنت‌دهندهٔ شما بستگی دارد.",
+      feature_3_title: "سرورها در اروپا",
+      feature_3_desc: "سرورها در دیتاسنترهای اروپا قرار دارند. می‌توانید سروری را انتخاب کنید که با ارائه‌دهندهٔ شما بهتر کار می‌کند.",
       feature_4_title: "پشتیبانی از طرف سازنده",
       feature_4_desc: "من شخصاً پاسخ می‌دهم — بدون ربات و بدون پاسخ‌های قالبی. کمک می‌کنم تنظیمات را انجام دهید و هر مشکلی را مانند یک انسان حل کنید.",
       feature_5_title: "حداقل داده",
-      feature_5_desc: "من لاگ فعالیت شما را ذخیره نمی‌کنم و آدرس‌های IP را ذخیره نمی‌کنم. تنها چیزی که می‌بینم حجم کل ترافیک است تا مطمئن شوم همه چیز خوب است.",
+      feature_5_desc: "من فهرست سایت‌هایی را که بازدید می‌کنید نگه نمی‌دارم. فقط داده‌های فنی لازم برای کارکرد سرویس را پردازش می‌کنم: حجم ترافیک، زمان و تعداد اتصال‌ها.",
       feature_6_title: "ویندوز، iOS، اندروید",
       feature_6_desc: "ما روی سه پلتفرم اصلی کار می‌کنیم. یک حساب — تا 10 دستگاه به طور همزمان.",
+      restriction_title: "محدودیت ارائه خدمات",
+      restriction_p1: "این سرویس به <strong>شهروندان اوکراین</strong> و همچنین افرادی که به‌طور دائم در مناطق <strong>DPR و LPR</strong> ساکن‌اند، به دلیل محدودیت‌های پرداخت و حقوقی ارائه نمی‌شود.",
+      restriction_p2: "همچنین این سرویس به دلایل امنیتی به <strong>شهروندان اسرائیل و افغانستان</strong> ارائه نمی‌شود.",
+      restriction_p3: "در صورت تشخیص تعلق به دسته‌های ذکر شده، دسترسی به سرویس مسدود خواهد شد.",
       pricing_tag: "قیمت‌ها",
       pricing_title: "قیمت‌های ساده و منصفانه",
       pricing_desc: "یک اشتراک — تا 10 دستگاه. بدون هزینه پنهان یا شارژ خودکار.",
@@ -1675,25 +1912,27 @@
       pricing_3_period: "≈ 100 ₽ در ماه",
       pricing_feature_1: "همه سرورهای موجود",
       pricing_feature_2: "تا 10 دستگاه",
-      pricing_feature_3: "ترافیک نامحدود",
+      pricing_feature_3: "ترافیک بدون محدودیت در هر طرح",
       pricing_feature_4: "پشتیبانی در تلگرام",
       pricing_btn: "انتخاب",
       faq_tag: "پرسش و پاسخ",
       faq_title: "سوالات متداول",
       faq_1_q: "VLESS + XHTTP + REALITY چیست؟",
-      faq_1_a: "این یک پشته مدرن برای اتصال ایمن است. VLESS یک پروتکل انتقال داده سبک با حداقل سربار است. XHTTP یک ترانسپورت است که روی HTTP/2 برای انتقال پایدار داده کار می‌کند. REALITY فناوری است که در آن اتصال مطابق با استانداردهای TLS 1.3 ایمن می‌شود و سرور گواهی یک وب‌سایت معتبر را ارائه می‌دهد. اینها با هم سرعت بالا و رمزنگاری قابل اعتماد را فراهم می‌کنند.",
+      faq_1_a: "این یک مجموعهٔ مدرن برای اتصال امن است. VLESS یک پروتکل سبک انتقال داده با سربار کم است. XHTTP ترنسپورتی است که روی HTTP/2 کار می‌کند. REALITY فناوری محافظت از اتصال بر پایهٔ TLS 1.3 است. در کنار هم سرعت بالا و رمزگذاری فراهم می‌کنند.",
       faq_2_q: "چگونه متصل شویم؟",
       faq_2_a: "<strong>1.</strong> برنامه <strong>v2RayTun</strong> را دانلود کنید:<br>— اندروید: <a href=\"https://play.google.com/store/search?q=v2raytun&c=apps\" target=\"_blank\" rel=\"noopener\">Google Play</a><br>— iOS: <a href=\"https://apps.apple.com/us/app/v2raytun/id6476628951\" target=\"_blank\" rel=\"noopener\">App Store</a><br>— ویندوز: <a href=\"https://github.com/mdf45/v2raytun/releases\" target=\"_blank\" rel=\"noopener\">GitHub</a><br><br><strong>2.</strong> در تلگرام به من پیام دهید <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — لینک شخصی و کد QR را برایتان ارسال می‌کنم.<br><br><strong>3.</strong> در برنامه روی \"+\" بزنید → \"Import from clipboard\" → \"Connect\".",
       faq_3_q: "چه داده‌هایی را پردازش می‌کنید؟",
-      faq_3_a: "من لاگ فعالیت شما را ذخیره نمی‌کنم و آدرس‌های IP را ذخیره نمی‌کنم. تنها چیزی که می‌بینم حجم کل ترافیک است تا مطمئن شوم همه چیز درست کار می‌کند. بدون ردیاب یا نظارت بر سایت‌های بازدید شده. مدیریت ممکن است داده‌ها را در صورت درخواست قانونی از نهادهای مجاز مطابق با قانون قابل اجرا افشا کند.",
+      faq_3_a: "من فهرست سایت‌هایی را که بازدید می‌کنید نگه نمی‌دارم و محتوای ترافیک شما را بررسی نمی‌کنم. فقط داده‌های فنی لازم برای کارکرد سرویس پردازش می‌شود: شناسهٔ تلگرام یا ایمیل شما، حجم ترافیک، زمان و تعداد اتصال‌ها. سرور از نظر فنی نشانی IP دستگاه‌های متصل را می‌بیند؛ من فهرست دائمی IP نگه نمی‌دارم. داده‌ها فقط بر اساس درخواست قانونی مراجع صالح افشا می‌شود. جزئیات در بخش داده‌ها در قوانین آمده است.",
       faq_4_q: "کدام کشورها در حال حاضر موجود هستند؟",
       faq_4_a: "در حال حاضر دو سرور به طور پایدار کار می‌کنند: اسپانیا (مادرید) با پهنای باند تا 300 مگابیت بر ثانیه و مولداوی (کیشینف) با پهنای باند تا 250 مگابیت بر ثانیه. هر دو سرور روی پشته VLESS + XHTTP + REALITY کار می‌کنند. برنامه‌های توسعه جغرافیایی بعداً اعلام می‌شود.",
       faq_5_q: "چند دستگاه می‌توانند از حساب استفاده کنند؟",
       faq_5_a: "تا 10 دستگاه به طور همزمان در هر طرح. اشتراک می‌تواند توسط شما و اعضای خانواده‌تان که با شما زندگی می‌کنند استفاده شود. انتقال لینک/کلید شخصی به اشخاص ثالث توسط قوانین سرویس ممنوع است.",
-      faq_6_q: "چگونه پرداخت کنیم و دسترسی بگیریم؟",
-      faq_6_a: "روی دکمه \"انتخاب\" در طرح مورد نظر کلیک کنید — یک چت پشتیبانی تلگرام (@WayGVPN) با پیام از پیش پر شده باز می‌شود. من در پرداخت کمک می‌کنم و ظرف چند دقیقه کلید دسترسی شخصی را صادر می‌کنم.",
-      faq_7_q: "آیا می‌توانم بازپرداخت بگیرم؟",
-      faq_7_a: "بازپرداخت در صورتی امکان‌پذیر است که سرویس بیش از 24 ساعت متوالی به دلیل تقصیر مدیریت کار نکرده باشد. در این صورت بازپرداخت به نسبت تعداد روزهای استفاده نشده محاسبه می‌شود. اگر به سادگی نظر خود را تغییر دادید یا استفاده را متوقف کردید — وجوه بازپرداخت نمی‌شود.",
+      faq_6_q: "چه کسانی واجد شرایط استفاده از سرویس نیستند؟",
+      faq_6_a: "این سرویس به شهروندان اوکراین، افرادی که به‌طور دائم در مناطق DPR و LPR ساکن‌اند (به دلیل محدودیت‌های پرداخت و حقوقی) و همچنین شهروندان اسرائیل و افغانستان ارائه نمی‌شود. در صورت مشخص شدن تعلق به این گروه‌ها، دسترسی قطع خواهد شد.",
+      faq_7_q: "چگونه پرداخت کنیم و دسترسی بگیریم؟",
+      faq_7_a: "روی دکمه \"انتخاب\" در طرح مورد نظر کلیک کنید — یک چت پشتیبانی تلگرام (@WayGVPN) با پیام از پیش پر شده باز می‌شود. من در پرداخت کمک می‌کنم و ظرف چند دقیقه کلید دسترسی شخصی را صادر می‌کنم.",
+      faq_8_q: "آیا می‌توانم بازپرداخت بگیرم؟",
+      faq_8_a: "اگر سرویس بیش از ۲۴ ساعت پیاپی به تقصیر من کار نکرده باشد، بازپرداخت متناسب با روزهای استفاده‌نشده انجام می‌شود. در سایر موارد، بازپرداخت بخش استفاده‌نشده طبق قانون حمایت از مصرف‌کنندگان بررسی می‌شود. در صورت مسدود شدن به دلیل نقض قوانین، وجه بازگردانده نمی‌شود.",
       cta_title: "آماده اتصال هستید؟",
       cta_desc: "راه‌اندازی 2 دقیقه طول می‌کشد. یک اشتراک — تا 10 دستگاه، از 99 ₽ در ماه.",
       cta_btn: "پیام به پشتیبانی",
@@ -1705,7 +1944,7 @@
       footer_legal_1: "شرایط استفاده",
       footer_legal_2: "سیاست حفظ حریم خصوصی",
       footer_legal_3: "پیشنهاد عمومی",
-      footer_legal_text: "با استفاده از WayG VPN، شما تأیید می‌کنید که <a href=\"#\">شرایط استفاده از سرویس</a> (نسخه 1.2 مورخ 03.10.2026) را خوانده و با آن موافق هستید. این سرویس دسترسی به یک اتصال ایمن را فراهم می‌کند و برای اقدامات غیرقانونی در نظر گرفته نشده است. کاربر مسئولیت قانونی بودن اقدامات خود را بر عهده دارد. نسخه فعلی قوانین در <a href=\"https://t.me/WayG_VPN_Official\" target=\"_blank\" rel=\"noopener\">کانال تلگرام</a> منتشر می‌شود.",
+      footer_legal_text: "با استفاده از WayG VPN تأیید می‌کنید که <a href=\"#terms\" data-terms>شرایط استفاده از سرویس</a> (نسخهٔ 1.3 مورخ 09.10.2026) را خوانده و پذیرفته‌اید. این سرویس دسترسی به اتصال امن را فراهم می‌کند و برای اقدامات غیرقانونی در نظر گرفته نشده است. کاربر به‌تنهایی مسئول قانونی بودن اقدامات خود است. نسخهٔ جاری قوانین در <a href=\"https://t.me/WayG_VPN_Official\" target=\"_blank\" rel=\"noopener\">کانال تلگرام</a> منتشر می‌شود.",
       footer_copyright: "© 2026 WayG VPN. تمامی حقوق محفوظ است.",
       footer_support: "پشتیبانی:"
     },
@@ -1745,22 +1984,26 @@
       tech_subtitle: "VLESS + XHTTP + REALITY",
       tech_p1: "<strong>VLESS</strong> est un protocole de transfert de données léger avec un minimum de surcharge. Il offre une vitesse élevée sans compromettre la qualité du chiffrement.",
       tech_p2: "<strong>XHTTP</strong> est un transport moderne fonctionnant sur HTTP/2. Il assure une connexion stable et un transfert de données efficace dans toutes les conditions réseau.",
-      tech_p3: "<strong>REALITY</strong> est une technologie où la connexion est sécurisée selon les normes TLS 1.3, et le serveur présente un certificat de site Web légitime.",
+      tech_p3: "<strong>REALITY</strong> est une technologie de protection de la connexion basée sur TLS 1.3.",
       features_tag: "Avantages",
       features_title: "Tout pour une connexion confortable",
       features_desc: "Des détails réfléchis qui rendent l'utilisation du service simple et prévisible.",
       feature_1_title: "Chiffrement moderne",
-      feature_1_desc: "La connexion est sécurisée selon la norme TLS 1.3. Les données sont transmises chiffrées sur tout le chemin.",
+      feature_1_desc: "La connexion entre votre appareil et le serveur est protégée selon la norme TLS 1.3.",
       feature_2_title: "Vitesse élevée",
-      feature_2_desc: "Bande passante jusqu'à 300 Mbps sur le serveur en Espagne et jusqu'à 250 Mbps en Moldavie. Streaming, téléchargements et appels vidéo — sans délais.",
-      feature_3_title: "Infrastructure fiable",
-      feature_3_desc: "Les serveurs sont situés dans des centres de données européens de confiance avec des canaux de communication de secours.",
+      feature_2_desc: "Bande passante jusqu'à 300 Mbit/s sur le serveur en Espagne et jusqu'à 250 Mbit/s en Moldavie. La vitesse réelle dépend de votre fournisseur d'accès.",
+      feature_3_title: "Serveurs en Europe",
+      feature_3_desc: "Les serveurs sont hébergés dans des centres de données en Europe. Choisissez celui qui fonctionne le mieux avec votre fournisseur.",
       feature_4_title: "Support du créateur",
       feature_4_desc: "Je réponds personnellement — sans bots ni réponses standardisées. Je vous aide à configurer et à résoudre tout problème de manière humaine.",
       feature_5_title: "Minimum de données",
-      feature_5_desc: "Je ne stocke pas vos journaux d'activité et ne sauvegarde pas les adresses IP. La seule chose que je vois est le volume total de trafic pour m'assurer que tout va bien.",
+      feature_5_desc: "Je ne tiens pas de journal des sites que vous visitez. Je ne traite que les données techniques nécessaires au service : volume de trafic, heure et nombre de connexions.",
       feature_6_title: "Windows, iOS, Android",
       feature_6_desc: "Nous fonctionnons sur trois plateformes principales. Un compte — jusqu'à 10 appareils simultanément.",
+      restriction_title: "Restrictions de service",
+      restriction_p1: "Le service n'est pas fourni aux <strong>citoyens d'Ukraine</strong>, ni aux personnes résidant de manière permanente sur les territoires de la <strong>RPD et de la RPL</strong>, en raison de restrictions de paiement et juridiques.",
+      restriction_p2: "Le service n'est pas non plus fourni aux <strong>citoyens d'Israël et d'Afghanistan</strong> pour des raisons de sécurité.",
+      restriction_p3: "En cas de détection d'une appartenance aux catégories spécifiées, l'accès au service sera bloqué.",
       pricing_tag: "Tarifs",
       pricing_title: "Des prix simples et honnêtes",
       pricing_desc: "Un abonnement — jusqu'à 10 appareils. Pas de frais cachés ni de prélèvements automatiques.",
@@ -1772,25 +2015,27 @@
       pricing_3_period: "≈ 100 ₽ par mois",
       pricing_feature_1: "Tous les serveurs disponibles",
       pricing_feature_2: "Jusqu'à 10 appareils",
-      pricing_feature_3: "Trafic illimité",
+      pricing_feature_3: "Trafic sans limite selon l'abonnement",
       pricing_feature_4: "Support sur Telegram",
       pricing_btn: "Choisir",
       faq_tag: "Questions & Réponses",
       faq_title: "Questions fréquentes",
       faq_1_q: "Qu'est-ce que VLESS + XHTTP + REALITY ?",
-      faq_1_a: "C'est un stack moderne pour une connexion sécurisée. VLESS est un protocole de transfert de données léger avec un minimum de surcharge. XHTTP est un transport fonctionnant sur HTTP/2 pour un transfert de données stable. REALITY est une technologie où la connexion est sécurisée selon les normes TLS 1.3. Ensemble, ils offrent une vitesse élevée et un chiffrement fiable.",
+      faq_1_a: "C'est un stack moderne pour une connexion sécurisée. VLESS est un protocole de transfert de données léger avec un minimum de surcharge. XHTTP est un transport fonctionnant sur HTTP/2. REALITY est une technologie de protection de la connexion basée sur TLS 1.3. Ensemble, ils offrent une vitesse élevée et un chiffrement.",
       faq_2_q: "Comment se connecter ?",
       faq_2_a: "<strong>1.</strong> Téléchargez l'application <strong>v2RayTun</strong> :<br>— Android : <a href=\"https://play.google.com/store/search?q=v2raytun&c=apps\" target=\"_blank\" rel=\"noopener\">Google Play</a><br>— iOS : <a href=\"https://apps.apple.com/us/app/v2raytun/id6476628951\" target=\"_blank\" rel=\"noopener\">App Store</a><br>— Windows : <a href=\"https://github.com/mdf45/v2raytun/releases\" target=\"_blank\" rel=\"noopener\">GitHub</a><br><br><strong>2.</strong> Envoyez-moi un message sur Telegram <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — je vous enverrai un lien personnel et un code QR.<br><br><strong>3.</strong> Dans l'application, appuyez sur « + » → « Import from clipboard » → « Connect ».<br><br>Sous Windows, sélectionnez le mode <strong>Tunnel</strong> au lieu de Proxy.",
       faq_3_q: "Quelles données traitez-vous ?",
-      faq_3_a: "Je ne stocke pas vos journaux d'activité et ne sauvegarde pas les adresses IP. La seule chose que je vois est le volume total de trafic. Pas de trackers ni de surveillance des sites visités. L'administration peut divulguer des données sur demande légale des autorités compétentes.",
+      faq_3_a: "Je ne tiens pas de journal des sites que vous visitez et n'analyse pas le contenu de votre trafic. Seules les données techniques nécessaires au service sont traitées : votre identifiant Telegram ou email, le volume de trafic, l'heure et le nombre de connexions. Le serveur voit techniquement les adresses IP des appareils connectés ; je ne conserve pas de journal permanent des IP. Les données ne sont divulguées que sur demande légale des autorités compétentes. Détails dans la section sur les données des conditions.",
       faq_4_q: "Quels pays sont déjà disponibles ?",
       faq_4_a: "Deux serveurs fonctionnent actuellement de manière stable : l'Espagne (Madrid) avec une bande passante allant jusqu'à 300 Mbps et la Moldavie (Chisinau) avec une bande passante allant jusqu'à 250 Mbps. Les deux serveurs fonctionnent sur le stack VLESS + XHTTP + REALITY. Les projets d'expansion géographique seront annoncés ultérieurement.",
       faq_5_q: "Combien d'appareils peuvent utiliser le compte ?",
       faq_5_a: "Jusqu'à 10 appareils simultanément sur n'importe quel forfait. L'abonnement peut être utilisé par vous et les membres de votre famille vivant avec vous. Le transfert du lien/clé personnel à des tiers est interdit.",
-      faq_6_q: "Comment payer et obtenir l'accès ?",
-      faq_6_a: "Cliquez sur le bouton « Choisir » sur le forfait souhaité — un chat de support Telegram (@WayGVPN) s'ouvrira avec un message pré-rempli. Je vous aiderai avec le paiement et émettrai une clé d'accès personnelle en quelques minutes.",
-      faq_7_q: "Puis-je obtenir un remboursement ?",
-      faq_7_a: "Un remboursement est possible si le service n'a pas fonctionné pendant plus de 24 heures consécutives en raison de la faute de l'Administration. Si vous avez simplement changé d'avis ou cessé d'utiliser le service — les fonds ne sont pas remboursés.",
+      faq_6_q: "Qui n'est pas éligible au service ?",
+      faq_6_a: "Le service n'est pas fourni aux citoyens d'Ukraine, aux personnes résidant de manière permanente sur les territoires de la RPD et de la RPL (en raison de restrictions de paiement et juridiques), ni aux citoyens d'Israël et d'Afghanistan. Si une telle appartenance est constatée, l'accès sera interrompu.",
+      faq_7_q: "Comment payer et obtenir l'accès ?",
+      faq_7_a: "Cliquez sur le bouton « Choisir » sur le forfait souhaité — un chat de support Telegram (@WayGVPN) s'ouvrira avec un message pré-rempli. Je vous aiderai avec le paiement et émettrai une clé d'accès personnelle en quelques minutes.",
+      faq_8_q: "Puis-je obtenir un remboursement ?",
+      faq_8_a: "Si le service n'a pas fonctionné pendant plus de 24 heures consécutives par ma faute, le remboursement est calculé au prorata des jours non utilisés. Dans les autres cas, le remboursement de la partie inutilisée est examiné conformément au droit de la consommation. En cas de blocage pour violation des règles, les fonds ne sont pas remboursés.",
       cta_title: "Prêt à vous connecter ?",
       cta_desc: "La configuration prend 2 minutes. Un abonnement — jusqu'à 10 appareils, à partir de 99 ₽ par mois.",
       cta_btn: "Contacter le support",
@@ -1802,7 +2047,7 @@
       footer_legal_1: "Conditions d'utilisation",
       footer_legal_2: "Politique de confidentialité",
       footer_legal_3: "Offre publique",
-      footer_legal_text: "En utilisant WayG VPN, vous confirmez avoir lu et accepté les <a href=\"#\">Conditions d'utilisation du service</a> (révision 1.2 du 03.10.2026). Le service fournit un accès à une connexion sécurisée et n'est pas destiné à des actions illégales. L'utilisateur est seul responsable de la légalité de ses actions. La version actuelle des règles est publiée dans le <a href=\"https://t.me/WayG_VPN_Official\" target=\"_blank\" rel=\"noopener\">canal Telegram</a>.",
+      footer_legal_text: "En utilisant WayG VPN, vous confirmez avoir lu et accepté les <a href=\"#terms\" data-terms>Conditions d'utilisation du service</a> (révision 1.3 du 09.10.2026). Le service fournit un accès à une connexion sécurisée et n'est pas destiné à des actions illégales. L'utilisateur est seul responsable de la légalité de ses actions. La version actuelle des règles est publiée dans le <a href=\"https://t.me/WayG_VPN_Official\" target=\"_blank\" rel=\"noopener\">canal Telegram</a>.",
       footer_copyright: "© 2026 WayG VPN. Tous droits réservés.",
       footer_support: "Support :"
     }
@@ -1901,7 +2146,8 @@
   // FAQ
   var faqItems = document.querySelectorAll('.faq-item');
   for (var f = 0; f < faqItems.length; f++) {
-    faqItems[f].addEventListener('click', function() {
+    faqItems[f].addEventListener('click', function(e) {
+      if (e.target.closest('a')) return;
       this.classList.toggle('open');
     });
   }
@@ -1937,6 +2183,37 @@
       revealEls2[r2].classList.add('visible');
     }
   }
+
+  // TERMS DIALOG
+  var dlg = document.getElementById('termsDialog');
+  var termsLang = 'ru';
+  var closeLabels = { ru: 'Закрыть', uk: 'Закрити', en: 'Close', fa: 'بستن', fr: 'Fermer' };
+  function setTermsLang(l) {
+    termsLang = l;
+    document.getElementById('terms-ru').hidden = (l !== 'ru');
+    document.getElementById('terms-en').hidden = (l !== 'en');
+    var tabs = dlg.querySelectorAll('[data-tl]');
+    for (var i = 0; i < tabs.length; i++) tabs[i].setAttribute('aria-pressed', tabs[i].getAttribute('data-tl') === l ? 'true' : 'false');
+    dlg.querySelector('.terms-body').scrollTop = 0;
+  }
+  function openTerms(section) {
+    var cur = htmlEl.getAttribute('lang');
+    setTermsLang(cur === 'ru' ? 'ru' : 'en');
+    document.getElementById('termsClose').setAttribute('aria-label', closeLabels[cur] || 'Close');
+    if (!dlg.open) dlg.showModal();
+    document.body.style.overflow = 'hidden';
+    if (section) { var el = document.getElementById('t-' + termsLang + '-' + section); if (el) el.scrollIntoView(); }
+  }
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('[data-terms]');
+    if (a) { e.preventDefault(); openTerms(a.getAttribute('data-terms') || ''); }
+  });
+  dlg.addEventListener('click', function(e) { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', function() { document.body.style.overflow = ''; });
+  document.getElementById('termsClose').addEventListener('click', function() { dlg.close(); });
+  var tlBtns = dlg.querySelectorAll('[data-tl]');
+  for (var q = 0; q < tlBtns.length; q++) tlBtns[q].addEventListener('click', function() { setTermsLang(this.getAttribute('data-tl')); });
+  if (location.hash === '#terms') openTerms('');
 })();
 </script>
 
