@@ -292,7 +292,8 @@
   .terms-body ul { padding-left: 20px; }
   .terms-body .muted { font-size: 14px; }
   .terms-body a { color: var(--accent); }
-  .server-status { font-size: 12px; font-weight: 600; line-height: 1.3; color: var(--yellow); background: rgba(234,179,8,0.12); border: 1px solid rgba(234,179,8,0.3); border-radius: 999px; padding: 5px 12px; text-align: center; }
+  .server-status { font-size: 12px; font-weight: 600; line-height: 1.3; color: var(--yellow); background: rgba(234,179,8,0.12); border: 1px solid rgba(234,179,8,0.3); border-radius: 999px; padding: 5px 12px; text-align: center; white-space: nowrap; }
+  .server-status.active { color: var(--green); background: rgba(34,197,94,0.12); border-color: rgba(34,197,94,0.3); }
   .server-status.considering { color: var(--orange); background: rgba(249,115,22,0.12); border-color: rgba(249,115,22,0.3); }
   .feature .btn { margin-top: 18px; }
   .apps-note { text-align: center; color: var(--muted); font-size: 14.5px; max-width: 560px; margin: 28px auto 0; line-height: 1.6; }
@@ -417,7 +418,7 @@
     </div>
     <div class="servers">
       <div class="server-card reveal" style="--status-color: #22c55e;">
-        <div class="server-head"><div class="server-flag">🇪🇸</div></div>
+        <div class="server-head"><div class="server-flag">🇪🇸</div><span class="server-status active" data-i18n="server_active">Активен</span></div>
         <h3 data-i18n="server_spain">Испания</h3>
         <div class="server-city" data-i18n="server_spain_city">Мадрид · основной сервер</div>
         <div class="server-meta">
@@ -426,7 +427,7 @@
         </div>
       </div>
       <div class="server-card reveal" style="--status-color: #22c55e;">
-        <div class="server-head"><div class="server-flag">🇲🇩</div></div>
+        <div class="server-head"><div class="server-flag">🇲🇩</div><span class="server-status active" data-i18n="server_active">Активен</span></div>
         <h3 data-i18n="server_moldova">Молдова</h3>
         <div class="server-city" data-i18n="server_moldova_city">Кишинёв · сервер</div>
         <div class="server-meta">
