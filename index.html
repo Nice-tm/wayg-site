@@ -297,6 +297,18 @@
   .terms-body .muted { font-size: 14px; }
   .terms-body a { color: var(--accent); }
   .server-status { font-size: 12px; font-weight: 600; line-height: 1.3; color: var(--yellow); background: rgba(234,179,8,0.12); border: 1px solid rgba(234,179,8,0.3); border-radius: 999px; padding: 5px 12px; text-align: center; }
+  .feature .btn { margin-top: 18px; }
+  .apps-note { text-align: center; color: var(--muted); font-size: 14.5px; max-width: 560px; margin: 28px auto 0; line-height: 1.6; }
+  .news-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+  .news-item { display: flex; gap: 18px; align-items: baseline; padding: 20px 24px; border-radius: 16px; background: var(--card); border: 1px solid var(--border-strong); }
+  .news-item time { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--accent); white-space: nowrap; }
+  .news-item p { color: var(--muted); font-size: 15px; }
+  @media (max-width: 560px) { .news-item { flex-direction: column; gap: 6px; } }
+  .dl-links { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+  .dl-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .dl-row span { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted-2); min-width: 52px; }
+  .dl-row a { display: inline-flex; padding: 7px 14px; border-radius: 9px; border: 1px solid var(--border-strong); background: var(--card); color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; transition: border-color 0.25s, color 0.25s, transform 0.25s; }
+  .dl-row a:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
 </style>
 </head>
 <body>
@@ -365,7 +377,7 @@
     <span class="dot">·</span>
     <span data-i18n="hero_note_2">До 10 устройств</span>
     <span class="dot">·</span>
-    <span data-i18n="hero_note_3">Windows, iOS, Android</span>
+    <span data-i18n="hero_note_3">Windows, macOS, Linux, iOS, Android, TV</span>
   </div>
 
   <div class="trust-row reveal">
@@ -500,10 +512,59 @@
       </div>
       <div class="feature reveal">
         <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8"/><path d="M12 18v4"/></svg></div>
-        <h3 data-i18n="feature_6_title">Windows, iOS, Android</h3>
-        <p data-i18n="feature_6_desc">Работаем на трёх основных платформах. Один аккаунт — до 10 устройств одновременно.</p>
+        <h3 data-i18n="feature_6_title">Все популярные платформы</h3>
+        <p data-i18n="feature_6_desc">Windows, macOS, Linux, iOS, Android, а также Android TV и Apple TV. Один аккаунт — до 10 устройств одновременно.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="apps">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag" data-i18n="apps_tag">Приложения</div>
+      <h2 data-i18n="apps_title">Скачайте приложение</h2>
+      <p data-i18n="apps_desc">Подключение работает через бесплатное приложение Happ. Выберите свою платформу.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature reveal">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+        <h3>Android</h3>
+        <div class="dl-links"><div class="dl-row"><a href="https://play.google.com/store/apps/details?id=com.happproxy" target="_blank" rel="noopener">Google Play</a><a href="https://github.com/Happ-proxy/happ-android/releases/latest/download/Happ.apk" target="_blank" rel="noopener">APK</a></div></div>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M10 18h4"/></svg></div>
+        <h3>iOS</h3>
+        <div class="dl-links"><div class="dl-row"><a href="https://apps.apple.com/us/app/happ-proxy-utility/id6504287215" target="_blank" rel="noopener">App Store · Global</a><a href="https://apps.apple.com/ru/app/happ-lite/id6799917773" target="_blank" rel="noopener">App Store · RU</a></div></div>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>
+        <h3>Windows</h3>
+        <div class="dl-links"><div class="dl-row"><a href="https://github.com/Happ-proxy/happ-desktop/releases/latest/download/setup-Happ.x64.exe" target="_blank" rel="noopener">x64</a><a href="https://github.com/Happ-proxy/happ-desktop/releases/latest/download/setup-Happ.arm64.exe" target="_blank" rel="noopener">ARM64</a></div></div>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="11" rx="2"/><path d="M2 19h20"/></svg></div>
+        <h3>macOS</h3>
+        <div class="dl-links"><div class="dl-row"><a href="https://apps.apple.com/us/app/happ-proxy-utility/id6504287215" target="_blank" rel="noopener">App Store · Global</a><a href="https://apps.apple.com/ru/app/happ-proxy-utility/id6783623643" target="_blank" rel="noopener">App Store · RU</a><a href="https://github.com/Happ-proxy/happ-desktop/releases/latest/download/Happ.macOS.universal.dmg" target="_blank" rel="noopener">.dmg</a></div></div>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/></svg></div>
+        <h3>Linux</h3>
+        <div class="dl-links"><div class="dl-row"><span>x64</span><a href="https://github.com/Happ-proxy/happ-desktop/releases/latest/download/Happ.linux.x64.deb" target="_blank" rel="noopener">deb</a><a href="https://github.com/Happ-proxy/happ-desktop/releases/latest/download/Happ.linux.x64.rpm" target="_blank" rel="noopener">rpm</a><a href="https://github.com/Happ-proxy/happ-desktop/releases/latest/download/Happ.linux.x64.pkg.tar.zst" target="_blank" rel="noopener">pkg</a></div><div class="dl-row"><span>ARM64</span><a href="https://github.com/Happ-proxy/happ-desktop/releases/latest/download/Happ.linux.arm64.deb" target="_blank" rel="noopener">deb</a><a href="https://github.com/Happ-proxy/happ-desktop/releases/latest/download/Happ.linux.arm64.rpm" target="_blank" rel="noopener">rpm</a><a href="https://github.com/Happ-proxy/happ-desktop/releases/latest/download/Happ.linux.arm64.pkg.tar.zst" target="_blank" rel="noopener">pkg</a></div></div>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="13" rx="2"/><path d="M8 21h8"/></svg></div>
+        <h3>Android TV</h3>
+        <div class="dl-links"><div class="dl-row"><a href="https://play.google.com/store/apps/details?id=com.happproxy" target="_blank" rel="noopener">Google Play</a><a href="https://github.com/Happ-proxy/happ-android/releases/latest/download/Happ.apk" target="_blank" rel="noopener">APK</a></div></div>
+      </div>
+      <div class="feature reveal">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M10 22h4"/></svg></div>
+        <h3>Apple TV</h3>
+        <div class="dl-links"><div class="dl-row"><a href="https://apps.apple.com/us/app/happ-proxy-utility-for-tv/id6748297274" target="_blank" rel="noopener">App Store</a></div></div>
+      </div>
+    </div>
+    <p class="apps-note reveal" data-i18n="apps_note">Персональную ссылку для подключения вы получите после оплаты и импортируете её в приложение.</p>
+    <p class="apps-note reveal"><a href="https://www.happ.su/happ/" target="_blank" rel="noopener" data-i18n="apps_official">Все версии и актуальные ссылки — на официальном сайте Happ (happ.su)</a></p>
   </div>
 </section>
 
@@ -518,7 +579,7 @@
         </svg>
         <span data-i18n="restriction_title">Ограничение предоставления услуг</span>
       </div>
-      <p data-i18n-html="restriction_p1">Сервис не предоставляется <strong>гражданам и жителям Китая, Северной Кореи, Израиля, Афганистана, Пакистана, Украины, Крыма, ДНР и ЛНР</strong> в связи с повышенными рисками.</p>
+      <p data-i18n-html="restriction_p1">Сервис не предоставляется <strong>гражданам и жителям Китая, Северной Кореи, Израиля, Афганистана, Пакистана, Украины, Крыма, ДНР и ЛНР</strong> в связи с санкционными ограничениями, сложностями с платёжными системами и политическими рисками.</p>
       <p class="blocked-note" data-i18n-html="restriction_p3">При выявлении принадлежности к указанным категориям доступ к сервису будет заблокирован.</p>
     </div>
   </div>
@@ -572,6 +633,21 @@
   </div>
 </section>
 
+<section id="news">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag" data-i18n="news_tag">Новости</div>
+      <h2 data-i18n="news_title">Что нового</h2>
+    </div>
+    <div class="news-list">
+      <div class="news-item reveal"><time datetime="2026-10-10">10.10.2026</time><p data-i18n="news_3">Для подключения теперь рекомендуется приложение Happ.</p></div>
+      <div class="news-item reveal"><time datetime="2026-10-10">10.10.2026</time><p data-i18n="news_1">Начата покупка и настройка сервера в Албании (Тирана).</p></div>
+      <div class="news-item reveal"><time datetime="2026-10-09">09.10.2026</time><p data-i18n="news_2">Обновлены правила использования: раздел о данных и список ограничений.</p></div>
+    </div>
+    <p class="apps-note reveal" data-i18n="news_foot">Остальные новости сервиса — в Telegram-канале.</p>
+  </div>
+</section>
+
 <section id="faq">
   <div class="container">
     <div class="section-head reveal">
@@ -585,7 +661,7 @@
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" type="button" aria-expanded="false"><span data-i18n="faq_2_q">Как подключиться?</span><span class="faq-icon" aria-hidden="true">+</span></button>
-        <div class="faq-a-wrap"><div class="faq-a" data-i18n-html="faq_2_a"><strong>1.</strong> Скачайте приложение <strong>v2RayTun</strong>:<br>— Android: <a href="https://play.google.com/store/search?q=v2raytun&c=apps" target="_blank" rel="noopener">Google Play</a><br>— iOS: <a href="https://apps.apple.com/us/app/v2raytun/id6476628951" target="_blank" rel="noopener">App Store</a><br>— Windows: <a href="https://github.com/mdf45/v2raytun/releases" target="_blank" rel="noopener">GitHub</a><br><br><strong>2.</strong> Напишите мне в Telegram <a href="https://t.me/WayGVPN" target="_blank" rel="noopener">@WayGVPN</a> — я отправлю персональную ссылку и QR-код.<br><br><strong>3.</strong> В приложении нажмите «+» → «Импорт из буфера обмена» → «Подключиться».<br><br>На Windows выберите режим <strong>Tunnel</strong> вместо Proxy.</div></div>
+        <div class="faq-a-wrap"><div class="faq-a" data-i18n-html="faq_2_a"><strong>1.</strong> Скачайте приложение <strong>Happ</strong> для своей платформы в разделе <a href="#apps">«Приложения»</a>.<br><br><strong>2.</strong> Напишите мне в Telegram <a href="https://t.me/WayGVPN" target="_blank" rel="noopener">@WayGVPN</a> — я отправлю персональную ссылку и QR-код.<br><br><strong>3.</strong> В приложении нажмите «+» → «Вставить из буфера обмена» и подключитесь.<br><br>На Windows включите режим <strong>TUN</strong> — он направляет через VPN весь трафик системы, а не только браузера.</div></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" type="button" aria-expanded="false"><span data-i18n="faq_3_q">Какие данные вы обрабатываете?</span><span class="faq-icon" aria-hidden="true">+</span></button>
@@ -601,7 +677,7 @@
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" type="button" aria-expanded="false"><span data-i18n="faq_6_q">Кому сервис не предоставляется?</span><span class="faq-icon" aria-hidden="true">+</span></button>
-        <div class="faq-a-wrap"><div class="faq-a" data-i18n="faq_6_a">Сервис не предоставляется гражданам и жителям Китая, Северной Кореи, Израиля, Афганистана, Пакистана, Украины, Крыма, ДНР и ЛНР в связи с повышенными рисками. Если принадлежность к этим категориям выяснится, доступ будет прекращён.</div></div>
+        <div class="faq-a-wrap"><div class="faq-a" data-i18n="faq_6_a">Сервис не предоставляется гражданам и жителям Китая, Северной Кореи, Израиля, Афганистана, Пакистана, Украины, Крыма, ДНР и ЛНР в связи с санкционными ограничениями, сложностями с платёжными системами и политическими рисками. Если принадлежность к этим категориям выяснится, доступ будет прекращён.</div></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" type="button" aria-expanded="false"><span data-i18n="faq_7_q">Как оплатить и получить доступ?</span><span class="faq-icon" aria-hidden="true">+</span></button>
@@ -724,7 +800,7 @@
 <p>6.6. По законному запросу уполномоченных органов данные могут быть предоставлены в порядке, установленном законодательством РФ.</p>
 
 <h2 id="t-ru-restrictions">7. Ограничения доступа</h2>
-<p>Сервис не предоставляется гражданам и жителям Китая, Северной Кореи, Израиля, Афганистана, Пакистана, Украины, Крыма, ДНР и ЛНР в связи с повышенными рисками. Если принадлежность к этим категориям выяснится, доступ будет прекращён.</p>
+<p>Сервис не предоставляется гражданам и жителям Китая, Северной Кореи, Израиля, Афганистана, Пакистана, Украины, Крыма, ДНР и ЛНР в связи с санкционными ограничениями, сложностями с платёжными системами и политическими рисками. Если принадлежность к этим категориям выяснится, доступ будет прекращён.</p>
 
 <h2 id="t-ru-liability">8. Ответственность</h2>
 <p>8.1. Сервис предоставляется «как есть». Бесперебойная работа не гарантируется. Исполнитель не отвечает за перебои из-за обстоятельств непреодолимой силы, действий провайдеров и третьих лиц.</p>
@@ -779,7 +855,7 @@
 <p>6.5. The site does not use cookies, trackers or analytics. The only third-party resource is Google Fonts.</p>
 <p>6.6. Upon a lawful request from authorized bodies, data may be provided in the manner established by the laws of the Russian Federation.</p>
 <h2 id="t-en-restrictions">7. Access restrictions</h2>
-<p>The Service is not provided to citizens and residents of China, North Korea, Israel, Afghanistan, Pakistan, Ukraine, Crimea, the DPR and the LPR due to increased risks. If membership of these categories is discovered, access will be terminated.</p>
+<p>The Service is not provided to citizens and residents of China, North Korea, Israel, Afghanistan, Pakistan, Ukraine, Crimea, the DPR and the LPR due to sanctions restrictions, difficulties with payment systems and political risks. If membership of these categories is discovered, access will be terminated.</p>
 <h2 id="t-en-liability">8. Liability</h2>
 <p>8.1. The Service is provided "as is". Uninterrupted operation is not guaranteed. The Provider is not liable for interruptions caused by force majeure, actions of providers or third parties.</p>
 <p>8.2. To the extent permitted by law, the Provider is not liable for the User's actions. Claims arising from the User's actions are settled by the User.</p>
@@ -803,7 +879,7 @@
       hero_title: "Приватное соединение<br>на <span class=\"gradient-text\">новом уровне</span>",
       hero_desc: "WayG VPN — быстрое и надёжное соединение на базе VLESS + XHTTP + REALITY. Одна подписка на все ваши устройства, честная цена и поддержка от создателя сервиса.",
       hero_btn_primary: "Выбрать тариф", hero_btn_secondary: "Как это работает",
-      hero_note_1: "От 99 ₽ в месяц", hero_note_2: "До 10 устройств", hero_note_3: "Windows, iOS, Android",
+      hero_note_1: "От 99 ₽ в месяц", hero_note_2: "До 10 устройств", hero_note_3: "Windows, macOS, Linux, iOS, Android, TV",
       trust_1: "TLS 1.3", trust_2: "Настройка за 2 минуты", trust_3: "Поддержка лично от создателя", trust_4: "Серверы в Европе",
       protocol_label: "Стек технологий",
       servers_tag: "Инфраструктура", servers_title: "Наши серверы",
@@ -832,10 +908,10 @@
       feature_4_desc: "Отвечаю лично — без ботов и без шаблонных ответов. Помогаю разобраться с настройкой и решить любой вопрос по-человечески.",
       feature_5_title: "Минимум данных",
       feature_5_desc: "Обрабатывается только минимально необходимый объём: идентификатор в мессенджере, переписка и платёжные документы. Журнал посещённых сайтов не ведётся, содержимое трафика не анализируется.",
-      feature_6_title: "Windows, iOS, Android",
-      feature_6_desc: "Работаем на трёх основных платформах. Один аккаунт — до 10 устройств одновременно.",
+      feature_6_title: "Все популярные платформы",
+      feature_6_desc: "Windows, macOS, Linux, iOS, Android, а также Android TV и Apple TV. Один аккаунт — до 10 устройств одновременно.",
       restriction_title: "Ограничение предоставления услуг",
-      restriction_p1: "Сервис не предоставляется <strong>гражданам и жителям Китая, Северной Кореи, Израиля, Афганистана, Пакистана, Украины, Крыма, ДНР и ЛНР</strong> в связи с повышенными рисками.",
+      restriction_p1: "Сервис не предоставляется <strong>гражданам и жителям Китая, Северной Кореи, Израиля, Афганистана, Пакистана, Украины, Крыма, ДНР и ЛНР</strong> в связи с санкционными ограничениями, сложностями с платёжными системами и политическими рисками.",
       restriction_p2: "Также сервис не предоставляется <strong>гражданам Израиля и Афганистана</strong> в связи с платёжными и правовыми ограничениями.",
       restriction_p3: "При выявлении принадлежности к указанным категориям доступ к сервису будет заблокирован.",
       pricing_tag: "Тарифы", pricing_title: "Простые и честные цены",
@@ -846,11 +922,12 @@
       pricing_feature_1: "Все доступные серверы", pricing_feature_2: "До 10 устройств",
       pricing_feature_3: "Трафик без лимита по тарифу", pricing_feature_4: "Поддержка в мессенджерах",
       pricing_btn: "Выбрать",
+      apps_tag: "Приложения", apps_title: "Скачайте приложение", apps_desc: "Подключение работает через бесплатное приложение Happ. Выберите свою платформу.", apps_btn: "Скачать", apps_official: "Все версии и актуальные ссылки — на официальном сайте Happ (happ.su)", apps_note: "Персональную ссылку для подключения вы получите после оплаты и импортируете её в приложение.", news_tag: "Новости", news_title: "Что нового", news_1: "Начата покупка и настройка сервера в Албании (Тирана).", news_2: "Обновлены правила использования: раздел о данных и список ограничений.", news_3: "Для подключения теперь рекомендуется приложение Happ.", news_foot: "Остальные новости сервиса — в Telegram-канале.",
       faq_tag: "Вопросы и ответы", faq_title: "Частые вопросы",
       faq_1_q: "Что такое VLESS + XHTTP + REALITY?",
       faq_1_a: "Это современный стек для защищённого соединения. VLESS — лёгкий протокол передачи данных с минимальными накладными расходами. XHTTP — транспорт, работающий поверх HTTP/2. REALITY — технология защиты соединения на базе TLS 1.3. Вместе они обеспечивают высокую скорость и шифрование.",
       faq_2_q: "Как подключиться?",
-      faq_2_a: "<strong>1.</strong> Скачайте приложение <strong>v2RayTun</strong>:<br>— Android: <a href=\"https://play.google.com/store/search?q=v2raytun&c=apps\" target=\"_blank\" rel=\"noopener\">Google Play</a><br>— iOS: <a href=\"https://apps.apple.com/us/app/v2raytun/id6476628951\" target=\"_blank\" rel=\"noopener\">App Store</a><br>— Windows: <a href=\"https://github.com/mdf45/v2raytun/releases\" target=\"_blank\" rel=\"noopener\">GitHub</a><br><br><strong>2.</strong> Напишите мне в Telegram <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — я отправлю персональную ссылку и QR-код.<br><br><strong>3.</strong> В приложении нажмите «+» → «Импорт из буфера обмена» → «Подключиться».<br><br>На Windows выберите режим <strong>Tunnel</strong> вместо Proxy.",
+      faq_2_a: "<strong>1.</strong> Скачайте приложение <strong>Happ</strong> для своей платформы в разделе <a href=\"#apps\">«Приложения»</a>.<br><br><strong>2.</strong> Напишите мне в Telegram <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — я отправлю персональную ссылку и QR-код.<br><br><strong>3.</strong> В приложении нажмите «+» → «Вставить из буфера обмена» и подключитесь.<br><br>На Windows включите режим <strong>TUN</strong> — он направляет через VPN весь трафик системы, а не только браузера.",
       faq_3_q: "Какие данные вы обрабатываете?",
       faq_3_a: "Обрабатывается минимально необходимый объём данных исключительно для оказания услуг: идентификатор в мессенджере (Telegram ID, username), историю переписки и платёжные документы. При этом не ведётся журнал посещённых сайтов и не анализируется содержимое трафика. Отдельные структурированные базы данных Пользователей не создаются. Переписка ведётся в мессенджерах (Telegram, WhatsApp, Discord и других) и подчиняется правилам соответствующего сервиса. Подробности — в разделе 6 правил.",
       faq_4_q: "Какие страны уже доступны?",
@@ -858,7 +935,7 @@
       faq_5_q: "На скольких устройствах можно использовать аккаунт?",
       faq_5_a: "До 10 устройств одновременно на любом тарифе. Подпиской могут пользоваться вы и члены вашей семьи, проживающие с вами совместно. Передача персональной ссылки/ключа третьим лицам запрещена правилами сервиса.",
       faq_6_q: "Кому сервис не предоставляется?",
-      faq_6_a: "Сервис не предоставляется гражданам и жителям Китая, Северной Кореи, Израиля, Афганистана, Пакистана, Украины, Крыма, ДНР и ЛНР в связи с повышенными рисками. Если принадлежность к этим категориям выяснится, доступ будет прекращён.",
+      faq_6_a: "Сервис не предоставляется гражданам и жителям Китая, Северной Кореи, Израиля, Афганистана, Пакистана, Украины, Крыма, ДНР и ЛНР в связи с санкционными ограничениями, сложностями с платёжными системами и политическими рисками. Если принадлежность к этим категориям выяснится, доступ будет прекращён.",
       faq_7_q: "Как оплатить и получить доступ?",
       faq_7_a: "Нажмите кнопку «Выбрать» на нужном тарифе — откроется чат с поддержкой в Telegram (@WayGVPN) с уже подставленным сообщением о выбранном тарифе. Я помогу с оплатой и выдам персональный ключ доступа в течение нескольких минут.",
       faq_8_q: "Можно ли вернуть деньги?",
@@ -880,7 +957,7 @@
       hero_title: "Приватне з'єднання<br>на <span class=\"gradient-text\">новому рівні</span>",
       hero_desc: "WayG VPN — швидке та надійне з'єднання на базі VLESS + XHTTP + REALITY. Одна підписка на всі ваші пристрої, чесна ціна та підтримка від творця сервісу.",
       hero_btn_primary: "Обрати тариф", hero_btn_secondary: "Як це працює",
-      hero_note_1: "Від 99 ₽ на місяць", hero_note_2: "До 10 пристроїв", hero_note_3: "Windows, iOS, Android",
+      hero_note_1: "Від 99 ₽ на місяць", hero_note_2: "До 10 пристроїв", hero_note_3: "Windows, macOS, Linux, iOS, Android, TV",
       trust_1: "TLS 1.3", trust_2: "Налаштування за 2 хвилини", trust_3: "Підтримка особисто від творця", trust_4: "Сервери в Європі",
       protocol_label: "Стек технологій",
       servers_tag: "Інфраструктура", servers_title: "Наші сервери",
@@ -909,10 +986,10 @@
       feature_4_desc: "Відповідаю особисто — без ботів і без шаблонних відповідей. Допомагаю розібратися з налаштуванням і вирішити будь-яке питання по-людськи.",
       feature_5_title: "Мінімум даних",
       feature_5_desc: "Обробляється лише мінімально необхідний обсяг: ідентифікатор у месенджері, листування та платіжні документи. Журнал відвіданих сайтів не ведеться, вміст трафіку не аналізується.",
-      feature_6_title: "Windows, iOS, Android",
-      feature_6_desc: "Працюємо на трьох основних платформах. Один акаунт — до 10 пристроїв одночасно.",
+      feature_6_title: "Усі популярні платформи",
+      feature_6_desc: "Windows, macOS, Linux, iOS, Android, а також Android TV і Apple TV. Один акаунт — до 10 пристроїв одночасно.",
       restriction_title: "Обмеження надання послуг",
-      restriction_p1: "Сервіс не надається <strong>громадянам і жителям Китаю, Північної Кореї, Ізраїлю, Афганістану, Пакистану, України, Криму, ДНР і ЛНР</strong> у зв'язку з підвищеними ризиками.",
+      restriction_p1: "Сервіс не надається <strong>громадянам і жителям Китаю, Північної Кореї, Ізраїлю, Афганістану, Пакистану, України, Криму, ДНР і ЛНР</strong> у зв'язку із санкційними обмеженнями, складнощами з платіжними системами та політичними ризиками.",
       restriction_p2: "Також сервіс не надається <strong>громадянам Ізраїлю та Афганістану</strong> у зв'язку з платіжними та правовими обмеженнями.",
       restriction_p3: "При виявленні належності до зазначених категорій доступ до сервісу буде заблоковано.",
       pricing_tag: "Тарифи", pricing_title: "Прості та чесні ціни",
@@ -923,11 +1000,12 @@
       pricing_feature_1: "Всі доступні сервери", pricing_feature_2: "До 10 пристроїв",
       pricing_feature_3: "Трафік без ліміту за тарифом", pricing_feature_4: "Підтримка в месенджерах",
       pricing_btn: "Обрати",
+      apps_tag: "Застосунки", apps_title: "Завантажте застосунок", apps_desc: "Підключення працює через безкоштовний застосунок Happ. Оберіть свою платформу.", apps_btn: "Завантажити", apps_official: "Усі версії та актуальні посилання — на офіційному сайті Happ (happ.su)", apps_note: "Персональне посилання для підключення ви отримаєте після оплати та імпортуєте його в застосунок.", news_tag: "Новини", news_title: "Що нового", news_1: "Розпочато купівлю та налаштування сервера в Албанії (Тирана).", news_2: "Оновлено правила використання: розділ про дані та список обмежень.", news_3: "Для підключення тепер рекомендується застосунок Happ.", news_foot: "Решта новин сервісу — в Telegram-каналі.",
       faq_tag: "Питання та відповіді", faq_title: "Часті питання",
       faq_1_q: "Що таке VLESS + XHTTP + REALITY?",
       faq_1_a: "Це сучасний стек для захищеного з'єднання. VLESS — легкий протокол передачі даних з мінімальними накладними витратами. XHTTP — транспорт, що працює поверх HTTP/2. REALITY — технологія захисту з'єднання на базі TLS 1.3. Разом вони забезпечують високу швидкість і шифрування.",
       faq_2_q: "Як підключитися?",
-      faq_2_a: "<strong>1.</strong> Завантажте додаток <strong>v2RayTun</strong>:<br>— Android: <a href=\"https://play.google.com/store/search?q=v2raytun&c=apps\" target=\"_blank\" rel=\"noopener\">Google Play</a><br>— iOS: <a href=\"https://apps.apple.com/us/app/v2raytun/id6476628951\" target=\"_blank\" rel=\"noopener\">App Store</a><br>— Windows: <a href=\"https://github.com/mdf45/v2raytun/releases\" target=\"_blank\" rel=\"noopener\">GitHub</a><br><br><strong>2.</strong> Напишіть мені в Telegram <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — я надішлю персональне посилання та QR-код.<br><br><strong>3.</strong> У додатку натисніть «+» → «Імпорт з буфера обміну» → «Підключитися».<br><br>На Windows виберіть режим <strong>Tunnel</strong> замість Proxy.",
+      faq_2_a: "<strong>1.</strong> Завантажте додаток <strong>Happ</strong> для своєї платформи в розділі <a href=\"#apps\">«Застосунки»</a>.<br><br><strong>2.</strong> Напишіть мені в Telegram <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — я надішлю персональне посилання та QR-код.<br><br><strong>3.</strong> У додатку натисніть «+» → «Вставити з буфера обміну» і підключіться.<br><br>На Windows увімкніть режим <strong>TUN</strong> — він спрямовує через VPN весь трафік системи, а не лише браузера.",
       faq_3_q: "Які дані ви обробляєте?",
       faq_3_a: "Обробляється лише мінімально необхідний обсяг даних виключно для надання послуг: ідентифікатор у месенджері (Telegram ID, username), історію листування та платіжні документи. При цьому не ведеться журнал відвіданих сайтів і не аналізується вміст трафіку. Окремі структуровані бази даних Користувачів не створюються. Листування ведеться в месенджерах (Telegram, WhatsApp, Discord та інших) і підкоряється правилам відповідного сервісу. Подробиці — в розділі 6 правил.",
       faq_4_q: "Які країни вже доступні?",
@@ -935,7 +1013,7 @@
       faq_5_q: "На скількох пристроях можна використовувати акаунт?",
       faq_5_a: "До 10 пристроїв одночасно на будь-якому тарифі. Підпискою можуть користуватися ви та члени вашої сім'ї, які проживають з вами спільно. Передача персонального посилання/ключа третім особам заборонена правилами сервісу.",
       faq_6_q: "Кому сервіс не надається?",
-      faq_6_a: "Сервіс не надається громадянам і жителям Китаю, Північної Кореї, Ізраїлю, Афганістану, Пакистану, України, Криму, ДНР і ЛНР у зв'язку з підвищеними ризиками. Якщо належність до цих категорій з'ясується, доступ буде припинено.",
+      faq_6_a: "Сервіс не надається громадянам і жителям Китаю, Північної Кореї, Ізраїлю, Афганістану, Пакистану, України, Криму, ДНР і ЛНР у зв'язку із санкційними обмеженнями, складнощами з платіжними системами та політичними ризиками. Якщо належність до цих категорій з'ясується, доступ буде припинено.",
       faq_7_q: "Як оплатити та отримати доступ?",
       faq_7_a: "Натисніть кнопку «Обрати» на потрібному тарифі — відкриється чат з підтримкою в Telegram (@WayGVPN) з уже підставленим повідомленням про обраний тариф. Я допоможу з оплатою та видам персональний ключ доступу протягом кількох хвилин.",
       faq_8_q: "Чи можна повернути гроші?",
@@ -957,7 +1035,7 @@
       hero_title: "Private connection<br>at a <span class=\"gradient-text\">new level</span>",
       hero_desc: "WayG VPN is a fast and reliable connection built on VLESS + XHTTP + REALITY. One subscription for all your devices, honest pricing, and support from the creator.",
       hero_btn_primary: "Choose a plan", hero_btn_secondary: "How it works",
-      hero_note_1: "From 99 ₽ / month", hero_note_2: "Up to 10 devices", hero_note_3: "Windows, iOS, Android",
+      hero_note_1: "From 99 ₽ / month", hero_note_2: "Up to 10 devices", hero_note_3: "Windows, macOS, Linux, iOS, Android, TV",
       trust_1: "TLS 1.3", trust_2: "Setup in 2 minutes", trust_3: "Support directly from the creator", trust_4: "Servers in Europe",
       protocol_label: "Technology stack",
       servers_tag: "Infrastructure", servers_title: "Our servers",
@@ -986,10 +1064,10 @@
       feature_4_desc: "I respond personally — no bots, no template answers. I help you set up and resolve any issue like a human.",
       feature_5_title: "Minimum data",
       feature_5_desc: "Only the minimum necessary data is processed: messenger identifier, correspondence and payment documents. No log of visited sites is kept, traffic content is not inspected.",
-      feature_6_title: "Windows, iOS, Android",
-      feature_6_desc: "We work on three major platforms. One account — up to 10 devices simultaneously.",
+      feature_6_title: "All major platforms",
+      feature_6_desc: "Windows, macOS, Linux, iOS, Android, plus Android TV and Apple TV. One account — up to 10 devices at once.",
       restriction_title: "Service Restrictions",
-      restriction_p1: "The service is not provided to <strong>citizens and residents of China, North Korea, Israel, Afghanistan, Pakistan, Ukraine, Crimea, the DPR and the LPR</strong> due to increased risks.",
+      restriction_p1: "The service is not provided to <strong>citizens and residents of China, North Korea, Israel, Afghanistan, Pakistan, Ukraine, Crimea, the DPR and the LPR</strong> due to sanctions restrictions, difficulties with payment systems and political risks.",
       restriction_p2: "The service is also not provided to <strong>citizens of Israel and Afghanistan</strong> due to payment and legal restrictions.",
       restriction_p3: "If affiliation with the specified categories is detected, access to the service will be blocked.",
       pricing_tag: "Pricing", pricing_title: "Simple and honest pricing",
@@ -1000,11 +1078,12 @@
       pricing_feature_1: "All available servers", pricing_feature_2: "Up to 10 devices",
       pricing_feature_3: "Traffic unlimited by plan", pricing_feature_4: "Support in messengers",
       pricing_btn: "Choose",
+      apps_tag: "Apps", apps_title: "Download the app", apps_desc: "Connection works through the free Happ app. Pick your platform.", apps_btn: "Download", apps_official: "All versions and current links are on the official Happ website (happ.su)", apps_note: "You will receive a personal link after payment and import it into the app.", news_tag: "News", news_title: "What's new", news_1: "Purchase and setup of a server in Albania (Tirana) has started.", news_2: "Terms of use updated: the data section and the list of restrictions.", news_3: "The recommended connection app is now Happ.", news_foot: "More service news is in the Telegram channel.",
       faq_tag: "Q&A", faq_title: "Frequently asked questions",
       faq_1_q: "What is VLESS + XHTTP + REALITY?",
       faq_1_a: "This is a modern stack for a secure connection. VLESS is a lightweight data transfer protocol with minimal overhead. XHTTP is a transport operating over HTTP/2. REALITY is a connection protection technology based on TLS 1.3. Together they provide high speed and encryption.",
       faq_2_q: "How to connect?",
-      faq_2_a: "<strong>1.</strong> Download the <strong>v2RayTun</strong> app:<br>— Android: <a href=\"https://play.google.com/store/search?q=v2raytun&c=apps\" target=\"_blank\" rel=\"noopener\">Google Play</a><br>— iOS: <a href=\"https://apps.apple.com/us/app/v2raytun/id6476628951\" target=\"_blank\" rel=\"noopener\">App Store</a><br>— Windows: <a href=\"https://github.com/mdf45/v2raytun/releases\" target=\"_blank\" rel=\"noopener\">GitHub</a><br><br><strong>2.</strong> Message me on Telegram <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — I will send you a personal link and QR code.<br><br><strong>3.</strong> In the app, tap \"+\" → \"Import from clipboard\" → \"Connect\".<br><br>On Windows, select <strong>Tunnel</strong> mode instead of Proxy.",
+      faq_2_a: "<strong>1.</strong> Download the <strong>Happ</strong> app for your platform in the <a href=\"#apps\">“Apps”</a> section.<br><br><strong>2.</strong> Message me on Telegram <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — I will send you a personal link and QR code.<br><br><strong>3.</strong> In the app, tap \"+\" → \"Paste from clipboard\" and connect.<br><br>On Windows, enable <strong>TUN</strong> mode — it routes all system traffic through the VPN, not just the browser.",
       faq_3_q: "What data do you process?",
       faq_3_a: "The minimum necessary amount of data is processed solely to provide the services: the messenger identifier (Telegram ID, username), correspondence history and payment documents. No log of visited sites is kept and traffic content is not inspected. No separate structured databases of Users are created. Correspondence takes place in messengers (Telegram, WhatsApp, Discord and others) and is governed by the rules of the respective service. See section 6 of the terms for details.",
       faq_4_q: "Which countries are already available?",
@@ -1012,7 +1091,7 @@
       faq_5_q: "How many devices can use the account?",
       faq_5_a: "Up to 10 devices simultaneously on any plan. The subscription can be used by you and your family members living with you. Transferring the personal link/key to third parties is prohibited by the service rules.",
       faq_6_q: "Who is not eligible for the service?",
-      faq_6_a: "The service is not provided to citizens and residents of China, North Korea, Israel, Afghanistan, Pakistan, Ukraine, Crimea, the DPR and the LPR due to increased risks. If membership of these categories is discovered, access will be terminated.",
+      faq_6_a: "The service is not provided to citizens and residents of China, North Korea, Israel, Afghanistan, Pakistan, Ukraine, Crimea, the DPR and the LPR due to sanctions restrictions, difficulties with payment systems and political risks. If membership of these categories is discovered, access will be terminated.",
       faq_7_q: "How to pay and get access?",
       faq_7_a: "Click the \"Choose\" button on the desired plan — a Telegram support chat (@WayGVPN) will open with a pre-filled message about the selected plan. I will help with payment and issue a personal access key within minutes.",
       faq_8_q: "Can I get a refund?",
@@ -1034,7 +1113,7 @@
       hero_title: "اتصال خصوصی<br>در <span class=\"gradient-text\">سطحی جدید</span>",
       hero_desc: "WayG VPN یک اتصال سریع و قابل اعتماد بر پایه VLESS + XHTTP + REALITY است. یک اشتراک برای همه دستگاه‌های شما، قیمت منصفانه و پشتیبانی از طرف سازنده.",
       hero_btn_primary: "انتخاب طرح", hero_btn_secondary: "چگونه کار می‌کند",
-      hero_note_1: "از 99 ₽ در ماه", hero_note_2: "تا 10 دستگاه", hero_note_3: "ویندوز، iOS، اندروید",
+      hero_note_1: "از 99 ₽ در ماه", hero_note_2: "تا 10 دستگاه", hero_note_3: "Windows, macOS, Linux, iOS, Android, TV",
       trust_1: "TLS 1.3", trust_2: "راه‌اندازی در ۲ دقیقه", trust_3: "پشتیبانی شخصی از طرف سازنده", trust_4: "سرورها در اروپا",
       protocol_label: "پشته فناوری",
       servers_tag: "زیرساخت", servers_title: "سرورهای ما",
@@ -1063,10 +1142,10 @@
       feature_4_desc: "من شخصاً پاسخ می‌دهم — بدون ربات و بدون پاسخ‌های قالبی. کمک می‌کنم تنظیمات را انجام دهید و هر مشکلی را مانند یک انسان حل کنید.",
       feature_5_title: "حداقل داده",
       feature_5_desc: "فقط حداقل داده‌های لازم پردازش می‌شود: شناسهٔ پیام‌رسان، مکاتبات و اسناد پرداخت. فهرست سایت‌های بازدیدشده نگه‌داشته نمی‌شود و محتوای ترافیک بررسی نمی‌شود.",
-      feature_6_title: "ویندوز، iOS، اندروید",
-      feature_6_desc: "ما روی سه پلتفرم اصلی کار می‌کنیم. یک حساب — تا 10 دستگاه به طور همزمان.",
+      feature_6_title: "همهٔ پلتفرم‌های اصلی",
+      feature_6_desc: "ویندوز، macOS، لینوکس، iOS، اندروید و همچنین Android TV و Apple TV. یک حساب — تا ۱۰ دستگاه هم‌زمان.",
       restriction_title: "محدودیت ارائه خدمات",
-      restriction_p1: "این سرویس به <strong>شهروندان و ساکنان چین، کره شمالی، اسرائیل، افغانستان، پاکستان، اوکراین، کریمه، DPR و LPR</strong> به دلیل ریسک‌های بالاتر ارائه نمی‌شود.",
+      restriction_p1: "این سرویس به <strong>شهروندان و ساکنان چین، کره شمالی، اسرائیل، افغانستان، پاکستان، اوکراین، کریمه، DPR و LPR</strong> به دلیل محدودیت‌های تحریمی، مشکلات سیستم‌های پرداخت و ریسک‌های سیاسی ارائه نمی‌شود.",
       restriction_p2: "همچنین این سرویس به دلیل محدودیت‌های پرداخت و حقوقی به <strong>شهروندان اسرائیل و افغانستان</strong> ارائه نمی‌شود.",
       restriction_p3: "در صورت تشخیص تعلق به دسته‌های ذکر شده، دسترسی به سرویس مسدود خواهد شد.",
       pricing_tag: "قیمت‌ها", pricing_title: "قیمت‌های ساده و منصفانه",
@@ -1077,11 +1156,12 @@
       pricing_feature_1: "همه سرورهای موجود", pricing_feature_2: "تا 10 دستگاه",
       pricing_feature_3: "ترافیک بدون محدودیت در هر طرح", pricing_feature_4: "پشتیبانی در پیام‌رسان‌ها",
       pricing_btn: "انتخاب",
+      apps_tag: "برنامه‌ها", apps_title: "برنامه را دانلود کنید", apps_desc: "اتصال از طریق برنامهٔ رایگان Happ انجام می‌شود. پلتفرم خود را انتخاب کنید.", apps_btn: "دانلود", apps_official: "همهٔ نسخه‌ها و پیوندهای به‌روز در وب‌سایت رسمی Happ (happ.su)", apps_note: "پس از پرداخت یک لینک شخصی دریافت می‌کنید و آن را در برنامه وارد می‌کنید.", news_tag: "اخبار", news_title: "تازه‌ها", news_1: "خرید و راه‌اندازی سرور در آلبانی (تیرانا) آغاز شد.", news_2: "قوانین استفاده به‌روزرسانی شد: بخش داده‌ها و فهرست محدودیت‌ها.", news_3: "اکنون برنامهٔ پیشنهادی برای اتصال Happ است.", news_foot: "اخبار بیشتر سرویس در کانال تلگرام است.",
       faq_tag: "پرسش و پاسخ", faq_title: "سوالات متداول",
       faq_1_q: "VLESS + XHTTP + REALITY چیست؟",
       faq_1_a: "این یک مجموعهٔ مدرن برای اتصال امن است. VLESS یک پروتکل سبک انتقال داده با سربار کم است. XHTTP ترنسپورتی است که روی HTTP/2 کار می‌کند. REALITY فناوری محافظت از اتصال بر پایهٔ TLS 1.3 است. در کنار هم سرعت بالا و رمزگذاری فراهم می‌کنند.",
       faq_2_q: "چگونه متصل شویم؟",
-      faq_2_a: "<strong>1.</strong> برنامه <strong>v2RayTun</strong> را دانلود کنید:<br>— اندروید: <a href=\"https://play.google.com/store/search?q=v2raytun&c=apps\" target=\"_blank\" rel=\"noopener\">Google Play</a><br>— iOS: <a href=\"https://apps.apple.com/us/app/v2raytun/id6476628951\" target=\"_blank\" rel=\"noopener\">App Store</a><br>— ویندوز: <a href=\"https://github.com/mdf45/v2raytun/releases\" target=\"_blank\" rel=\"noopener\">GitHub</a><br><br><strong>2.</strong> در تلگرام به من پیام دهید <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — لینک شخصی و کد QR را برایتان ارسال می‌کنم.<br><br><strong>3.</strong> در برنامه روی \"+\" بزنید → \"Import from clipboard\" → \"Connect\".",
+      faq_2_a: "<strong>1.</strong> برنامه <strong>Happ</strong> را برای پلتفرم خود از بخش <a href=\"#apps\">«برنامه‌ها»</a> دانلود کنید.<br><br><strong>2.</strong> در تلگرام به من پیام دهید <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — لینک شخصی و کد QR را برایتان ارسال می‌کنم.<br><br><strong>3.</strong> در برنامه روی «+» ← «چسباندن از کلیپ‌بورد» بزنید و متصل شوید.<br><br>در ویندوز حالت <strong>TUN</strong> را فعال کنید — این حالت کل ترافیک سیستم را از طریق VPN عبور می‌دهد، نه فقط مرورگر.",
       faq_3_q: "چه داده‌هایی را پردازش می‌کنید؟",
       faq_3_a: "فقط حداقل داده‌های لازم منحصراً برای ارائهٔ خدمات پردازش می‌شود: شناسهٔ پیام‌رسان (Telegram ID، نام کاربری)، تاریخچهٔ مکاتبات و اسناد پرداخت. در این میان فهرست سایت‌های بازدیدشده نگه‌داشته نمی‌شود و محتوای ترافیک بررسی نمی‌شود. پایگاه دادهٔ ساختاریافتهٔ جداگانه‌ای از کاربران ایجاد نمی‌شود. مکاتبات در پیام‌رسان‌ها (تلگرام، واتساپ، دیسکورد و دیگران) انجام می‌شود و تابع قوانین سرویس مربوطه است. جزئیات در بخش ۶ قوانین آمده است.",
       faq_4_q: "کدام کشورها در حال حاضر موجود هستند؟",
@@ -1089,7 +1169,7 @@
       faq_5_q: "چند دستگاه می‌توانند از حساب استفاده کنند؟",
       faq_5_a: "تا 10 دستگاه به طور همزمان در هر طرح. اشتراک می‌تواند توسط شما و اعضای خانواده‌تان که با شما زندگی می‌کنند استفاده شود. انتقال لینک/کلید شخصی به اشخاص ثالث توسط قوانین سرویس ممنوع است.",
       faq_6_q: "چه کسانی واجد شرایط استفاده از سرویس نیستند؟",
-      faq_6_a: "این سرویس به شهروندان و ساکنان چین، کره شمالی، اسرائیل، افغانستان، پاکستان، اوکراین، کریمه، DPR و LPR به دلیل ریسک‌های بالاتر ارائه نمی‌شود. در صورت مشخص شدن تعلق به این گروه‌ها، دسترسی قطع خواهد شد.",
+      faq_6_a: "این سرویس به شهروندان و ساکنان چین، کره شمالی، اسرائیل، افغانستان، پاکستان، اوکراین، کریمه، DPR و LPR به دلیل محدودیت‌های تحریمی، مشکلات سیستم‌های پرداخت و ریسک‌های سیاسی ارائه نمی‌شود. در صورت مشخص شدن تعلق به این گروه‌ها، دسترسی قطع خواهد شد.",
       faq_7_q: "چگونه پرداخت کنیم و دسترسی بگیریم؟",
       faq_7_a: "روی دکمه \"انتخاب\" در طرح مورد نظر کلیک کنید — یک چت پشتیبانی تلگرام (@WayGVPN) با پیام از پیش پر شده باز می‌شود. من در پرداخت کمک می‌کنم و ظرف چند دقیقه کلید دسترسی شخصی را صادر می‌کنم.",
       faq_8_q: "آیا می‌توانم بازپرداخت بگیرم؟",
@@ -1111,7 +1191,7 @@
       hero_title: "Connexion privée<br>à un <span class=\"gradient-text\">nouveau niveau</span>",
       hero_desc: "WayG VPN est une connexion rapide et fiable basée sur VLESS + XHTTP + REALITY. Un abonnement pour tous vos appareils, un prix honnête et un support du créateur.",
       hero_btn_primary: "Choisir un forfait", hero_btn_secondary: "Comment ça marche",
-      hero_note_1: "À partir de 99 ₽ / mois", hero_note_2: "Jusqu'à 10 appareils", hero_note_3: "Windows, iOS, Android",
+      hero_note_1: "À partir de 99 ₽ / mois", hero_note_2: "Jusqu'à 10 appareils", hero_note_3: "Windows, macOS, Linux, iOS, Android, TV",
       trust_1: "TLS 1.3", trust_2: "Configuration en 2 minutes", trust_3: "Support direct du créateur", trust_4: "Serveurs en Europe",
       protocol_label: "Stack technologique",
       servers_tag: "Infrastructure", servers_title: "Nos serveurs",
@@ -1140,10 +1220,10 @@
       feature_4_desc: "Je réponds personnellement — sans bots ni réponses standardisées. Je vous aide à configurer et à résoudre tout problème de manière humaine.",
       feature_5_title: "Minimum de données",
       feature_5_desc: "Seul le minimum nécessaire est traité : identifiant de messagerie, correspondance et documents de paiement. Aucun journal des sites visités n'est tenu, le contenu du trafic n'est pas analysé.",
-      feature_6_title: "Windows, iOS, Android",
-      feature_6_desc: "Nous fonctionnons sur trois plateformes principales. Un compte — jusqu'à 10 appareils simultanément.",
+      feature_6_title: "Toutes les plateformes",
+      feature_6_desc: "Windows, macOS, Linux, iOS, Android, ainsi qu'Android TV et Apple TV. Un compte — jusqu'à 10 appareils simultanément.",
       restriction_title: "Restrictions de service",
-      restriction_p1: "Le service n'est pas fourni aux <strong>citoyens et résidents de Chine, de Corée du Nord, d'Israël, d'Afghanistan, du Pakistan, d'Ukraine, de Crimée, de la RPD et de la RPL</strong> en raison de risques accrus.",
+      restriction_p1: "Le service n'est pas fourni aux <strong>citoyens et résidents de Chine, de Corée du Nord, d'Israël, d'Afghanistan, du Pakistan, d'Ukraine, de Crimée, de la RPD et de la RPL</strong> en raison de restrictions liées aux sanctions, de difficultés avec les systèmes de paiement et de risques politiques.",
       restriction_p2: "Le service n'est pas non plus fourni aux <strong>citoyens d'Israël et d'Afghanistan</strong> en raison de restrictions de paiement et juridiques.",
       restriction_p3: "En cas de détection d'une appartenance aux catégories spécifiées, l'accès au service sera bloqué.",
       pricing_tag: "Tarifs", pricing_title: "Des prix simples et honnêtes",
@@ -1154,11 +1234,12 @@
       pricing_feature_1: "Tous les serveurs disponibles", pricing_feature_2: "Jusqu'à 10 appareils",
       pricing_feature_3: "Trafic sans limite selon l'abonnement", pricing_feature_4: "Support dans les messageries",
       pricing_btn: "Choisir",
+      apps_tag: "Applications", apps_title: "Téléchargez l'application", apps_desc: "La connexion fonctionne via l'application gratuite Happ. Choisissez votre plateforme.", apps_btn: "Télécharger", apps_official: "Toutes les versions et liens à jour sur le site officiel de Happ (happ.su)", apps_note: "Vous recevrez un lien personnel après le paiement et l'importerez dans l'application.", news_tag: "Actualités", news_title: "Nouveautés", news_1: "L'achat et la configuration d'un serveur en Albanie (Tirana) ont commencé.", news_2: "Conditions d'utilisation mises à jour : section sur les données et liste des restrictions.", news_3: "L'application recommandée pour la connexion est désormais Happ.", news_foot: "Les autres actualités du service sont dans le canal Telegram.",
       faq_tag: "Questions & Réponses", faq_title: "Questions fréquentes",
       faq_1_q: "Qu'est-ce que VLESS + XHTTP + REALITY ?",
       faq_1_a: "C'est un stack moderne pour une connexion sécurisée. VLESS est un protocole de transfert de données léger avec un minimum de surcharge. XHTTP est un transport fonctionnant sur HTTP/2. REALITY est une technologie de protection de la connexion basée sur TLS 1.3. Ensemble, ils offrent une vitesse élevée et un chiffrement.",
       faq_2_q: "Comment se connecter ?",
-      faq_2_a: "<strong>1.</strong> Téléchargez l'application <strong>v2RayTun</strong> :<br>— Android : <a href=\"https://play.google.com/store/search?q=v2raytun&c=apps\" target=\"_blank\" rel=\"noopener\">Google Play</a><br>— iOS : <a href=\"https://apps.apple.com/us/app/v2raytun/id6476628951\" target=\"_blank\" rel=\"noopener\">App Store</a><br>— Windows : <a href=\"https://github.com/mdf45/v2raytun/releases\" target=\"_blank\" rel=\"noopener\">GitHub</a><br><br><strong>2.</strong> Envoyez-moi un message sur Telegram <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — je vous enverrai un lien personnel et un code QR.<br><br><strong>3.</strong> Dans l'application, appuyez sur « + » → « Import from clipboard » → « Connect ».<br><br>Sous Windows, sélectionnez le mode <strong>Tunnel</strong> au lieu de Proxy.",
+      faq_2_a: "<strong>1.</strong> Téléchargez l'application <strong>Happ</strong> pour votre plateforme dans la section <a href=\"#apps\">« Applications »</a>.<br><br><strong>2.</strong> Envoyez-moi un message sur Telegram <a href=\"https://t.me/WayGVPN\" target=\"_blank\" rel=\"noopener\">@WayGVPN</a> — je vous enverrai un lien personnel et un code QR.<br><br><strong>3.</strong> Dans l'application, appuyez sur « + » → « Coller depuis le presse-papiers » puis connectez-vous.<br><br>Sous Windows, activez le mode <strong>TUN</strong> — il fait passer tout le trafic du système par le VPN, pas seulement le navigateur.",
       faq_3_q: "Quelles données traitez-vous ?",
       faq_3_a: "Seul le minimum nécessaire de données est traité, exclusivement pour la fourniture des services : identifiant de messagerie (Telegram ID, nom d'utilisateur), historique de correspondance et documents de paiement. Aucun journal des sites visités n'est tenu et le contenu du trafic n'est pas analysé. Aucune base de données structurée distincte des Utilisateurs n'est créée. La correspondance se fait dans des messageries (Telegram, WhatsApp, Discord et autres) et est régie par les règles du service concerné. Voir la section 6 des conditions pour plus de détails.",
       faq_4_q: "Quels pays sont déjà disponibles ?",
@@ -1166,7 +1247,7 @@
       faq_5_q: "Combien d'appareils peuvent utiliser le compte ?",
       faq_5_a: "Jusqu'à 10 appareils simultanément sur n'importe quel forfait. L'abonnement peut être utilisé par vous et les membres de votre famille vivant avec vous. Le transfert du lien/clé personnel à des tiers est interdit.",
       faq_6_q: "Qui n'est pas éligible au service ?",
-      faq_6_a: "Le service n'est pas fourni aux citoyens et résidents de Chine, de Corée du Nord, d'Israël, d'Afghanistan, du Pakistan, d'Ukraine, de Crimée, de la RPD et de la RPL en raison de risques accrus. Si une telle appartenance est constatée, l'accès sera interrompu.",
+      faq_6_a: "Le service n'est pas fourni aux citoyens et résidents de Chine, de Corée du Nord, d'Israël, d'Afghanistan, du Pakistan, d'Ukraine, de Crimée, de la RPD et de la RPL en raison de restrictions liées aux sanctions, de difficultés avec les systèmes de paiement et de risques politiques. Si une telle appartenance est constatée, l'accès sera interrompu.",
       faq_7_q: "Comment payer et obtenir l'accès ?",
       faq_7_a: "Cliquez sur le bouton « Choisir » sur le forfait souhaité — un chat de support Telegram (@WayGVPN) s'ouvrira avec un message pré-rempli. Je vous aiderai avec le paiement et émettrai une clé d'accès personnelle en quelques minutes.",
       faq_8_q: "Puis-je obtenir un remboursement ?",
