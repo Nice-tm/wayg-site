@@ -54,7 +54,6 @@
   ::selection { background: rgba(107,157,255,0.3); color: #fff; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 
-  /* SKIP LINK */
   .skip-link {
     position: fixed; top: 8px; left: 8px; z-index: 200;
     padding: 10px 18px; border-radius: 10px;
@@ -65,7 +64,6 @@
   }
   .skip-link:focus { transform: translateY(0); }
 
-  /* SCROLL PROGRESS */
   .scroll-progress {
     position: fixed; top: 0; left: 0; right: 0; height: 2px;
     z-index: 150; background: transparent; pointer-events: none;
@@ -76,7 +74,6 @@
     transition: width 0.1s linear;
   }
 
-  /* BACK TO TOP */
   .back-top {
     position: fixed; right: 24px; bottom: 24px; z-index: 90;
     width: 46px; height: 46px; border-radius: 14px;
@@ -145,7 +142,6 @@
   .hero-note svg { color: var(--green); flex-shrink: 0; }
   .hero-note .dot { color: var(--muted-2); opacity: 0.5; }
 
-  /* TRUST ROW */
   .trust-row {
     margin-top: 44px;
     display: flex; flex-wrap: wrap; justify-content: center;
@@ -173,7 +169,7 @@
   .section-tag::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 8px var(--accent); }
   h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 600; letter-spacing: -0.035em; line-height: 1.1; margin-bottom: 16px; color: var(--text); }
   .section-head p { color: var(--muted); font-size: 17px; max-width: 640px; margin: 0 auto; line-height: 1.65; }
-  .servers { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; max-width: 800px; margin: 0 auto; }
+  .servers { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; max-width: 1080px; margin: 0 auto; }
   .server-card { padding: 32px; border-radius: 22px; background: var(--card); border: 1px solid var(--border-strong); position: relative; overflow: hidden; transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), border-color 0.4s; backdrop-filter: blur(20px); box-shadow: var(--shadow); }
   .server-card:hover { transform: translateY(-6px); border-color: rgba(107,157,255,0.35); }
   .server-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--status-color, var(--green)); opacity: 0.9; }
@@ -297,6 +293,7 @@
   .terms-body .muted { font-size: 14px; }
   .terms-body a { color: var(--accent); }
   .server-status { font-size: 12px; font-weight: 600; line-height: 1.3; color: var(--yellow); background: rgba(234,179,8,0.12); border: 1px solid rgba(234,179,8,0.3); border-radius: 999px; padding: 5px 12px; text-align: center; }
+  .server-status.considering { color: var(--orange); background: rgba(249,115,22,0.12); border-color: rgba(249,115,22,0.3); }
   .feature .btn { margin-top: 18px; }
   .apps-note { text-align: center; color: var(--muted); font-size: 14.5px; max-width: 560px; margin: 28px auto 0; line-height: 1.6; }
   .news-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
@@ -416,7 +413,7 @@
     <div class="section-head reveal">
       <div class="section-tag" data-i18n="servers_tag">Инфраструктура</div>
       <h2 data-i18n="servers_title">Наши серверы</h2>
-      <p data-i18n="servers_desc">Два сервера в Европе уже работают, третий сервер в Албании сейчас в процессе покупки и настройки.</p>
+      <p data-i18n="servers_desc">Два сервера в Европе уже работают, сервер в Албании в процессе покупки и настройки, Швейцария — на рассмотрении.</p>
     </div>
     <div class="servers">
       <div class="server-card reveal" style="--status-color: #22c55e;">
@@ -444,6 +441,15 @@
         <div class="server-meta">
           <div class="server-meta-row"><span data-i18n="server_protocol">Протокол</span><span>VLESS · XHTTP · REALITY</span></div>
           <div class="server-meta-row"><span data-i18n="server_speed">Пропускная способность</span><span data-i18n="server_speed_val_al">уточняется</span></div>
+        </div>
+      </div>
+      <div class="server-card reveal" style="--status-color: #f97316;">
+        <div class="server-head"><div class="server-flag">🇨🇭</div><span class="server-status considering" data-i18n="server_status_considering">На рассмотрении</span></div>
+        <h3 data-i18n="server_switzerland">Швейцария</h3>
+        <div class="server-city" data-i18n="server_switzerland_city">Цюрих · сервер</div>
+        <div class="server-meta">
+          <div class="server-meta-row"><span data-i18n="server_protocol">Протокол</span><span>VLESS · XHTTP · REALITY</span></div>
+          <div class="server-meta-row"><span data-i18n="server_speed">Пропускная способность</span><span data-i18n="server_speed_val_ch">уточняется</span></div>
         </div>
       </div>
     </div>
@@ -579,7 +585,7 @@
         </svg>
         <span data-i18n="restriction_title">Ограничение предоставления услуг</span>
       </div>
-      <p data-i18n-html="restriction_p1">Сервис не предоставляется <strong>гражданам и жителям Китая, Северной Кореи, Израиля, Афганистана, Пакистана, Украины, Крыма, ДНР и ЛНР</strong> в связи с санкционными ограничениями, сложностями с платёжными системами и политическими рисками.</p>
+      <p data-i18n-html="restriction_p1">Сервис не предоставляется <strong>гражданам и/или жителям Китая, Северной Кореи, Израиля, Афганистана, Пакистана, Украины, Крыма, ДНР и ЛНР</strong> в связи с санкционными ограничениями, сложностями с платёжными системами и политическими рисками.</p>
       <p class="blocked-note" data-i18n-html="restriction_p3">При выявлении принадлежности к указанным категориям доступ к сервису будет заблокирован.</p>
     </div>
   </div>
@@ -640,6 +646,7 @@
       <h2 data-i18n="news_title">Что нового</h2>
     </div>
     <div class="news-list">
+      <div class="news-item reveal"><time datetime="2026-10-10">10.10.2026</time><p data-i18n="news_4">Рассматривается возможность запуска сервера в Швейцарии (Цюрих).</p></div>
       <div class="news-item reveal"><time datetime="2026-10-10">10.10.2026</time><p data-i18n="news_3">Для подключения теперь рекомендуется приложение Happ.</p></div>
       <div class="news-item reveal"><time datetime="2026-10-10">10.10.2026</time><p data-i18n="news_1">Начата покупка и настройка сервера в Албании (Тирана).</p></div>
       <div class="news-item reveal"><time datetime="2026-10-09">09.10.2026</time><p data-i18n="news_2">Обновлены правила использования: раздел о данных и список ограничений.</p></div>
@@ -669,7 +676,7 @@
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" type="button" aria-expanded="false"><span data-i18n="faq_4_q">Какие страны уже доступны?</span><span class="faq-icon" aria-hidden="true">+</span></button>
-        <div class="faq-a-wrap"><div class="faq-a" data-i18n="faq_4_a">Сейчас работают два сервера: Испания (Мадрид) с пропускной способностью до 300 Мбит/с и Молдова (Кишинёв) с пропускной способностью до 250 Мбит/с. Третий сервер в Албании (Тирана) сейчас в процессе покупки и настройки, о его запуске я сообщу в Telegram-канале.</div></div>
+        <div class="faq-a-wrap"><div class="faq-a" data-i18n="faq_4_a">Сейчас работают два сервера: Испания (Мадрид) с пропускной способностью до 300 Мбит/с и Молдова (Кишинёв) с пропускной способностью до 250 Мбит/с. Сервер в Албании (Тирана) сейчас в процессе покупки и настройки, а Швейцария (Цюрих) рассматривается как следующая локация. О запусках сообщаю в Telegram-канале.</div></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" type="button" aria-expanded="false"><span data-i18n="faq_5_q">На скольких устройствах можно использовать аккаунт?</span><span class="faq-icon" aria-hidden="true">+</span></button>
@@ -677,7 +684,7 @@
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" type="button" aria-expanded="false"><span data-i18n="faq_6_q">Кому сервис не предоставляется?</span><span class="faq-icon" aria-hidden="true">+</span></button>
-        <div class="faq-a-wrap"><div class="faq-a" data-i18n="faq_6_a">Сервис не предоставляется гражданам и жителям Китая, Северной Кореи, Израиля, Афганистана, Пакистана, Украины, Крыма, ДНР и ЛНР в связи с санкционными ограничениями, сложностями с платёжными системами и политическими рисками. Если принадлежность к этим категориям выяснится, доступ будет прекращён.</div></div>
+        <div class="faq-a-wrap"><div class="faq-a" data-i18n="faq_6_a">Сервис не предоставляется гражданам и/или жителям Китая, Северной Кореи, Израиля, Афганистана, Пакистана, Украины, Крыма, ДНР и ЛНР в связи с санкционными ограничениями, сложностями с платёжными системами и политическими рисками. Если принадлежность к этим категориям выяснится, доступ будет прекращён.</div></div>
       </div>
       <div class="faq-item reveal">
         <button class="faq-q" type="button" aria-expanded="false"><span data-i18n="faq_7_q">Как оплатить и получить доступ?</span><span class="faq-icon" aria-hidden="true">+</span></button>
@@ -800,7 +807,7 @@
 <p>6.6. По законному запросу уполномоченных органов данные могут быть предоставлены в порядке, установленном законодательством РФ.</p>
 
 <h2 id="t-ru-restrictions">7. Ограничения доступа</h2>
-<p>Сервис не предоставляется гражданам и жителям Китая, Северной Кореи, Израиля, Афганистана, Пакистана, Украины, Крыма, ДНР и ЛНР в связи с санкционными ограничениями, сложностями с платёжными системами и политическими рисками. Если принадлежность к этим категориям выяснится, доступ будет прекращён.</p>
+<p>Сервис не предоставляется гражданам и/или жителям Китая, Северной Кореи, Израиля, Афганистана, Пакистана, Украины, Крыма, ДНР и ЛНР в связи с санкционными ограничениями, сложностями с платёжными системами и политическими рисками. Если принадлежность к этим категориям выяснится, доступ будет прекращён.</p>
 
 <h2 id="t-ru-liability">8. Ответственность</h2>
 <p>8.1. Сервис предоставляется «как есть». Бесперебойная работа не гарантируется. Исполнитель не отвечает за перебои из-за обстоятельств непреодолимой силы, действий провайдеров и третьих лиц.</p>
@@ -855,7 +862,7 @@
 <p>6.5. The site does not use cookies, trackers or analytics. The only third-party resource is Google Fonts.</p>
 <p>6.6. Upon a lawful request from authorized bodies, data may be provided in the manner established by the laws of the Russian Federation.</p>
 <h2 id="t-en-restrictions">7. Access restrictions</h2>
-<p>The Service is not provided to citizens and residents of China, North Korea, Israel, Afghanistan, Pakistan, Ukraine, Crimea, the DPR and the LPR due to sanctions restrictions, difficulties with payment systems and political risks. If membership of these categories is discovered, access will be terminated.</p>
+<p>The Service is not provided to citizens and/or residents of China, North Korea, Israel, Afghanistan, Pakistan, Ukraine, Crimea, the DPR and the LPR due to sanctions restrictions, difficulties with payment systems and political risks. If membership of these categories is discovered, access will be terminated.</p>
 <h2 id="t-en-liability">8. Liability</h2>
 <p>8.1. The Service is provided "as is". Uninterrupted operation is not guaranteed. The Provider is not liable for interruptions caused by force majeure, actions of providers or third parties.</p>
 <p>8.2. To the extent permitted by law, the Provider is not liable for the User's actions. Claims arising from the User's actions are settled by the User.</p>
@@ -883,11 +890,12 @@
       trust_1: "TLS 1.3", trust_2: "Настройка за 2 минуты", trust_3: "Поддержка лично от создателя", trust_4: "Серверы в Европе",
       protocol_label: "Стек технологий",
       servers_tag: "Инфраструктура", servers_title: "Наши серверы",
-      servers_desc: "Два сервера в Европе уже работают, третий сервер в Албании сейчас в процессе покупки и настройки.",
+      servers_desc: "Два сервера в Европе уже работают, сервер в Албании в процессе покупки и настройки, Швейцария — на рассмотрении.",
       server_active: "Активен",
       server_spain: "Испания", server_spain_city: "Мадрид · основной сервер",
       server_moldova: "Молдова", server_moldova_city: "Кишинёв · сервер",
       server_albania: "Албания", server_albania_city: "Тирана · сервер", server_speed_val_al: "уточняется", server_status_progress: "Ведётся покупка и настройка",
+      server_switzerland: "Швейцария", server_switzerland_city: "Цюрих · сервер", server_speed_val_ch: "уточняется", server_status_considering: "На рассмотрении",
       server_protocol: "Протокол", server_speed: "Пропускная способность",
       server_speed_val_es: "до 300 Мбит/с", server_speed_val_md: "до 250 Мбит/с",
       tech_tag: "Технология", tech_title: "Современный стек шифрования",
@@ -911,8 +919,7 @@
       feature_6_title: "Все популярные платформы",
       feature_6_desc: "Windows, macOS, Linux, iOS, Android, а также Android TV и Apple TV. Один аккаунт — до 10 устройств одновременно.",
       restriction_title: "Ограничение предоставления услуг",
-      restriction_p1: "Сервис не предоставляется <strong>гражданам и жителям Китая, Северной Кореи, Израиля, Афганистана, Пакистана, Украины, Крыма, ДНР и ЛНР</strong> в связи с санкционными ограничениями, сложностями с платёжными системами и политическими рисками.",
-      restriction_p2: "Также сервис не предоставляется <strong>гражданам Израиля и Афганистана</strong> в связи с платёжными и правовыми ограничениями.",
+      restriction_p1: "Сервис не предоставляется <strong>гражданам и/или жителям Китая, Северной Кореи, Израиля, Афганистана, Пакистана, Украины, Крыма, ДНР и ЛНР</strong> в связи с санкционными ограничениями, сложностями с платёжными системами и политическими рисками.",
       restriction_p3: "При выявлении принадлежности к указанным категориям доступ к сервису будет заблокирован.",
       pricing_tag: "Тарифы", pricing_title: "Простые и честные цены",
       pricing_desc: "Одна подписка — до 10 устройств. Без скрытых платежей и автоматических списаний.",
@@ -922,7 +929,7 @@
       pricing_feature_1: "Все доступные серверы", pricing_feature_2: "До 10 устройств",
       pricing_feature_3: "Трафик без лимита по тарифу", pricing_feature_4: "Поддержка в мессенджерах",
       pricing_btn: "Выбрать",
-      apps_tag: "Приложения", apps_title: "Скачайте приложение", apps_desc: "Подключение работает через бесплатное приложение Happ. Выберите свою платформу.", apps_btn: "Скачать", apps_official: "Все версии и актуальные ссылки — на официальном сайте Happ (happ.su)", apps_note: "Персональную ссылку для подключения вы получите после оплаты и импортируете её в приложение.", news_tag: "Новости", news_title: "Что нового", news_1: "Начата покупка и настройка сервера в Албании (Тирана).", news_2: "Обновлены правила использования: раздел о данных и список ограничений.", news_3: "Для подключения теперь рекомендуется приложение Happ.", news_foot: "Остальные новости сервиса — в Telegram-канале.",
+      apps_tag: "Приложения", apps_title: "Скачайте приложение", apps_desc: "Подключение работает через бесплатное приложение Happ. Выберите свою платформу.", apps_btn: "Скачать", apps_official: "Все версии и актуальные ссылки — на официальном сайте Happ (happ.su)", apps_note: "Персональную ссылку для подключения вы получите после оплаты и импортируете её в приложение.", news_tag: "Новости", news_title: "Что нового", news_1: "Начата покупка и настройка сервера в Албании (Тирана).", news_2: "Обновлены правила использования: раздел о данных и список ограничений.", news_3: "Для подключения теперь рекомендуется приложение Happ.", news_4: "Рассматривается возможность запуска сервера в Швейцарии (Цюрих).", news_foot: "Остальные новости сервиса — в Telegram-канале.",
       faq_tag: "Вопросы и ответы", faq_title: "Частые вопросы",
       faq_1_q: "Что такое VLESS + XHTTP + REALITY?",
       faq_1_a: "Это современный стек для защищённого соединения. VLESS — лёгкий протокол передачи данных с минимальными накладными расходами. XHTTP — транспорт, работающий поверх HTTP/2. REALITY — технология защиты соединения на базе TLS 1.3. Вместе они обеспечивают высокую скорость и шифрование.",
@@ -931,11 +938,11 @@
       faq_3_q: "Какие данные вы обрабатываете?",
       faq_3_a: "Обрабатывается минимально необходимый объём данных исключительно для оказания услуг: идентификатор в мессенджере (Telegram ID, username), историю переписки и платёжные документы. При этом не ведётся журнал посещённых сайтов и не анализируется содержимое трафика. Отдельные структурированные базы данных Пользователей не создаются. Переписка ведётся в мессенджерах (Telegram, WhatsApp, Discord и других) и подчиняется правилам соответствующего сервиса. Подробности — в разделе 6 правил.",
       faq_4_q: "Какие страны уже доступны?",
-      faq_4_a: "Сейчас работают два сервера: Испания (Мадрид) с пропускной способностью до 300 Мбит/с и Молдова (Кишинёв) с пропускной способностью до 250 Мбит/с. Третий сервер в Албании (Тирана) сейчас в процессе покупки и настройки, о его запуске я сообщу в Telegram-канале.",
+      faq_4_a: "Сейчас работают два сервера: Испания (Мадрид) с пропускной способностью до 300 Мбит/с и Молдова (Кишинёв) с пропускной способностью до 250 Мбит/с. Сервер в Албании (Тирана) сейчас в процессе покупки и настройки, а Швейцария (Цюрих) рассматривается как следующая локация. О запусках сообщаю в Telegram-канале.",
       faq_5_q: "На скольких устройствах можно использовать аккаунт?",
       faq_5_a: "До 10 устройств одновременно на любом тарифе. Подпиской могут пользоваться вы и члены вашей семьи, проживающие с вами совместно. Передача персональной ссылки/ключа третьим лицам запрещена правилами сервиса.",
       faq_6_q: "Кому сервис не предоставляется?",
-      faq_6_a: "Сервис не предоставляется гражданам и жителям Китая, Северной Кореи, Израиля, Афганистана, Пакистана, Украины, Крыма, ДНР и ЛНР в связи с санкционными ограничениями, сложностями с платёжными системами и политическими рисками. Если принадлежность к этим категориям выяснится, доступ будет прекращён.",
+      faq_6_a: "Сервис не предоставляется гражданам и/или жителям Китая, Северной Кореи, Израиля, Афганистана, Пакистана, Украины, Крыма, ДНР и ЛНР в связи с санкционными ограничениями, сложностями с платёжными системами и политическими рисками. Если принадлежность к этим категориям выяснится, доступ будет прекращён.",
       faq_7_q: "Как оплатить и получить доступ?",
       faq_7_a: "Нажмите кнопку «Выбрать» на нужном тарифе — откроется чат с поддержкой в Telegram (@WayGVPN) с уже подставленным сообщением о выбранном тарифе. Я помогу с оплатой и выдам персональный ключ доступа в течение нескольких минут.",
       faq_8_q: "Можно ли вернуть деньги?",
@@ -961,11 +968,12 @@
       trust_1: "TLS 1.3", trust_2: "Налаштування за 2 хвилини", trust_3: "Підтримка особисто від творця", trust_4: "Сервери в Європі",
       protocol_label: "Стек технологій",
       servers_tag: "Інфраструктура", servers_title: "Наші сервери",
-      servers_desc: "Два сервери в Європі вже працюють, третій сервер в Албанії зараз купується та налаштовується.",
+      servers_desc: "Два сервери в Європі вже працюють, сервер в Албанії в процесі купівлі та налаштування, Швейцарія — на розгляді.",
       server_active: "Активний",
       server_spain: "Іспанія", server_spain_city: "Мадрид · основний сервер",
       server_moldova: "Молдова", server_moldova_city: "Кишинів · сервер",
       server_albania: "Албанія", server_albania_city: "Тирана · сервер", server_speed_val_al: "уточнюється", server_status_progress: "Триває купівля та налаштування",
+      server_switzerland: "Швейцарія", server_switzerland_city: "Цюрих · сервер", server_speed_val_ch: "уточнюється", server_status_considering: "На розгляді",
       server_protocol: "Протокол", server_speed: "Пропускна здатність",
       server_speed_val_es: "до 300 Мбіт/с", server_speed_val_md: "до 250 Мбіт/с",
       tech_tag: "Технологія", tech_title: "Сучасний стек шифрування",
@@ -989,8 +997,7 @@
       feature_6_title: "Усі популярні платформи",
       feature_6_desc: "Windows, macOS, Linux, iOS, Android, а також Android TV і Apple TV. Один акаунт — до 10 пристроїв одночасно.",
       restriction_title: "Обмеження надання послуг",
-      restriction_p1: "Сервіс не надається <strong>громадянам і жителям Китаю, Північної Кореї, Ізраїлю, Афганістану, Пакистану, України, Криму, ДНР і ЛНР</strong> у зв'язку із санкційними обмеженнями, складнощами з платіжними системами та політичними ризиками.",
-      restriction_p2: "Також сервіс не надається <strong>громадянам Ізраїлю та Афганістану</strong> у зв'язку з платіжними та правовими обмеженнями.",
+      restriction_p1: "Сервіс не надається <strong>громадянам та/або жителям Китаю, Північної Кореї, Ізраїлю, Афганістану, Пакистану, України, Криму, ДНР і ЛНР</strong> у зв'язку із санкційними обмеженнями, складнощами з платіжними системами та політичними ризиками.",
       restriction_p3: "При виявленні належності до зазначених категорій доступ до сервісу буде заблоковано.",
       pricing_tag: "Тарифи", pricing_title: "Прості та чесні ціни",
       pricing_desc: "Одна підписка — до 10 пристроїв. Без прихованих платежів і автоматичних списань.",
@@ -1000,7 +1007,7 @@
       pricing_feature_1: "Всі доступні сервери", pricing_feature_2: "До 10 пристроїв",
       pricing_feature_3: "Трафік без ліміту за тарифом", pricing_feature_4: "Підтримка в месенджерах",
       pricing_btn: "Обрати",
-      apps_tag: "Застосунки", apps_title: "Завантажте застосунок", apps_desc: "Підключення працює через безкоштовний застосунок Happ. Оберіть свою платформу.", apps_btn: "Завантажити", apps_official: "Усі версії та актуальні посилання — на офіційному сайті Happ (happ.su)", apps_note: "Персональне посилання для підключення ви отримаєте після оплати та імпортуєте його в застосунок.", news_tag: "Новини", news_title: "Що нового", news_1: "Розпочато купівлю та налаштування сервера в Албанії (Тирана).", news_2: "Оновлено правила використання: розділ про дані та список обмежень.", news_3: "Для підключення тепер рекомендується застосунок Happ.", news_foot: "Решта новин сервісу — в Telegram-каналі.",
+      apps_tag: "Застосунки", apps_title: "Завантажте застосунок", apps_desc: "Підключення працює через безкоштовний застосунок Happ. Оберіть свою платформу.", apps_btn: "Завантажити", apps_official: "Усі версії та актуальні посилання — на офіційному сайті Happ (happ.su)", apps_note: "Персональне посилання для підключення ви отримаєте після оплати та імпортуєте його в застосунок.", news_tag: "Новини", news_title: "Що нового", news_1: "Розпочато купівлю та налаштування сервера в Албанії (Тирана).", news_2: "Оновлено правила використання: розділ про дані та список обмежень.", news_3: "Для підключення тепер рекомендується застосунок Happ.", news_4: "Розглядається можливість запуску сервера у Швейцарії (Цюрих).", news_foot: "Решта новин сервісу — в Telegram-каналі.",
       faq_tag: "Питання та відповіді", faq_title: "Часті питання",
       faq_1_q: "Що таке VLESS + XHTTP + REALITY?",
       faq_1_a: "Це сучасний стек для захищеного з'єднання. VLESS — легкий протокол передачі даних з мінімальними накладними витратами. XHTTP — транспорт, що працює поверх HTTP/2. REALITY — технологія захисту з'єднання на базі TLS 1.3. Разом вони забезпечують високу швидкість і шифрування.",
@@ -1009,11 +1016,11 @@
       faq_3_q: "Які дані ви обробляєте?",
       faq_3_a: "Обробляється лише мінімально необхідний обсяг даних виключно для надання послуг: ідентифікатор у месенджері (Telegram ID, username), історію листування та платіжні документи. При цьому не ведеться журнал відвіданих сайтів і не аналізується вміст трафіку. Окремі структуровані бази даних Користувачів не створюються. Листування ведеться в месенджерах (Telegram, WhatsApp, Discord та інших) і підкоряється правилам відповідного сервісу. Подробиці — в розділі 6 правил.",
       faq_4_q: "Які країни вже доступні?",
-      faq_4_a: "Зараз працюють два сервери: Іспанія (Мадрид) з пропускною здатністю до 300 Мбіт/с і Молдова (Кишинів) з пропускною здатністю до 250 Мбіт/с. Третій сервер в Албанії (Тирана) зараз купується та налаштовується, про запуск повідомлю в Telegram-каналі.",
+      faq_4_a: "Зараз працюють два сервери: Іспанія (Мадрид) з пропускною здатністю до 300 Мбіт/с і Молдова (Кишинів) з пропускною здатністю до 250 Мбіт/с. Сервер в Албанії (Тирана) зараз купується та налаштовується, а Швейцарія (Цюрих) розглядається як наступна локація. Про запуски повідомляю в Telegram-каналі.",
       faq_5_q: "На скількох пристроях можна використовувати акаунт?",
       faq_5_a: "До 10 пристроїв одночасно на будь-якому тарифі. Підпискою можуть користуватися ви та члени вашої сім'ї, які проживають з вами спільно. Передача персонального посилання/ключа третім особам заборонена правилами сервісу.",
       faq_6_q: "Кому сервіс не надається?",
-      faq_6_a: "Сервіс не надається громадянам і жителям Китаю, Північної Кореї, Ізраїлю, Афганістану, Пакистану, України, Криму, ДНР і ЛНР у зв'язку із санкційними обмеженнями, складнощами з платіжними системами та політичними ризиками. Якщо належність до цих категорій з'ясується, доступ буде припинено.",
+      faq_6_a: "Сервіс не надається громадянам та/або жителям Китаю, Північної Кореї, Ізраїлю, Афганістану, Пакистану, України, Криму, ДНР і ЛНР у зв'язку із санкційними обмеженнями, складнощами з платіжними системами та політичними ризиками. Якщо належність до цих категорій з'ясується, доступ буде припинено.",
       faq_7_q: "Як оплатити та отримати доступ?",
       faq_7_a: "Натисніть кнопку «Обрати» на потрібному тарифі — відкриється чат з підтримкою в Telegram (@WayGVPN) з уже підставленим повідомленням про обраний тариф. Я допоможу з оплатою та видам персональний ключ доступу протягом кількох хвилин.",
       faq_8_q: "Чи можна повернути гроші?",
@@ -1039,11 +1046,12 @@
       trust_1: "TLS 1.3", trust_2: "Setup in 2 minutes", trust_3: "Support directly from the creator", trust_4: "Servers in Europe",
       protocol_label: "Technology stack",
       servers_tag: "Infrastructure", servers_title: "Our servers",
-      servers_desc: "Two servers in Europe are already running; a third server in Albania is currently being purchased and set up.",
+      servers_desc: "Two servers in Europe are already running; one in Albania is being purchased and set up, and Switzerland is under consideration.",
       server_active: "Active",
       server_spain: "Spain", server_spain_city: "Madrid · primary server",
       server_moldova: "Moldova", server_moldova_city: "Chisinau · server",
       server_albania: "Albania", server_albania_city: "Tirana · server", server_speed_val_al: "to be confirmed", server_status_progress: "Purchase and setup in progress",
+      server_switzerland: "Switzerland", server_switzerland_city: "Zurich · server", server_speed_val_ch: "to be confirmed", server_status_considering: "Under consideration",
       server_protocol: "Protocol", server_speed: "Bandwidth",
       server_speed_val_es: "up to 300 Mbps", server_speed_val_md: "up to 250 Mbps",
       tech_tag: "Technology", tech_title: "Modern encryption stack",
@@ -1067,8 +1075,7 @@
       feature_6_title: "All major platforms",
       feature_6_desc: "Windows, macOS, Linux, iOS, Android, plus Android TV and Apple TV. One account — up to 10 devices at once.",
       restriction_title: "Service Restrictions",
-      restriction_p1: "The service is not provided to <strong>citizens and residents of China, North Korea, Israel, Afghanistan, Pakistan, Ukraine, Crimea, the DPR and the LPR</strong> due to sanctions restrictions, difficulties with payment systems and political risks.",
-      restriction_p2: "The service is also not provided to <strong>citizens of Israel and Afghanistan</strong> due to payment and legal restrictions.",
+      restriction_p1: "The service is not provided to <strong>citizens and/or residents of China, North Korea, Israel, Afghanistan, Pakistan, Ukraine, Crimea, the DPR and the LPR</strong> due to sanctions restrictions, difficulties with payment systems and political risks.",
       restriction_p3: "If affiliation with the specified categories is detected, access to the service will be blocked.",
       pricing_tag: "Pricing", pricing_title: "Simple and honest pricing",
       pricing_desc: "One subscription — up to 10 devices. No hidden fees or automatic charges.",
@@ -1078,7 +1085,7 @@
       pricing_feature_1: "All available servers", pricing_feature_2: "Up to 10 devices",
       pricing_feature_3: "Traffic unlimited by plan", pricing_feature_4: "Support in messengers",
       pricing_btn: "Choose",
-      apps_tag: "Apps", apps_title: "Download the app", apps_desc: "Connection works through the free Happ app. Pick your platform.", apps_btn: "Download", apps_official: "All versions and current links are on the official Happ website (happ.su)", apps_note: "You will receive a personal link after payment and import it into the app.", news_tag: "News", news_title: "What's new", news_1: "Purchase and setup of a server in Albania (Tirana) has started.", news_2: "Terms of use updated: the data section and the list of restrictions.", news_3: "The recommended connection app is now Happ.", news_foot: "More service news is in the Telegram channel.",
+      apps_tag: "Apps", apps_title: "Download the app", apps_desc: "Connection works through the free Happ app. Pick your platform.", apps_btn: "Download", apps_official: "All versions and current links are on the official Happ website (happ.su)", apps_note: "You will receive a personal link after payment and import it into the app.", news_tag: "News", news_title: "What's new", news_1: "Purchase and setup of a server in Albania (Tirana) has started.", news_2: "Terms of use updated: the data section and the list of restrictions.", news_3: "The recommended connection app is now Happ.", news_4: "Launching a server in Switzerland (Zurich) is under consideration.", news_foot: "More service news is in the Telegram channel.",
       faq_tag: "Q&A", faq_title: "Frequently asked questions",
       faq_1_q: "What is VLESS + XHTTP + REALITY?",
       faq_1_a: "This is a modern stack for a secure connection. VLESS is a lightweight data transfer protocol with minimal overhead. XHTTP is a transport operating over HTTP/2. REALITY is a connection protection technology based on TLS 1.3. Together they provide high speed and encryption.",
@@ -1087,11 +1094,11 @@
       faq_3_q: "What data do you process?",
       faq_3_a: "The minimum necessary amount of data is processed solely to provide the services: the messenger identifier (Telegram ID, username), correspondence history and payment documents. No log of visited sites is kept and traffic content is not inspected. No separate structured databases of Users are created. Correspondence takes place in messengers (Telegram, WhatsApp, Discord and others) and is governed by the rules of the respective service. See section 6 of the terms for details.",
       faq_4_q: "Which countries are already available?",
-      faq_4_a: "Two servers are running now: Spain (Madrid) with bandwidth up to 300 Mbps and Moldova (Chisinau) with bandwidth up to 250 Mbps. A third server in Albania (Tirana) is currently being purchased and set up; I will announce its launch in the Telegram channel.",
+      faq_4_a: "Two servers are running now: Spain (Madrid) with bandwidth up to 300 Mbps and Moldova (Chisinau) with bandwidth up to 250 Mbps. A server in Albania (Tirana) is currently being purchased and set up, and Switzerland (Zurich) is under consideration as the next location. I announce launches in the Telegram channel.",
       faq_5_q: "How many devices can use the account?",
       faq_5_a: "Up to 10 devices simultaneously on any plan. The subscription can be used by you and your family members living with you. Transferring the personal link/key to third parties is prohibited by the service rules.",
       faq_6_q: "Who is not eligible for the service?",
-      faq_6_a: "The service is not provided to citizens and residents of China, North Korea, Israel, Afghanistan, Pakistan, Ukraine, Crimea, the DPR and the LPR due to sanctions restrictions, difficulties with payment systems and political risks. If membership of these categories is discovered, access will be terminated.",
+      faq_6_a: "The service is not provided to citizens and/or residents of China, North Korea, Israel, Afghanistan, Pakistan, Ukraine, Crimea, the DPR and the LPR due to sanctions restrictions, difficulties with payment systems and political risks. If membership of these categories is discovered, access will be terminated.",
       faq_7_q: "How to pay and get access?",
       faq_7_a: "Click the \"Choose\" button on the desired plan — a Telegram support chat (@WayGVPN) will open with a pre-filled message about the selected plan. I will help with payment and issue a personal access key within minutes.",
       faq_8_q: "Can I get a refund?",
@@ -1117,11 +1124,12 @@
       trust_1: "TLS 1.3", trust_2: "راه‌اندازی در ۲ دقیقه", trust_3: "پشتیبانی شخصی از طرف سازنده", trust_4: "سرورها در اروپا",
       protocol_label: "پشته فناوری",
       servers_tag: "زیرساخت", servers_title: "سرورهای ما",
-      servers_desc: "دو سرور در اروپا هم‌اکنون فعال‌اند و سرور سوم در آلبانی در حال خرید و راه‌اندازی است.",
+      servers_desc: "دو سرور در اروپا هم‌اکنون فعال‌اند، سرور آلبانی در حال خرید و راه‌اندازی است و سوئیس در حال بررسی است.",
       server_active: "فعال",
       server_spain: "اسپانیا", server_spain_city: "مادرید · سرور اصلی",
       server_moldova: "مولداوی", server_moldova_city: "کیشینف · سرور",
       server_albania: "آلبانی", server_albania_city: "تیرانا · سرور", server_speed_val_al: "در حال تعیین", server_status_progress: "در حال خرید و راه‌اندازی",
+      server_switzerland: "سوئیس", server_switzerland_city: "زوریخ · سرور", server_speed_val_ch: "در حال تعیین", server_status_considering: "در حال بررسی",
       server_protocol: "پروتکل", server_speed: "پهنای باند",
       server_speed_val_es: "تا 300 مگابیت بر ثانیه", server_speed_val_md: "تا 250 مگابیت بر ثانیه",
       tech_tag: "فناوری", tech_title: "پشته رمزنگاری مدرن",
@@ -1145,8 +1153,7 @@
       feature_6_title: "همهٔ پلتفرم‌های اصلی",
       feature_6_desc: "ویندوز، macOS، لینوکس، iOS، اندروید و همچنین Android TV و Apple TV. یک حساب — تا ۱۰ دستگاه هم‌زمان.",
       restriction_title: "محدودیت ارائه خدمات",
-      restriction_p1: "این سرویس به <strong>شهروندان و ساکنان چین، کره شمالی، اسرائیل، افغانستان، پاکستان، اوکراین، کریمه، DPR و LPR</strong> به دلیل محدودیت‌های تحریمی، مشکلات سیستم‌های پرداخت و ریسک‌های سیاسی ارائه نمی‌شود.",
-      restriction_p2: "همچنین این سرویس به دلیل محدودیت‌های پرداخت و حقوقی به <strong>شهروندان اسرائیل و افغانستان</strong> ارائه نمی‌شود.",
+      restriction_p1: "این سرویس به <strong>شهروندان و/یا ساکنان چین، کره شمالی، اسرائیل، افغانستان، پاکستان، اوکراین، کریمه، DPR و LPR</strong> به دلیل محدودیت‌های تحریمی، مشکلات سیستم‌های پرداخت و ریسک‌های سیاسی ارائه نمی‌شود.",
       restriction_p3: "در صورت تشخیص تعلق به دسته‌های ذکر شده، دسترسی به سرویس مسدود خواهد شد.",
       pricing_tag: "قیمت‌ها", pricing_title: "قیمت‌های ساده و منصفانه",
       pricing_desc: "یک اشتراک — تا 10 دستگاه. بدون هزینه پنهان یا شارژ خودکار.",
@@ -1156,7 +1163,7 @@
       pricing_feature_1: "همه سرورهای موجود", pricing_feature_2: "تا 10 دستگاه",
       pricing_feature_3: "ترافیک بدون محدودیت در هر طرح", pricing_feature_4: "پشتیبانی در پیام‌رسان‌ها",
       pricing_btn: "انتخاب",
-      apps_tag: "برنامه‌ها", apps_title: "برنامه را دانلود کنید", apps_desc: "اتصال از طریق برنامهٔ رایگان Happ انجام می‌شود. پلتفرم خود را انتخاب کنید.", apps_btn: "دانلود", apps_official: "همهٔ نسخه‌ها و پیوندهای به‌روز در وب‌سایت رسمی Happ (happ.su)", apps_note: "پس از پرداخت یک لینک شخصی دریافت می‌کنید و آن را در برنامه وارد می‌کنید.", news_tag: "اخبار", news_title: "تازه‌ها", news_1: "خرید و راه‌اندازی سرور در آلبانی (تیرانا) آغاز شد.", news_2: "قوانین استفاده به‌روزرسانی شد: بخش داده‌ها و فهرست محدودیت‌ها.", news_3: "اکنون برنامهٔ پیشنهادی برای اتصال Happ است.", news_foot: "اخبار بیشتر سرویس در کانال تلگرام است.",
+      apps_tag: "برنامه‌ها", apps_title: "برنامه را دانلود کنید", apps_desc: "اتصال از طریق برنامهٔ رایگان Happ انجام می‌شود. پلتفرم خود را انتخاب کنید.", apps_btn: "دانلود", apps_official: "همهٔ نسخه‌ها و پیوندهای به‌روز در وب‌سایت رسمی Happ (happ.su)", apps_note: "پس از پرداخت یک لینک شخصی دریافت می‌کنید و آن را در برنامه وارد می‌کنید.", news_tag: "اخبار", news_title: "تازه‌ها", news_1: "خرید و راه‌اندازی سرور در آلبانی (تیرانا) آغاز شد.", news_2: "قوانین استفاده به‌روزرسانی شد: بخش داده‌ها و فهرست محدودیت‌ها.", news_3: "اکنون برنامهٔ پیشنهادی برای اتصال Happ است.", news_4: "راه‌اندازی سرور در سوئیس (زوریخ) در حال بررسی است.", news_foot: "اخبار بیشتر سرویس در کانال تلگرام است.",
       faq_tag: "پرسش و پاسخ", faq_title: "سوالات متداول",
       faq_1_q: "VLESS + XHTTP + REALITY چیست؟",
       faq_1_a: "این یک مجموعهٔ مدرن برای اتصال امن است. VLESS یک پروتکل سبک انتقال داده با سربار کم است. XHTTP ترنسپورتی است که روی HTTP/2 کار می‌کند. REALITY فناوری محافظت از اتصال بر پایهٔ TLS 1.3 است. در کنار هم سرعت بالا و رمزگذاری فراهم می‌کنند.",
@@ -1165,11 +1172,11 @@
       faq_3_q: "چه داده‌هایی را پردازش می‌کنید؟",
       faq_3_a: "فقط حداقل داده‌های لازم منحصراً برای ارائهٔ خدمات پردازش می‌شود: شناسهٔ پیام‌رسان (Telegram ID، نام کاربری)، تاریخچهٔ مکاتبات و اسناد پرداخت. در این میان فهرست سایت‌های بازدیدشده نگه‌داشته نمی‌شود و محتوای ترافیک بررسی نمی‌شود. پایگاه دادهٔ ساختاریافتهٔ جداگانه‌ای از کاربران ایجاد نمی‌شود. مکاتبات در پیام‌رسان‌ها (تلگرام، واتساپ، دیسکورد و دیگران) انجام می‌شود و تابع قوانین سرویس مربوطه است. جزئیات در بخش ۶ قوانین آمده است.",
       faq_4_q: "کدام کشورها در حال حاضر موجود هستند؟",
-      faq_4_a: "اکنون دو سرور فعال است: اسپانیا (مادرید) با پهنای باند تا ۳۰۰ مگابیت بر ثانیه و مولداوی (کیشینف) با پهنای باند تا ۲۵۰ مگابیت بر ثانیه. سرور سوم در آلبانی (تیرانا) در حال خرید و راه‌اندازی است و راه‌اندازی آن را در کانال تلگرام اعلام می‌کنم.",
+      faq_4_a: "اکنون دو سرور فعال است: اسپانیا (مادرید) با پهنای باند تا ۳۰۰ مگابیت بر ثانیه و مولداوی (کیشینف) با پهنای باند تا ۲۵۰ مگابیت بر ثانیه. سرور آلبانی (تیرانا) در حال خرید و راه‌اندازی است و سوئیس (زوریخ) به عنوان مقصد بعدی در حال بررسی است. راه‌اندازی‌ها را در کانال تلگرام اعلام می‌کنم.",
       faq_5_q: "چند دستگاه می‌توانند از حساب استفاده کنند؟",
       faq_5_a: "تا 10 دستگاه به طور همزمان در هر طرح. اشتراک می‌تواند توسط شما و اعضای خانواده‌تان که با شما زندگی می‌کنند استفاده شود. انتقال لینک/کلید شخصی به اشخاص ثالث توسط قوانین سرویس ممنوع است.",
       faq_6_q: "چه کسانی واجد شرایط استفاده از سرویس نیستند؟",
-      faq_6_a: "این سرویس به شهروندان و ساکنان چین، کره شمالی، اسرائیل، افغانستان، پاکستان، اوکراین، کریمه، DPR و LPR به دلیل محدودیت‌های تحریمی، مشکلات سیستم‌های پرداخت و ریسک‌های سیاسی ارائه نمی‌شود. در صورت مشخص شدن تعلق به این گروه‌ها، دسترسی قطع خواهد شد.",
+      faq_6_a: "این سرویس به شهروندان و/یا ساکنان چین، کره شمالی، اسرائیل، افغانستان، پاکستان، اوکراین، کریمه، DPR و LPR به دلیل محدودیت‌های تحریمی، مشکلات سیستم‌های پرداخت و ریسک‌های سیاسی ارائه نمی‌شود. در صورت مشخص شدن تعلق به این گروه‌ها، دسترسی قطع خواهد شد.",
       faq_7_q: "چگونه پرداخت کنیم و دسترسی بگیریم؟",
       faq_7_a: "روی دکمه \"انتخاب\" در طرح مورد نظر کلیک کنید — یک چت پشتیبانی تلگرام (@WayGVPN) با پیام از پیش پر شده باز می‌شود. من در پرداخت کمک می‌کنم و ظرف چند دقیقه کلید دسترسی شخصی را صادر می‌کنم.",
       faq_8_q: "آیا می‌توانم بازپرداخت بگیرم؟",
@@ -1195,11 +1202,12 @@
       trust_1: "TLS 1.3", trust_2: "Configuration en 2 minutes", trust_3: "Support direct du créateur", trust_4: "Serveurs en Europe",
       protocol_label: "Stack technologique",
       servers_tag: "Infrastructure", servers_title: "Nos serveurs",
-      servers_desc: "Deux serveurs en Europe sont déjà en service ; un troisième serveur en Albanie est en cours d'achat et de configuration.",
+      servers_desc: "Deux serveurs en Europe sont déjà en service, un serveur en Albanie est en cours d'achat et de configuration, et la Suisse est à l'étude.",
       server_active: "Actif",
       server_spain: "Espagne", server_spain_city: "Madrid · serveur principal",
       server_moldova: "Moldavie", server_moldova_city: "Chisinau · serveur",
       server_albania: "Albanie", server_albania_city: "Tirana · serveur", server_speed_val_al: "à préciser", server_status_progress: "Achat et configuration en cours",
+      server_switzerland: "Suisse", server_switzerland_city: "Zurich · serveur", server_speed_val_ch: "à préciser", server_status_considering: "À l'étude",
       server_protocol: "Protocole", server_speed: "Bande passante",
       server_speed_val_es: "jusqu'à 300 Mbps", server_speed_val_md: "jusqu'à 250 Mbps",
       tech_tag: "Technologie", tech_title: "Stack de chiffrement moderne",
@@ -1223,8 +1231,7 @@
       feature_6_title: "Toutes les plateformes",
       feature_6_desc: "Windows, macOS, Linux, iOS, Android, ainsi qu'Android TV et Apple TV. Un compte — jusqu'à 10 appareils simultanément.",
       restriction_title: "Restrictions de service",
-      restriction_p1: "Le service n'est pas fourni aux <strong>citoyens et résidents de Chine, de Corée du Nord, d'Israël, d'Afghanistan, du Pakistan, d'Ukraine, de Crimée, de la RPD et de la RPL</strong> en raison de restrictions liées aux sanctions, de difficultés avec les systèmes de paiement et de risques politiques.",
-      restriction_p2: "Le service n'est pas non plus fourni aux <strong>citoyens d'Israël et d'Afghanistan</strong> en raison de restrictions de paiement et juridiques.",
+      restriction_p1: "Le service n'est pas fourni aux <strong>citoyens et/ou résidents de Chine, de Corée du Nord, d'Israël, d'Afghanistan, du Pakistan, d'Ukraine, de Crimée, de la RPD et de la RPL</strong> en raison de restrictions liées aux sanctions, de difficultés avec les systèmes de paiement et de risques politiques.",
       restriction_p3: "En cas de détection d'une appartenance aux catégories spécifiées, l'accès au service sera bloqué.",
       pricing_tag: "Tarifs", pricing_title: "Des prix simples et honnêtes",
       pricing_desc: "Un abonnement — jusqu'à 10 appareils. Pas de frais cachés ni de prélèvements automatiques.",
@@ -1234,7 +1241,7 @@
       pricing_feature_1: "Tous les serveurs disponibles", pricing_feature_2: "Jusqu'à 10 appareils",
       pricing_feature_3: "Trafic sans limite selon l'abonnement", pricing_feature_4: "Support dans les messageries",
       pricing_btn: "Choisir",
-      apps_tag: "Applications", apps_title: "Téléchargez l'application", apps_desc: "La connexion fonctionne via l'application gratuite Happ. Choisissez votre plateforme.", apps_btn: "Télécharger", apps_official: "Toutes les versions et liens à jour sur le site officiel de Happ (happ.su)", apps_note: "Vous recevrez un lien personnel après le paiement et l'importerez dans l'application.", news_tag: "Actualités", news_title: "Nouveautés", news_1: "L'achat et la configuration d'un serveur en Albanie (Tirana) ont commencé.", news_2: "Conditions d'utilisation mises à jour : section sur les données et liste des restrictions.", news_3: "L'application recommandée pour la connexion est désormais Happ.", news_foot: "Les autres actualités du service sont dans le canal Telegram.",
+      apps_tag: "Applications", apps_title: "Téléchargez l'application", apps_desc: "La connexion fonctionne via l'application gratuite Happ. Choisissez votre plateforme.", apps_btn: "Télécharger", apps_official: "Toutes les versions et liens à jour sur le site officiel de Happ (happ.su)", apps_note: "Vous recevrez un lien personnel après le paiement et l'importerez dans l'application.", news_tag: "Actualités", news_title: "Nouveautés", news_1: "L'achat et la configuration d'un serveur en Albanie (Tirana) ont commencé.", news_2: "Conditions d'utilisation mises à jour : section sur les données et liste des restrictions.", news_3: "L'application recommandée pour la connexion est désormais Happ.", news_4: "Le lancement d'un serveur en Suisse (Zurich) est à l'étude.", news_foot: "Les autres actualités du service sont dans le canal Telegram.",
       faq_tag: "Questions & Réponses", faq_title: "Questions fréquentes",
       faq_1_q: "Qu'est-ce que VLESS + XHTTP + REALITY ?",
       faq_1_a: "C'est un stack moderne pour une connexion sécurisée. VLESS est un protocole de transfert de données léger avec un minimum de surcharge. XHTTP est un transport fonctionnant sur HTTP/2. REALITY est une technologie de protection de la connexion basée sur TLS 1.3. Ensemble, ils offrent une vitesse élevée et un chiffrement.",
@@ -1243,11 +1250,11 @@
       faq_3_q: "Quelles données traitez-vous ?",
       faq_3_a: "Seul le minimum nécessaire de données est traité, exclusivement pour la fourniture des services : identifiant de messagerie (Telegram ID, nom d'utilisateur), historique de correspondance et documents de paiement. Aucun journal des sites visités n'est tenu et le contenu du trafic n'est pas analysé. Aucune base de données structurée distincte des Utilisateurs n'est créée. La correspondance se fait dans des messageries (Telegram, WhatsApp, Discord et autres) et est régie par les règles du service concerné. Voir la section 6 des conditions pour plus de détails.",
       faq_4_q: "Quels pays sont déjà disponibles ?",
-      faq_4_a: "Deux serveurs sont en service : l'Espagne (Madrid) avec une bande passante jusqu'à 300 Mbit/s et la Moldavie (Chisinau) avec une bande passante jusqu'à 250 Mbit/s. Un troisième serveur en Albanie (Tirana) est en cours d'achat et de configuration ; j'annoncerai son lancement dans le canal Telegram.",
+      faq_4_a: "Deux serveurs sont en service : l'Espagne (Madrid) avec une bande passante jusqu'à 300 Mbit/s et la Moldavie (Chisinau) avec une bande passante jusqu'à 250 Mbit/s. Un serveur en Albanie (Tirana) est en cours d'achat et de configuration, et la Suisse (Zurich) est à l'étude comme prochaine localisation. J'annonce les lancements dans le canal Telegram.",
       faq_5_q: "Combien d'appareils peuvent utiliser le compte ?",
       faq_5_a: "Jusqu'à 10 appareils simultanément sur n'importe quel forfait. L'abonnement peut être utilisé par vous et les membres de votre famille vivant avec vous. Le transfert du lien/clé personnel à des tiers est interdit.",
       faq_6_q: "Qui n'est pas éligible au service ?",
-      faq_6_a: "Le service n'est pas fourni aux citoyens et résidents de Chine, de Corée du Nord, d'Israël, d'Afghanistan, du Pakistan, d'Ukraine, de Crimée, de la RPD et de la RPL en raison de restrictions liées aux sanctions, de difficultés avec les systèmes de paiement et de risques politiques. Si une telle appartenance est constatée, l'accès sera interrompu.",
+      faq_6_a: "Le service n'est pas fourni aux citoyens et/ou résidents de Chine, de Corée du Nord, d'Israël, d'Afghanistan, du Pakistan, d'Ukraine, de Crimée, de la RPD et de la RPL en raison de restrictions liées aux sanctions, de difficultés avec les systèmes de paiement et de risques politiques. Si une telle appartenance est constatée, l'accès sera interrompu.",
       faq_7_q: "Comment payer et obtenir l'accès ?",
       faq_7_a: "Cliquez sur le bouton « Choisir » sur le forfait souhaité — un chat de support Telegram (@WayGVPN) s'ouvrira avec un message pré-rempli. Je vous aiderai avec le paiement et émettrai une clé d'accès personnelle en quelques minutes.",
       faq_8_q: "Puis-je obtenir un remboursement ?",
@@ -1267,7 +1274,6 @@
   var langLabels = { ru: 'RU', uk: 'UK', en: 'EN', fa: 'FA', fr: 'FR' };
   var htmlEl = document.documentElement;
 
-  // THEME
   var themeToggle = document.getElementById('themeToggle');
   var iconSun = document.getElementById('iconSun');
   var iconMoon = document.getElementById('iconMoon');
@@ -1289,7 +1295,6 @@
     applyTheme(current === 'dark' ? 'light' : 'dark');
   });
 
-  // LANGUAGE
   var langSwitcher = document.getElementById('langSwitcher');
   var langBtn = document.getElementById('langBtn');
   var langLabel = document.getElementById('langLabel');
@@ -1348,7 +1353,6 @@
   try { savedLang = localStorage.getItem('wayg-lang') || 'ru'; } catch(e) {}
   applyLanguage(savedLang);
 
-  // FAQ ACCORDION
   var faqItems = document.querySelectorAll('.faq-item');
   for (var f = 0; f < faqItems.length; f++) {
     (function(item) {
@@ -1361,7 +1365,6 @@
     })(faqItems[f]);
   }
 
-  // SCROLL PROGRESS + NAV + BACK TOP
   var nav = document.getElementById('nav');
   var scrollBar = document.getElementById('scrollBar');
   var backTop = document.getElementById('backTop');
@@ -1387,7 +1390,6 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // REVEAL
   if ('IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function(entries) {
       for (var i = 0; i < entries.length; i++) {
@@ -1404,7 +1406,6 @@
     for (var r2 = 0; r2 < revealEls2.length; r2++) { revealEls2[r2].classList.add('visible'); }
   }
 
-  // ACTIVE NAV LINK
   var navLinks = document.querySelectorAll('[data-nav]');
   var sections = [];
   for (var n = 0; n < navLinks.length; n++) {
@@ -1431,7 +1432,6 @@
     for (var sc = 0; sc < sections.length; sc++) activeObs.observe(sections[sc].section);
   }
 
-  // TERMS DIALOG
   var dlg = document.getElementById('termsDialog');
   var termsLang = 'ru';
   var closeLabels = { ru: 'Закрыть', uk: 'Закрити', en: 'Close', fa: 'بستن', fr: 'Fermer' };
