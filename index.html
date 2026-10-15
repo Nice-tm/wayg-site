@@ -5,9 +5,11 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2304050a'/%3E%3Ctext x='16' y='23' font-size='20' font-weight='800' text-anchor='middle' fill='%236b9dff' font-family='sans-serif'%3EG%3C/text%3E%3C/svg%3E">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#04050a" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#f5f7fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#04050a">
 <meta name="description" content="WayG VPN — приватное и быстрое соединение на базе VLESS + XHTTP + REALITY. До 4 устройств, поддержка от создателя.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="WayG VPN — Приватное соединение нового поколения">
+<meta property="og:description" content="Быстрое соединение на базе VLESS + XHTTP + REALITY. До 4 устройств, 4 сервера в Европе.">
 <title>WayG VPN — Приватное соединение нового поколения</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,22 +36,7 @@
   }
   html { scroll-behavior: smooth; scroll-padding-top: 90px; }
   html[dir="rtl"] { direction: rtl; }
-  html[dir="rtl"] .nav-inner { flex-direction: row-reverse; }
-  html[dir="rtl"] .nav-links { flex-direction: row-reverse; }
-  html[dir="rtl"] .nav-controls { flex-direction: row-reverse; }
-  html[dir="rtl"] .hero-buttons { flex-direction: row-reverse; }
-  html[dir="rtl"] .protocol-items { flex-direction: row-reverse; }
-  html[dir="rtl"] .footer-inner { flex-direction: row-reverse; }
-  html[dir="rtl"] .footer-cols { flex-direction: row-reverse; }
-  html[dir="rtl"] .footer-bottom { flex-direction: row-reverse; }
-  html[dir="rtl"] .price-features li { flex-direction: row-reverse; text-align: right; }
-  html[dir="rtl"] .faq-q { flex-direction: row-reverse; }
-  html[dir="rtl"] .server-meta-row { flex-direction: row-reverse; }
-  html[dir="rtl"] .server-head { flex-direction: row-reverse; }
-  html[dir="rtl"] .logo { flex-direction: row-reverse; }
   html[dir="rtl"] .lang-dropdown { right: auto; left: 0; }
-  html[dir="rtl"] .restriction-head { flex-direction: row-reverse; }
-  html[dir="rtl"] .trust-row { flex-direction: row-reverse; }
   body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; line-height: 1.6; -webkit-font-smoothing: antialiased; transition: background-color 0.4s ease, color 0.4s ease; }
   ::selection { background: rgba(107,157,255,0.3); color: #fff; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
@@ -103,6 +90,7 @@
   nav.scrolled { padding: 12px 0; background: var(--nav-scrolled-bg); backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%); border-bottom: 1px solid var(--border); }
   .nav-inner { max-width: 1240px; margin: 0 auto; padding: 0 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
   .logo { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 22px; letter-spacing: -0.02em; text-decoration: none; color: var(--text); flex-shrink: 0; transition: opacity 0.2s; display: inline-flex; align-items: center; }
+  .logo { direction: ltr; unicode-bidi: isolate; }
   .logo:hover { opacity: 0.85; }
   .logo .g { font-weight: 700; background: linear-gradient(135deg, #6b9dff, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .nav-links { display: flex; gap: 32px; list-style: none; }
@@ -187,7 +175,7 @@
   .proto-hero p { color: var(--muted); font-size: 16px; line-height: 1.7; margin-bottom: 16px; }
   .proto-hero p:last-child { margin-bottom: 0; }
   .proto-hero strong { color: var(--text); }
-  .proto-code { padding: 28px; border-radius: 18px; background: var(--bg-soft); border: 1px solid var(--border-strong); font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.9; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+  .proto-code { padding: 28px; border-radius: 18px; background: var(--bg-soft); border: 1px solid var(--border-strong); font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.9; box-shadow: var(--shadow); position: relative; overflow: hidden; direction: ltr; text-align: left; }
   .proto-code::before { content: ''; position: absolute; top: 0; left: 20%; right: 20%; height: 1px; background: linear-gradient(90deg, transparent, rgba(107,157,255,0.6), transparent); }
   .proto-code-head { display: flex; gap: 8px; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
   .proto-code-head span { width: 11px; height: 11px; border-radius: 50%; }
@@ -221,10 +209,14 @@
   .price-card { padding: 40px 32px; border-radius: 24px; background: var(--card); border: 1px solid var(--border-strong); position: relative; transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), border-color 0.35s; display: flex; flex-direction: column; }
   .price-card:hover { border-color: rgba(128,128,128,0.2); transform: translateY(-4px); }
   .price-card.featured { background: linear-gradient(180deg, rgba(107,157,255,0.09), rgba(168,85,247,0.04) 50%, var(--card)); border-color: rgba(107,157,255,0.4); box-shadow: 0 30px 80px -30px rgba(107,157,255,0.5), var(--shadow); }
-  .price-card.featured::before { content: 'ПОПУЛЯРНЫЙ'; position: absolute; top: -13px; left: 50%; transform: translateX(-50%); padding: 6px 16px; border-radius: 100px; background: linear-gradient(135deg, #6b9dff, #a855f7); font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; color: #fff; box-shadow: 0 10px 24px -4px rgba(107,157,255,0.6); white-space: nowrap; }
+  .price-card.featured::before { content: attr(data-badge); position: absolute; top: -13px; left: 50%; transform: translateX(-50%); padding: 6px 16px; border-radius: 100px; background: linear-gradient(135deg, #6b9dff, #a855f7); font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; color: #fff; box-shadow: 0 10px 24px -4px rgba(107,157,255,0.6); white-space: nowrap; }
   .price-name { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; color: var(--muted); margin-bottom: 14px; letter-spacing: 0.02em; }
   .price-amount { font-family: 'Space Grotesk', sans-serif; font-size: 52px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; color: var(--text); }
-  .price-amount small { font-size: 24px; opacity: 0.6; margin-left: 4px; }
+  .price-amount { display: flex; align-items: baseline; flex-wrap: wrap; }
+  .price-amount small { font-size: 24px; opacity: 0.6; margin-inline-start: 4px; }
+  .price-old { font-size: 18px; font-weight: 500; color: var(--muted-2); text-decoration: line-through; margin-inline-start: 12px; letter-spacing: 0; }
+  .price-name { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 26px; }
+  .price-save { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0; color: var(--green); background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.3); padding: 3px 10px; border-radius: 100px; direction: ltr; unicode-bidi: isolate; }
   .price-period { color: var(--muted); font-size: 13.5px; margin-bottom: 30px; }
   .price-features { list-style: none; margin-bottom: 30px; flex: 1; }
   .price-features li { display: flex; align-items: flex-start; gap: 12px; padding: 9px 0; font-size: 14px; color: var(--muted); line-height: 1.5; }
@@ -339,16 +331,16 @@
         <svg id="iconMoon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
       </button>
       <div class="lang-switcher" id="langSwitcher">
-        <button class="lang-btn" id="langBtn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Выбор языка">
+        <button class="lang-btn" id="langBtn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Выбор языка">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
           <span class="lang-label" id="langLabel">RU</span>
         </button>
-        <div class="lang-dropdown" role="listbox">
-          <a href="#" data-lang="ru" role="option" aria-selected="true">🇷🇺 Русский</a>
-          <a href="#" data-lang="uk" role="option" aria-selected="false">🇺🇦 Українська</a>
-          <a href="#" data-lang="en" role="option" aria-selected="false">🇬🇧 English</a>
-          <a href="#" data-lang="fa" role="option" aria-selected="false">🇮🇷 فارسی</a>
-          <a href="#" data-lang="fr" role="option" aria-selected="false">🇫🇷 Français</a>
+        <div class="lang-dropdown">
+          <a href="#" data-lang="ru">🇷🇺 Русский</a>
+          <a href="#" data-lang="uk">🇺🇦 Українська</a>
+          <a href="#" data-lang="en">🇬🇧 English</a>
+          <a href="#" data-lang="fa">🇮🇷 فارسی</a>
+          <a href="#" data-lang="fr">🇫🇷 Français</a>
         </div>
       </div>
       <a href="https://t.me/WayGVPN" target="_blank" rel="noopener" class="btn btn-primary" data-i18n="nav_connect">Подключиться</a>
@@ -612,29 +604,29 @@
         </ul>
         <a href="https://t.me/WayGVPN?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20WayG%20VPN%20%D0%BD%D0%B0%201%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86%20%2899%20%E2%82%BD%29." target="_blank" rel="noopener" class="btn btn-ghost" data-i18n="pricing_btn">Выбрать</a>
       </div>
-      <div class="price-card featured reveal">
-        <div class="price-name" data-i18n="pricing_2_name">3 месяца</div>
-        <div class="price-amount">299<small>₽</small></div>
-        <div class="price-period" data-i18n="pricing_2_period">≈ 100 ₽ в месяц</div>
+      <div class="price-card featured reveal" data-badge="ПОПУЛЯРНЫЙ">
+        <div class="price-name"><span data-i18n="pricing_2_name">3 месяца</span><span class="price-save">−3%</span></div>
+        <div class="price-amount">289<small>₽</small><s class="price-old">297 ₽</s></div>
+        <div class="price-period" data-i18n="pricing_2_period">≈ 96 ₽ в месяц</div>
         <ul class="price-features">
           <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_1">Все доступные серверы</span></li>
           <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_2">До 4 устройств</span></li>
           <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_3">Трафик без лимита по тарифу</span></li>
           <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_4">Поддержка в мессенджерах</span></li>
         </ul>
-        <a href="https://t.me/WayGVPN?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20WayG%20VPN%20%D0%BD%D0%B0%203%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86%D0%B0%20%28299%20%E2%82%BD%29." target="_blank" rel="noopener" class="btn btn-primary" data-i18n="pricing_btn">Выбрать</a>
+        <a href="https://t.me/WayGVPN?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20WayG%20VPN%20%D0%BD%D0%B0%203%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86%D0%B0%20%28289%20%E2%82%BD%29." target="_blank" rel="noopener" class="btn btn-primary" data-i18n="pricing_btn">Выбрать</a>
       </div>
       <div class="price-card reveal">
-        <div class="price-name" data-i18n="pricing_3_name">6 месяцев</div>
-        <div class="price-amount">599<small>₽</small></div>
-        <div class="price-period" data-i18n="pricing_3_period">≈ 100 ₽ в месяц</div>
+        <div class="price-name"><span data-i18n="pricing_3_name">6 месяцев</span><span class="price-save">−4%</span></div>
+        <div class="price-amount">569<small>₽</small><s class="price-old">594 ₽</s></div>
+        <div class="price-period" data-i18n="pricing_3_period">≈ 95 ₽ в месяц</div>
         <ul class="price-features">
           <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_1">Все доступные серверы</span></li>
           <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_2">До 4 устройств</span></li>
           <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_3">Трафик без лимита по тарифу</span></li>
           <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></span> <span data-i18n="pricing_feature_4">Поддержка в мессенджерах</span></li>
         </ul>
-        <a href="https://t.me/WayGVPN?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20WayG%20VPN%20%D0%BD%D0%B0%206%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86%D0%B5%D0%B2%20%28599%20%E2%82%BD%29." target="_blank" rel="noopener" class="btn btn-ghost" data-i18n="pricing_btn">Выбрать</a>
+        <a href="https://t.me/WayGVPN?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D0%BE%D0%B4%D0%BA%D0%BB%D1%8E%D1%87%D0%B8%D1%82%D1%8C%20%D1%82%D0%B0%D1%80%D0%B8%D1%84%20WayG%20VPN%20%D0%BD%D0%B0%206%20%D0%BC%D0%B5%D1%81%D1%8F%D1%86%D0%B5%D0%B2%20%28569%20%E2%82%BD%29." target="_blank" rel="noopener" class="btn btn-ghost" data-i18n="pricing_btn">Выбрать</a>
       </div>
     </div>
   </div>
@@ -926,11 +918,11 @@
       pricing_tag: "Тарифы", pricing_title: "Простые и честные цены",
       pricing_desc: "Одна подписка — до 4 устройств (по одному на каждую локацию). Без скрытых платежей и автоматических списаний.",
       pricing_1_name: "1 месяц", pricing_1_period: "в месяц",
-      pricing_2_name: "3 месяца", pricing_2_period: "≈ 100 ₽ в месяц",
-      pricing_3_name: "6 месяцев", pricing_3_period: "≈ 100 ₽ в месяц",
+      pricing_2_name: "3 месяца", pricing_2_period: "≈ 96 ₽ в месяц",
+      pricing_3_name: "6 месяцев", pricing_3_period: "≈ 95 ₽ в месяц",
       pricing_feature_1: "Все доступные серверы", pricing_feature_2: "До 4 устройств",
       pricing_feature_3: "Трафик без лимита по тарифу", pricing_feature_4: "Поддержка в мессенджерах",
-      pricing_btn: "Выбрать",
+      pricing_btn: "Выбрать", pricing_badge: "ПОПУЛЯРНЫЙ",
       apps_tag: "Приложения", apps_title: "Скачайте приложение", apps_desc: "Подключение работает через бесплатное приложение Happ. Выберите свою платформу.", apps_btn: "Скачать", apps_official: "Все версии и актуальные ссылки — на официальном сайте Happ (happ.su)", apps_note: "Персональную ссылку для подключения вы получите после оплаты и импортируете её в приложение.", news_tag: "Новости", news_title: "Что нового", news_1: "Начата покупка и настройка сервера в Албании (Тирана).", news_2: "Обновлены правила использования: раздел о данных и список ограничений.", news_3: "Для подключения теперь рекомендуется приложение Happ.", news_5: "Запущены серверы в Польше (Варшава) и Албании (Тирана). Теперь доступно четыре локации.", news_foot: "Остальные новости сервиса — в Telegram-канале.",
       faq_tag: "Вопросы и ответы", faq_title: "Частые вопросы",
       faq_1_q: "Что такое VLESS + XHTTP + REALITY?",
@@ -1005,11 +997,11 @@
       pricing_tag: "Тарифи", pricing_title: "Прості та чесні ціни",
       pricing_desc: "Одна підписка — до 4 пристроїв (по одному на кожну локацію). Без прихованих платежів і автоматичних списань.",
       pricing_1_name: "1 місяць", pricing_1_period: "на місяць",
-      pricing_2_name: "3 місяці", pricing_2_period: "≈ 100 ₽ на місяць",
-      pricing_3_name: "6 місяців", pricing_3_period: "≈ 100 ₽ на місяць",
+      pricing_2_name: "3 місяці", pricing_2_period: "≈ 96 ₽ на місяць",
+      pricing_3_name: "6 місяців", pricing_3_period: "≈ 95 ₽ на місяць",
       pricing_feature_1: "Всі доступні сервери", pricing_feature_2: "До 4 пристроїв",
       pricing_feature_3: "Трафік без ліміту за тарифом", pricing_feature_4: "Підтримка в месенджерах",
-      pricing_btn: "Обрати",
+      pricing_btn: "Обрати", pricing_badge: "ПОПУЛЯРНИЙ",
       apps_tag: "Застосунки", apps_title: "Завантажте застосунок", apps_desc: "Підключення працює через безкоштовний застосунок Happ. Оберіть свою платформу.", apps_btn: "Завантажити", apps_official: "Усі версії та актуальні посилання — на офіційному сайті Happ (happ.su)", apps_note: "Персональне посилання для підключення ви отримаєте після оплати та імпортуєте його в застосунок.", news_tag: "Новини", news_title: "Що нового", news_1: "Розпочато купівлю та налаштування сервера в Албанії (Тирана).", news_2: "Оновлено правила використання: розділ про дані та список обмежень.", news_3: "Для підключення тепер рекомендується застосунок Happ.", news_5: "Запущено сервери в Польщі (Варшава) та Албанії (Тирана). Тепер доступно чотири локації.", news_foot: "Решта новин сервісу — в Telegram-каналі.",
       faq_tag: "Питання та відповіді", faq_title: "Часті питання",
       faq_1_q: "Що таке VLESS + XHTTP + REALITY?",
@@ -1084,11 +1076,11 @@
       pricing_tag: "Pricing", pricing_title: "Simple and honest pricing",
       pricing_desc: "One subscription — up to 4 devices (one per each location). No hidden fees or automatic charges.",
       pricing_1_name: "1 month", pricing_1_period: "per month",
-      pricing_2_name: "3 months", pricing_2_period: "≈ 100 ₽ per month",
-      pricing_3_name: "6 months", pricing_3_period: "≈ 100 ₽ per month",
+      pricing_2_name: "3 months", pricing_2_period: "≈ 96 ₽ per month",
+      pricing_3_name: "6 months", pricing_3_period: "≈ 95 ₽ per month",
       pricing_feature_1: "All available servers", pricing_feature_2: "Up to 4 devices",
       pricing_feature_3: "Traffic unlimited by plan", pricing_feature_4: "Support in messengers",
-      pricing_btn: "Choose",
+      pricing_btn: "Choose", pricing_badge: "POPULAR",
       apps_tag: "Apps", apps_title: "Download the app", apps_desc: "Connection works through the free Happ app. Pick your platform.", apps_btn: "Download", apps_official: "All versions and current links are on the official Happ website (happ.su)", apps_note: "You will receive a personal link after payment and import it into the app.", news_tag: "News", news_title: "What's new", news_1: "Purchase and setup of a server in Albania (Tirana) has started.", news_2: "Terms of use updated: the data section and the list of restrictions.", news_3: "The recommended connection app is now Happ.", news_5: "Servers in Poland (Warsaw) and Albania (Tirana) have been launched. Four locations are now available.", news_foot: "More service news is in the Telegram channel.",
       faq_tag: "Q&A", faq_title: "Frequently asked questions",
       faq_1_q: "What is VLESS + XHTTP + REALITY?",
@@ -1163,11 +1155,11 @@
       pricing_tag: "قیمت‌ها", pricing_title: "قیمت‌های ساده و منصفانه",
       pricing_desc: "یک اشتراک — تا 4 دستگاه (یکی برای هر موقعیت). بدون هزینه پنهان یا شارژ خودکار.",
       pricing_1_name: "1 ماه", pricing_1_period: "در ماه",
-      pricing_2_name: "3 ماه", pricing_2_period: "≈ 100 ₽ در ماه",
-      pricing_3_name: "6 ماه", pricing_3_period: "≈ 100 ₽ در ماه",
+      pricing_2_name: "3 ماه", pricing_2_period: "≈ 96 ₽ در ماه",
+      pricing_3_name: "6 ماه", pricing_3_period: "≈ 95 ₽ در ماه",
       pricing_feature_1: "همه سرورهای موجود", pricing_feature_2: "تا 4 دستگاه",
       pricing_feature_3: "ترافیک بدون محدودیت در هر طرح", pricing_feature_4: "پشتیبانی در پیام‌رسان‌ها",
-      pricing_btn: "انتخاب",
+      pricing_btn: "انتخاب", pricing_badge: "محبوب",
       apps_tag: "برنامه‌ها", apps_title: "برنامه را دانلود کنید", apps_desc: "اتصال از طریق برنامهٔ رایگان Happ انجام می‌شود. پلتفرم خود را انتخاب کنید.", apps_btn: "دانلود", apps_official: "همهٔ نسخه‌ها و پیوندهای به‌روز در وب‌سایت رسمی Happ (happ.su)", apps_note: "پس از پرداخت یک لینک شخصی دریافت می‌کنید و آن را در برنامه وارد می‌کنید.", news_tag: "اخبار", news_title: "تازه‌ها", news_1: "خرید و راه‌اندازی سرور در آلبانی (تیرانا) آغاز شد.", news_2: "قوانین استفاده به‌روزرسانی شد: بخش داده‌ها و فهرست محدودیت‌ها.", news_3: "اکنون برنامهٔ پیشنهادی برای اتصال Happ است.", news_5: "سرورهای لهستان (ورشو) و آلبانی (تیرانا) راه‌اندازی شدند. اکنون چهار مکان در دسترس است.", news_foot: "اخبار بیشتر سرویس در کانال تلگرام است.",
       faq_tag: "پرسش و پاسخ", faq_title: "سوالات متداول",
       faq_1_q: "VLESS + XHTTP + REALITY چیست؟",
@@ -1185,7 +1177,7 @@
       faq_7_q: "چگونه پرداخت کنیم و دسترسی بگیریم؟",
       faq_7_a: "روی دکمه \"انتخاب\" در طرح مورد نظر کلیک کنید — یک چت پشتیبانی تلگرام (@WayGVPN) با پیام از پیش پر شده باز می‌شود. من در پرداخت کمک می‌کنم و ظرف چند دقیقه کلید دسترسی شخصی را صادر می‌کنم.",
       faq_8_q: "آیا می‌توانم بازپرداخت بگیرم؟",
-      faq_8_a: "اگر سرویس بیش از ۲۴ ساعت پیاپی به تقصیر من کار نکرده باشد، بازپرداخت متناسب با روزهای استفاده‌نشده انجام می‌شود. در سایر موارد، بازپرداخت بخش استفاده‌نشده طبق قانون حمایت از مصرف‌کنندگان بررسی می‌شود.",
+      faq_8_a: "اگر سرویس بیش از ۲۴ ساعت پیاپی به تقصیر من کار نکرده باشد، بازپرداخت متناسب با روزهای استفاده‌نشده انجام می‌شود. در سایر موارد، بازپرداخت بخش استفاده‌نشده طبق قانون حمایت از مصرف‌کنندگان بررسی می‌شود. در صورت مسدود شدن به دلیل نقض قوانین، وجه بازگردانده نمی‌شود.",
       cta_title: "آماده اتصال هستید؟",
       cta_desc: "راه‌اندازی 2 دقیقه طول می‌کشد. یک اشتراک — تا 4 دستگاه، از 99 ₽ در ماه.",
       cta_btn: "پیام به پشتیبانی",
@@ -1242,11 +1234,11 @@
       pricing_tag: "Tarifs", pricing_title: "Des prix simples et honnêtes",
       pricing_desc: "Un abonnement — jusqu'à 4 appareils (un par localisation). Pas de frais cachés ni de prélèvements automatiques.",
       pricing_1_name: "1 mois", pricing_1_period: "par mois",
-      pricing_2_name: "3 mois", pricing_2_period: "≈ 100 ₽ par mois",
-      pricing_3_name: "6 mois", pricing_3_period: "≈ 100 ₽ par mois",
+      pricing_2_name: "3 mois", pricing_2_period: "≈ 96 ₽ par mois",
+      pricing_3_name: "6 mois", pricing_3_period: "≈ 95 ₽ par mois",
       pricing_feature_1: "Tous les serveurs disponibles", pricing_feature_2: "Jusqu'à 4 appareils",
       pricing_feature_3: "Trafic sans limite selon l'abonnement", pricing_feature_4: "Support dans les messageries",
-      pricing_btn: "Choisir",
+      pricing_btn: "Choisir", pricing_badge: "POPULAIRE",
       apps_tag: "Applications", apps_title: "Téléchargez l'application", apps_desc: "La connexion fonctionne via l'application gratuite Happ. Choisissez votre plateforme.", apps_btn: "Télécharger", apps_official: "Toutes les versions et liens à jour sur le site officiel de Happ (happ.su)", apps_note: "Vous recevrez un lien personnel après le paiement et l'importerez dans l'application.", news_tag: "Actualités", news_title: "Nouveautés", news_1: "L'achat et la configuration d'un serveur en Albanie (Tirana) ont commencé.", news_2: "Conditions d'utilisation mises à jour : section sur les données et liste des restrictions.", news_3: "L'application recommandée pour la connexion est désormais Happ.", news_5: "Les serveurs en Pologne (Varsovie) et en Albanie (Tirana) ont été lancés. Quatre localisations sont désormais disponibles.", news_foot: "Les autres actualités du service sont dans le canal Telegram.",
       faq_tag: "Questions & Réponses", faq_title: "Questions fréquentes",
       faq_1_q: "Qu'est-ce que VLESS + XHTTP + REALITY ?",
@@ -1329,9 +1321,11 @@
     for (var i = 0; i < links.length; i++) {
       var active = links[i].getAttribute('data-lang') === lang;
       links[i].classList.toggle('active', active);
-      links[i].setAttribute('aria-selected', active ? 'true' : 'false');
+      if (active) links[i].setAttribute('aria-current', 'true'); else links[i].removeAttribute('aria-current');
     }
     langLabel.textContent = langLabels[lang] || 'RU';
+    var pc = document.querySelector('.price-card.featured');
+    if (pc && translations[lang].pricing_badge) pc.setAttribute('data-badge', translations[lang].pricing_badge);
     var textEls = document.querySelectorAll('[data-i18n]');
     for (var j = 0; j < textEls.length; j++) {
       var key = textEls[j].getAttribute('data-i18n');
@@ -1451,7 +1445,7 @@
   }
   function openTerms(section) {
     var cur = htmlEl.getAttribute('lang');
-    setTermsLang(cur === 'ru' ? 'ru' : 'en');
+    setTermsLang((cur === 'ru' || cur === 'uk') ? 'ru' : 'en');
     document.getElementById('termsClose').setAttribute('aria-label', closeLabels[cur] || 'Close');
     if (!dlg.open) dlg.showModal();
     document.body.style.overflow = 'hidden';
